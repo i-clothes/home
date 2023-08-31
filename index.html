@@ -49,13 +49,22 @@
             margin-right: 10px;
         }
         
-        .hero {
-            background-image: url('luxury.mp4');
-            background-size: cover;
-            background-position: center;
+       .hero {
+            position: relative;
             text-align: center;
-            padding: 100px 0;
             color: #fff;
+        }
+
+        .hero video {
+            width: 100%;
+            height: auto;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         
         .cta-button {
@@ -116,9 +125,15 @@
     </header>
 
     <section class="hero">
-        <h1>Bienvenido a Elevate Nexus</h1>
-        <p>Tu destino para el éxito, la moda y el estilo de vida emprendedor.</p>
-        <a href="#" class="cta-button">Explora Nuestra Colección</a>
+        <video autoplay loop muted playsinline>
+            <source src="luxury.mp4" type="video/mp4">
+            Tu navegador no admite la reproducción de video.
+        </video>
+        <div class="hero-content">
+            <h1>Bienvenido a Elevate Nexus</h1>
+            <p>Tu destino para el éxito, la moda y el estilo de vida emprendedor.</p>
+            <a href="#" class="cta-button">Explora Nuestra Colección</a>
+        </div>
     </section>
 
     <section class="products">
