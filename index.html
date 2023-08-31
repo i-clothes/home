@@ -19,19 +19,30 @@
             text-align: center;
         }
         
-        nav ul {
+         nav ul {
+            display: flex;
             list-style: none;
             padding: 0;
+            justify-content: center;
         }
-        
+
         nav ul li {
-            display: inline;
             margin-right: 20px;
         }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: #fff;
+
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        nav ul li.logo {
+            display: flex;
+            align-items: center;
+            margin-right: auto;
+        }
+
+        nav ul li.logo img {
+            max-width: 50px;
+            margin-right: 10px;
         }
         
         .hero {
@@ -89,9 +100,10 @@
 <body>
     <header>
         <nav>
-            <ul>
+           <ul>
                 <li><a href="#">Inicio</a></li>
                 <li><a href="#">Productos</a></li>
+                <li class="logo"><img src="logo.png" alt="Logo Elevate Nexus"> <a href="#">Elevate Nexus</a></li>
                 <li><a href="#">Sobre Nosotros</a></li>
                 <li><a href="#">Contacto</a></li>
             </ul>
