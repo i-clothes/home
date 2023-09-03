@@ -704,6 +704,15 @@ urban.addEventListener('click', function () {
     heroContent.style.color = 'black';
 
     heroContent.querySelector('h1').textContent = 'Hoy te sientes más de Urbano';
+
+    // Cambiar el texto de las etiquetas <p> en .hero-content
+const firstParagraph = heroContent.querySelector('p:first-child');
+const secondParagraph = heroContent.querySelector('p:nth-child(2)');
+
+if (firstParagraph && secondParagraph) {
+  firstParagraph.textContent = 'Nos encanta el estilo urbano pero pulcro, limpio y minimalista.';
+  secondParagraph.textContent = 'Encontrarás diseños minimalistas sencillos pero que te darán una gran presencia.';
+}
 });
 
         
