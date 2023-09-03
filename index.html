@@ -356,6 +356,33 @@
             }
         }
 
+        .cart-icon-container {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid grey;
+}
+
+.cart-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('ICL.png') center center no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+/* Estilos para el icono dentro del segundo div */
+.cart-icon img {
+  max-width: 50%;
+  max-height: 50%;
+}
+
     </style>
 </head>
 <body>
@@ -582,6 +609,12 @@
             <h1>Modo Urban</h1>
         </div>
     </div>
+    <div class="cart-icon-container">
+  <div class="cart-icon">
+    <img src="ICL.png" alt="Carrito de compras">
+  </div>
+</div>
+
     <footer>
         <p>&copy; 2023  i-Clothes. Todos los derechos reservados.</p>
     </footer>
