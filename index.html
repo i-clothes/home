@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Elevate i-clothes - Tu Éxito, Tu Estilo</title>
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -224,6 +225,33 @@ textarea {
     clear: both;
 }
 
+        /* Estilos para las opciones de producto */
+.product-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 20px;
+    color: #333; /* Color de las opciones */
+    transition: color 0.3s ease;
+}
+
+.option:hover {
+    color: #f39c12; /* Color al pasar el ratón por encima */
+}
+
+.option i {
+    margin-right: 5px;
+}
+
+
     </style>
 </head>
 <body>
@@ -260,11 +288,37 @@ textarea {
     <section class="products">
         <h2>Nuestra Colección</h2>
         <div class="product">
-            <img src="iclothes1.png">
-            <h3>i-Clothes Urban I</h3>
-            <p>Diseños únicos para inspirar tu jornada emprendedora.</p>
+        <img src="iclothes1.png">
+        <h3>i-Clothes Urban I</h3>
+        <p>Diseños únicos para inspirar tu jornada emprendedora.</p>
+        <div class="product-options">
+            <div class="option">
+                <i class="fas fa-heart"></i> Dar Like
+            </div>
+            <div class="option">
+                <i class="fas fa-shopping-cart"></i> Añadir al carrito
+            </div>
+            <div class="option">
+                <i class="fas fa-share"></i> Compartir
+            </div>
         </div>
-        <!-- Agregar más productos aquí -->
+    </div>
+ <div class="product">
+        <img src="iclothes1.png">
+        <h3>i-Clothes Urban I</h3>
+        <p>Diseños únicos para inspirar tu jornada emprendedora.</p>
+        <div class="product-options">
+            <div class="option">
+                <i class="fas fa-heart"></i> Dar Like
+            </div>
+            <div class="option">
+                <i class="fas fa-shopping-cart"></i> Añadir al carrito
+            </div>
+            <div class="option">
+                <i class="fas fa-share"></i> Compartir
+            </div>
+        </div>
+    </div>
     </section>
 
     <section class="about">
