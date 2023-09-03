@@ -678,17 +678,24 @@ innerDivs.forEach((div) => {
             }
         });
 
-        const header = document.querySelector('header');
-        const navLinks = document.querySelectorAll('header nav ul li a');
-        const navUl = document.querySelector('header nav ul');
+       const urban = document.getElementById('urban');
+const header = document.querySelector('header');
+const navLinks = document.querySelectorAll('header nav ul li a');
+const navUl = document.querySelector('header nav ul');
+const videoElement = document.querySelector('.hero video');
 
-        urban.addEventListener('click', function () {
-            header.style.backgroundColor = 'white';
-            navLinks.forEach(link => {
-                link.style.color = 'black';
-            });
-            navUl.style.background = 'url(urban4.png) no-repeat center bottom';
-        });
+urban.addEventListener('click', function () {
+    header.style.backgroundColor = 'white';
+    navLinks.forEach(link => {
+        link.style.color = 'black';
+    });
+    navUl.style.background = 'url(urban4.png) no-repeat center bottom';
+
+    // Cambiar el src del video
+    videoElement.src = 'urban.mp4';
+    videoElement.load(); // Recargar el video con la nueva fuente
+});
+
     </script>
 </body>
 </html>
