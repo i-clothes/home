@@ -693,8 +693,11 @@ urban.addEventListener('click', function () {
     // Cambiar el src del video
     videoElement.src = 'urban.mp4';
     videoElement.load(); // Recargar el video con la nueva fuente
-});
 
+    // Cambiar el fondo de .know-what-you-want
+    const knowWhatYouWant = document.querySelector('.know-what-you-want');
+    knowWhatYouWant.style.backgroundImage = 'url(section3.png)';
+});
     </script>
 </body>
 </html>
