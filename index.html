@@ -650,7 +650,7 @@
         <p>&copy; 2023  i-Clothes. Todos los derechos reservados.</p>
     </footer>
     <script>
-        // Obtén todos los elementos con la clase "inner-div"
+       // Obtén todos los elementos con la clase "inner-div"
 const innerDivs = document.querySelectorAll('.inner-div');
 
 // Agrega un event listener para cada div interno
@@ -661,22 +661,21 @@ innerDivs.forEach((div) => {
   });
 });
 
+const cartIconContainer = document.querySelector('.cart-icon-container');
+const luxury = document.getElementById('luxury');
+const urban = document.getElementById('urban');
+let isVisible = false;
 
-         const cartIconContainer = document.querySelector('.cart-icon-container');
-        const luxury = document.getElementById('luxury');
-        const urban = document.getElementById('urban');
-        let isVisible = false;
-
-        cartIconContainer.addEventListener('click', function () {
-            isVisible = !isVisible;
-            if (isVisible) {
-                luxury.style.display = 'block';
-                urban.style.display = 'block';
-            } else {
-                luxury.style.display = 'none';
-                urban.style.display = 'none';
-            }
-        });
+cartIconContainer.addEventListener('click', function () {
+  isVisible = !isVisible;
+  if (isVisible) {
+    luxury.style.display = 'block';
+    urban.style.display = 'block';
+  } else {
+    luxury.style.display = 'none';
+    urban.style.display = 'none';
+  }
+});
 
 const header = document.querySelector('header');
 const navLinks = document.querySelectorAll('header nav ul li a');
@@ -684,34 +683,34 @@ const navUl = document.querySelector('header nav ul');
 const videoElement = document.querySelector('.hero video');
 
 urban.addEventListener('click', function () {
-    header.style.backgroundColor = 'white';
-    navLinks.forEach(link => {
-        link.style.color = 'black';
-    });
-    navUl.style.background = 'url(urban4.png) no-repeat center bottom';
+  header.style.backgroundColor = 'white';
+  navLinks.forEach(link => {
+    link.style.color = 'black';
+  });
+  navUl.style.background = 'url(urban4.png) no-repeat center bottom';
 
-    // Cambiar el src del video
-    videoElement.src = 'urban.mp4';
-    videoElement.load(); // Recargar el video con la nueva fuente
+  // Cambiar el src del video
+  videoElement.src = 'urban.mp4';
+  videoElement.load(); // Recargar el video con la nueva fuente
 
-    // Cambiar el fondo de .know-what-you-want
-    const knowWhatYouWant = document.querySelector('.know-what-you-want');
-    knowWhatYouWant.style.backgroundImage = 'url(section3.png)';
+  // Cambiar el fondo de .know-what-you-want
+  const knowWhatYouWant = document.querySelector('.know-what-you-want');
+  knowWhatYouWant.style.backgroundImage = 'url(section3.png)';
 
-    // Cambiar el fondo y el color del texto de .hero-content
-    const heroContent = document.querySelector('.hero-content');
-    heroContent.style.backgroundColor = 'rgba(219, 207, 207, 0.8)';
-    heroContent.style.color = 'black';
+  // Cambiar el fondo y el color del texto de .hero-content
+  const heroContent = document.querySelector('.hero-content');
+  heroContent.style.backgroundColor = 'rgba(219, 207, 207, 0.8)';
+  heroContent.style.color = 'black';
 
-    heroContent.querySelector('h1').textContent = 'Hoy te sientes más de Urbano';
+  heroContent.querySelector('h1').textContent = 'Hoy te sientes más de Urbano';
+});
 
-
- // Cambiar el texto del H1 en .know-what-you-want
+// Cambiar el texto del H1 en .know-what-you-want
 const knowWhatYouWantSection = document.querySelector('.know-what-you-want');
-const h1Element = knowWhatYouWantSection.querySelector('h1');
+const h1KnowWhatYouWant = knowWhatYouWantSection.querySelector('h1');
 
-if (h1Element) {
-  h1Element.textContent = 'Urban Style';
+if (h1KnowWhatYouWant) {
+  h1KnowWhatYouWant.textContent = 'Urban Style';
 }
 
 // Cambiar el texto de las etiquetas <p> en .know-what-you-want
@@ -724,10 +723,10 @@ if (paragraphs.length >= 2) {
 
 // Cambiar el texto del H1 en .top-vendido
 const topVendidoSection = document.querySelector('.top-vendido');
-const h1Element = topVendidoSection.querySelector('h1');
+const h1TopVendido = topVendidoSection.querySelector('h1');
 
-if (h1Element) {
-  h1Element.textContent = 'Camiseta Urban Classic';
+if (h1TopVendido) {
+  h1TopVendido.textContent = 'Camiseta Urban Classic';
 }
 
 // Cambiar el fondo de la sección .top-vendido
@@ -755,10 +754,6 @@ if (precioTachadoSpan) {
   precioTachadoSpan.innerHTML = '<del>50€</del>';
 }
 
-
-});
-
-        
     </script>
 </body>
 </html>
