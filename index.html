@@ -659,6 +659,22 @@ innerDivs.forEach((div) => {
   });
 });
 
+
+         const cartIconContainer = document.querySelector('.cart-icon-container');
+        const luxury = document.getElementById('luxury');
+        const urban = document.getElementById('urban');
+        let isVisible = false;
+
+        cartIconContainer.addEventListener('click', function () {
+            isVisible = !isVisible;
+            if (isVisible) {
+                luxury.style.display = 'block';
+                urban.style.display = 'block';
+            } else {
+                luxury.style.display = 'none';
+                urban.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
