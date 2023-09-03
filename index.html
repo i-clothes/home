@@ -722,6 +722,40 @@ if (paragraphs.length >= 2) {
   paragraphs[1].textContent = 'Encontrarás diseños minimalistas sencillos pero que te darán una gran presencia.';
 }
 
+// Cambiar el texto del H1 en .top-vendido
+const topVendidoSection = document.querySelector('.top-vendido');
+const h1Element = topVendidoSection.querySelector('h1');
+
+if (h1Element) {
+  h1Element.textContent = 'Camiseta Urban Classic';
+}
+
+// Cambiar el fondo de la sección .top-vendido
+topVendidoSection.style.backgroundImage = 'url(section4.png)';
+
+// Cambiar la imagen en .top-vendido
+const imgElement = topVendidoSection.querySelector('img');
+
+if (imgElement) {
+  imgElement.src = 'iclothes2.png';
+  imgElement.alt = 'Camiseta Urban Classic';
+}
+
+// Cambiar el contenido del span con id "precio" en .top-vendido
+const precioSpan = topVendidoSection.querySelector('#precio');
+
+if (precioSpan) {
+  precioSpan.textContent = '39,99€';
+}
+
+// Cambiar el contenido del span con id "precioTachado" en .top-vendido
+const precioTachadoSpan = topVendidoSection.querySelector('#precioTachado');
+
+if (precioTachadoSpan) {
+  precioTachadoSpan.innerHTML = '<del>50€</del>';
+}
+
+
 });
 
         
