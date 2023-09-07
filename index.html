@@ -1085,10 +1085,8 @@ agregarCarritoButtons.forEach(function (boton) {
         
 document.addEventListener("DOMContentLoaded", function () {
     // Obtener referencias a los elementos HTML
-    const videoPlayer = document.getElementById("videoPlayer");
-    const videoSource = document.getElementById("videoSource");
-    const urbanButton = document.getElementById("urban");
-    const luxuryButton = document.getElementById("luxury");
+    const videoPlayer = document.getElementById("videoslider");
+    const videoSource = videoPlayer.querySelector("source"); // Obtenemos la fuente de video dentro del reproductor
 
     // Función para cambiar el src del video
     function changeVideoSource(src) {
@@ -1098,10 +1096,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Asignar eventos de clic a los botones
+    const urbanButton = document.getElementById("urban");
     urbanButton.addEventListener("click", function () {
         changeVideoSource("urban.mp4");
     });
 
+    const luxuryButton = document.getElementById("luxury");
     luxuryButton.addEventListener("click", function () {
         changeVideoSource("luxury2.mp4");
     });
