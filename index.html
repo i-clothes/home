@@ -1037,7 +1037,7 @@ function actualizarCarrito() {
       <p class="precio-producto">${item.price}</p>
       <span class="cantidad-producto">${item.cantidad}</span>
       <div class="opciones-carrito">
-        <i class="fas fa-trash-alt"></i>
+        <i class="fas fa-trash-alt restar-cantidad"></i>
       </div>
     `;
 
@@ -1045,7 +1045,34 @@ function actualizarCarrito() {
   });
 }
 
+// Obtener todos los elementos .restar-cantidad dentro de .sticky-cart
+        const restarCantidadIcons = document.querySelectorAll('.restar-cantidad');
 
+        // Iterar sobre cada icono de restar cantidad
+        restarCantidadIcons.forEach(function(icon) {
+            icon.addEventListener('click', function() {
+                // Obtener el elemento .product-add que contiene este icono
+                const productAddElement = icon.closest('.product-add');
+
+                // Obtener el elemento .cantidad-producto dentro de .product-add
+                const cantidadProductoElement = productAddElement.querySelector('.cantidad-producto');
+
+                // Obtener el valor actual de cantidad-producto y convertirlo a un número
+                let cantidadProducto = parseInt(cantidadProductoElement.textContent);
+
+                // Restar 1 a la cantidad-producto
+                cantidadProducto--;
+
+                // Actualizar la cantidad-producto en el elemento HTML
+                cantidadProductoElement.textContent = cantidadProducto;
+
+                // Verificar si la cantidad-producto es 0 o menos
+                if (cantidadProducto <= 0) {
+                    // Si es 0 o menos, eliminar completamente el elemento .product-add
+                    productAddElement.remove();
+                }
+            });
+        });
 
 // Función para guardar el carrito en el Local Storage
 function guardarCarritoEnLocalStorage() {
