@@ -1045,9 +1045,16 @@ function actualizarCarrito() {
   });
 }
 
- // Obtener todos los elementos .opciones-carrito dentro de .sticky-cart
+
+
+
+
+        
+
+
+// Obtener todos los elementos .opciones-carrito dentro de .sticky-cart
 const opcionesCarritoElements = document.querySelectorAll('.opciones-carrito');
-console.log(opcionesCarritoElements);
+
 // Iterar sobre cada elemento .opciones-carrito
 opcionesCarritoElements.forEach(function(opcionesCarritoElement) {
     opcionesCarritoElement.addEventListener('click', function() {
@@ -1060,27 +1067,41 @@ function eliminarProducto(element) {
     // Obtener el elemento .product-add que contiene el elemento pasado como argumento
     const productAddElement = element.closest('.product-add');
 
-    // Obtener el elemento .cantidad-producto dentro de .product-add
-    const cantidadProductoElement = productAddElement.querySelector('.cantidad-producto');
+    // Obtener el valor del nombre del producto
+    const nombreProducto = productAddElement.querySelector('.nombre-producto').textContent;
 
-    // Obtener el valor actual de cantidad-producto y convertirlo a un número
-    let cantidadProducto = parseInt(cantidadProductoElement.textContent);
+    // Eliminar el producto del localStorage
+    eliminarProductoLocalStorage(nombreProducto);
 
-    // Restar 1 a la cantidad-producto
-    cantidadProducto--;
+    // Eliminar el elemento .product-add del DOM
+    productAddElement.remove();
 
-    console.log(`Cantidad Producto: ${cantidadProducto}`);
+    console.log('Elemento eliminado del DOM');
 
-    // Actualizar la cantidad-producto en el elemento HTML
-    cantidadProductoElement.textContent = cantidadProducto;
-
-    // Verificar si la cantidad-producto es 0 o menos
-    if (cantidadProducto <= 0) {
-        // Si es 0 o menos, eliminar completamente el elemento .product-add
-        productAddElement.remove();
-        console.log('Elemento eliminado');
-    }
+    // Aquí puedes agregar cualquier otra lógica que necesites después de eliminar el elemento
 }
+
+// Función para eliminar un producto del localStorage por su nombre
+function eliminarProductoLocalStorage(nombreProducto) {
+    // Obtener el array de productos guardados en el localStorage
+    const productosGuardados = JSON.parse(localStorage.getItem('productosCarrito')) || [];
+
+    // Filtrar los productos para eliminar el que coincida con el nombre
+    const nuevosProductos = productosGuardados.filter(function(producto) {
+        return producto.nombre !== nombreProducto;
+    });
+
+    // Guardar los nuevos productos en el localStorage
+    localStorage.setItem('productosCarrito', JSON.stringify(nuevosProductos));
+
+    console.log('Producto eliminado del localStorage');
+}
+
+
+
+
+
+        
 
 // Función para guardar el carrito en el Local Storage
 function guardarCarritoEnLocalStorage() {
