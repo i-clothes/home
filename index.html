@@ -502,6 +502,54 @@
 #irAlProbador:active {
   background-color: #1c6da8;
 }
+/* Estilos para el contenedor del popup */
+.popup-tallas {
+    display: none; /* Ocultar el popup inicialmente */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+    z-index: 999; /* Asegura que esté en la parte superior */
+}
+
+/* Estilos para el contenido del popup */
+.popup-content {
+    background-color: #fff;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+}
+
+/* Estilos para el botón de cierre (×) */
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Estilos para el título "Tallas Disponibles" */
+.popup-content h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Estilos para la lista de tallas */
+.popup-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Estilos para los elementos de la lista de tallas */
+.popup-content ul li {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
 
 
     </style>
@@ -554,9 +602,9 @@
                         </div>
                   </div>
                 <div class="product-tallas">
-                     <div class="option">
-                          <i class="fas fa-tshirt"></i> Ver Tallas
-                        </div>
+                      <div class="option toggle-popup-tallas">
+                        <i class="fas fa-tshirt"></i> Ver Tallas
+                    </div>
                         <!-- Icono Material -->
                         <div class="option">
                           <i class="fas fa-palette"></i> Ver Material
@@ -566,6 +614,18 @@
                           <i class="fas fa-truck"></i> Ver Envíos
                         </div>
                 </div>
+                <div class="popup-tallas">
+            <div class="popup-content">
+                <span class="popup-close">&times;</span>
+                <h2>Tallas Disponibles</h2>
+                <ul>
+                    <li>S</li>
+                    <li>M</li>
+                    <li>L</li>
+                </ul>
+            </div>
+        </div>
+    </div>
         </div>
 </section>
 <section class="products">
@@ -789,7 +849,7 @@
     </div>
     <button id="irAlProbador" onclick="guardarCarritoEnLocalStorage()">Ir al probador</button>
 </div>
-
+ 
 
     <footer>
         <p>&copy; 2023  i-Clothes. Todos los derechos reservados.</p>
@@ -1161,6 +1221,25 @@ function mostrarCarrito() {
 const agregarCarritoButtons = document.querySelectorAll('.agregar-carrito');
 agregarCarritoButtons.forEach(function (boton) {
     boton.addEventListener('click', mostrarCarrito);
+});
+
+
+        // Obtener todos los elementos con la clase "toggle-popup-tallas"
+const toggleTallasButtons = document.querySelectorAll('.toggle-popup-tallas');
+
+// Iterar sobre los botones "Ver Tallas" y agregar eventos de clic
+toggleTallasButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        // Obtener el elemento de contenedor del popup de tallas más cercano
+        const popupTallasContainer = button.closest('.product').querySelector('.popup-tallas');
+
+        // Mostrar u ocultar el popup de tallas
+        if (popupTallasContainer.style.display === 'block') {
+            popupTallasContainer.style.display = 'none';
+        } else {
+            popupTallasContainer.style.display = 'block';
+        }
+    });
 });
 
         
