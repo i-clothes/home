@@ -866,6 +866,86 @@ function cambiarEstiloUrban() {
 // Agregar un evento de clic al elemento con id "urban"
 document.querySelector('#urban').addEventListener('click', cambiarEstiloUrban);
 
+function restaurarEstadoInicial() {
+    // Restaurar el fondo del header
+    document.querySelector('header').style.backgroundColor = ''; // Esto eliminará el estilo de fondo
+
+    // Restaurar el color de los enlaces (a) en el nav
+    const enlaces = document.querySelectorAll('nav ul li a');
+    for (let enlace of enlaces) {
+        enlace.style.color = ''; // Esto eliminará el estilo de color
+    }
+
+    // Restaurar el trozo de header img
+    document.querySelector('header ul').style.background = '';
+
+    // Restaurar el texto en la sección hero
+    document.querySelector('.hero-content h1').textContent = 'Bienvenido a  i-Clothes';
+    document.querySelector('.hero-content p.eslogan').textContent = 'Tu destino para el éxito, la moda y el estilo de vida emprendedor.';
+    // Restaurar el src del video
+    const videoElement = document.querySelector('video');
+    videoElement.querySelector('source').src = 'luxury2.mp4';
+    videoElement.load(); // Recargar el video
+
+    // Restaurar el texto en la sección top-vendido
+    document.querySelector('.top-vendido h1').textContent = 'Conjunto i-Clothes Luxury Star';
+    document.querySelector('.top-vendido .product img').src = 'luxury6.png';
+    document.querySelector('.top-vendido .product h3').textContent = 'Conjunto i-Clothes Luxury Star';
+    document.querySelector('.top-vendido .product p').textContent = 'Diseños únicos para inspirar tu jornada emprendedora.';
+    document.querySelector('.top-vendido .product p.precio').textContent = '50€';
+
+    // Restaurar el texto en la primera sección de class="products"
+    document.querySelector('.products h2').textContent = 'Nuestra Colección Polos Luxury';
+
+    // Restaurar el fondo de la sección .know-what-you-want
+    document.querySelector('.know-what-you-want').style.backgroundImage = '';
+
+    // Restaurar el fondo de la sección .top-vendido
+    document.querySelector('.top-vendido').style.backgroundImage = '';
+
+    // Restaurar el primer .product
+    document.querySelector('.products .product:first-of-type img').src = 'luxury7.png';
+    document.querySelector('.products .product:first-of-type h3').textContent = 'i-Clothes Luxury I';
+    document.querySelector('.products .product:first-of-type p').textContent = 'Diseños únicos para inspirar tu jornada emprendedora.';
+    document.querySelector('.products .product:first-of-type p.precio').textContent = '50€';
+
+    // Restaurar el segundo .product
+    document.querySelector('.products .product:nth-of-type(2) img').src = 'luxury8.png';
+    document.querySelector('.products .product:nth-of-type(2) h3').textContent = 'i-Clothes Luxury II';
+    document.querySelector('.products .product:nth-of-type(2) p').textContent = 'Diseños únicos para inspirar tu jornada emprendedora.';
+    document.querySelector('.products .product:nth-of-type(2) p.precio').textContent = '50€';
+
+    // Restaurar el tercer .product
+    document.querySelector('.products .product:nth-of-type(3) img').src = 'luxury15.png';
+    document.querySelector('.products .product:nth-of-type(3) h3').textContent = 'i-Clothes Luxury III';
+    document.querySelector('.products .product:nth-of-type(3) p').textContent = 'Diseños únicos para inspirar tu jornada emprendedora.';
+    document.querySelector('.products .product:nth-of-type(3) p.precio').textContent = '50€';
+
+    // Restaurar la segunda sección
+    const segundaSeccion = document.querySelectorAll('.products')[1];
+    segundaSeccion.querySelector('h2').textContent = 'Nuestra Colección Pantalones Luxury';
+
+    // Restaurar el primer .product en la segunda sección
+    segundaSeccion.querySelector('.product img').src = 'luxury1.png';
+    segundaSeccion.querySelector('.product h3').textContent = 'Pantalones Luxury I';
+    segundaSeccion.querySelector('.product p').textContent = 'Diseños únicos para inspirar tu jornada emprendedora.';
+    segundaSeccion.querySelector('.product p.precio').textContent = '50€';
+
+    // Restaurar el segundo .product en la segunda sección
+    segundaSeccion.querySelector('.product:nth-of-type(2) img').src = 'luxury4.png';
+    segundaSeccion.querySelector('.product:nth-of-type(2) h3').textContent = 'Pantalones Luxury II';
+    segundaSeccion.querySelector('.product:nth-of-type(2) p').textContent = 'Diseños únicos para inspirar tu jornada emprendedora.';
+    segundaSeccion.querySelector('.product:nth-of-type(2) p.precio').textContent = '50€';
+
+    // Restaurar el tercer .product en la segunda sección
+    segundaSeccion.querySelector('.product:nth-of-type(3) img').src = 'luxury5.png';
+    segundaSeccion.querySelector('.product:nth-of-type(3) h3').textContent = 'Pantalones Luxury III';
+    segundaSeccion.querySelector('.product:nth-of-type(3) p').textContent = 'Diseños únicos para inspirar tu jornada emprendedora.';
+    segundaSeccion.querySelector('.product:nth-of-type(3) p.precio').textContent = '50€';
+}
+
+// Agregar un evento de clic al elemento con id "luxury" para restaurar el estado inicial
+document.querySelector('#luxury').addEventListener('click', restaurarEstadoInicial);
 
 
 
