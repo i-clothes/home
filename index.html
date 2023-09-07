@@ -798,13 +798,6 @@ function cambiarEstiloUrban() {
     document.querySelector('.hero-content h1').textContent = 'Bienvenido a la sección Urbana';
     document.querySelector('.hero-content p.eslogan').textContent = 'Incluso en un ambiente chill tu presencia se notará';
     
-   // Selecciona el elemento de video por su etiqueta "video"
-    
-    const videoElement = document.querySelector('video');
-    videoElement.querySelector('source').src = 'urban.mp4';
-    videoElement.load(); // Recargar el video
-
-
     // Cambiar el texto en la sección top-vendido
     document.querySelector('.top-vendido h1').textContent = 'Más Vendido Urban Style Classic';
     document.querySelector('.top-vendido .product img').src = 'iclothes2.png';
@@ -892,9 +885,6 @@ function restaurarEstadoInicial() {
     document.querySelector('.hero-content h1').textContent = 'Bienvenido a  i-Clothes';
     document.querySelector('.hero-content p.eslogan').textContent = 'Tu destino para el éxito, la moda y el estilo de vida emprendedor.';
 
-    // Restaurar el src del video
-    videoElement.querySelector('source').src = 'luxury2.mp4';
-    videoElement.load(); // Recargar el video
 
     // Restaurar el texto en la sección top-vendido
     document.querySelector('.top-vendido h1').textContent = 'Conjunto i-Clothes Luxury Star';
