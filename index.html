@@ -1045,24 +1045,42 @@ function actualizarCarrito() {
   });
 }
 
-// Agrega un controlador de eventos a todos los elementos con la clase .restar-cantidad
-const restarCantidadIcons = document.querySelectorAll('.restar-cantidad');
-restarCantidadIcons.forEach((icon) => {
-  icon.addEventListener('click', eliminarProducto);
+ // Obtener todos los elementos .opciones-carrito dentro de .sticky-cart
+const opcionesCarritoElements = document.querySelectorAll('.opciones-carrito');
+
+// Iterar sobre cada elemento .opciones-carrito
+opcionesCarritoElements.forEach(function(opcionesCarritoElement) {
+    opcionesCarritoElement.addEventListener('click', function() {
+        eliminarProducto(opcionesCarritoElement);
+    });
 });
 
 // Función para eliminar el div .product-add más cercano
-function eliminarProducto(event) {
-  // Encuentra el div .product-add más cercano al icono
-  const productAddElement = event.target.closest('.product-add');
+function eliminarProducto(element) {
+    // Obtener el elemento .product-add que contiene el elemento pasado como argumento
+    const productAddElement = element.closest('.product-add');
 
-  // Verifica si se encontró un elemento .product-add
-  if (productAddElement) {
-    // Elimina el elemento .product-add
-    productAddElement.remove();
-  }
+    // Obtener el elemento .cantidad-producto dentro de .product-add
+    const cantidadProductoElement = productAddElement.querySelector('.cantidad-producto');
+
+    // Obtener el valor actual de cantidad-producto y convertirlo a un número
+    let cantidadProducto = parseInt(cantidadProductoElement.textContent);
+
+    // Restar 1 a la cantidad-producto
+    cantidadProducto--;
+
+    console.log(`Cantidad Producto: ${cantidadProducto}`);
+
+    // Actualizar la cantidad-producto en el elemento HTML
+    cantidadProductoElement.textContent = cantidadProducto;
+
+    // Verificar si la cantidad-producto es 0 o menos
+    if (cantidadProducto <= 0) {
+        // Si es 0 o menos, eliminar completamente el elemento .product-add
+        productAddElement.remove();
+        console.log('Elemento eliminado');
+    }
 }
-
 
 // Función para guardar el carrito en el Local Storage
 function guardarCarritoEnLocalStorage() {
