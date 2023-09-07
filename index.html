@@ -844,7 +844,7 @@ function cambiarEstiloUrban() {
     segundaseccion = document.querySelectorAll('.products')[1];
     segundaseccion.querySelector('h2').textContent = 'Nuestra Colección de Urban Short';
     
-    // Cambiar el primer .product en la segunda sección
+    // nada
     segundaseccion.querySelector('.product:first-of-type img').src = 'urban16.png';
     segundaseccion.querySelector('.product:first-of-type h3').textContent = 'Urban Short I';
     segundaseccion.querySelector('.product:first-of-type p').textContent = 'Diseño rompedor y cómodo';
@@ -861,6 +861,14 @@ function cambiarEstiloUrban() {
     segundaseccion.querySelector('.product:nth-of-type(2) h3').textContent = 'Urban Short III';
     segundaseccion.querySelector('.product:nth-of-type(2) p').textContent = 'Diseño rompedor y cómodo';
    segundaseccion.querySelector('.product:nth-of-type(2) p.precio').textContent = '39,99€';
+
+
+      // Primero
+    segundaseccion.querySelector('.product:nth-of-type(3) img').src = 'urban16.png';
+    segundaseccion.querySelector('.product:nth-of-type(3) h3').textContent = 'Urban Short I';
+    segundaseccion.querySelector('.product:nth-of-type(3) p').textContent = 'Diseño rompedor y cómodo';
+    ssegundaseccion.querySelector('.product:nth-of-type(3) p.precio').textContent = '39,99€';
+
 }
 
 // Agregar un evento de clic al elemento con id "urban"
