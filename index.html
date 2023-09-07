@@ -781,8 +781,6 @@
     </footer>
     <script>
 
-        const videoElement = document.getElementById('videoslider');
-     // Función para cambiar el estilo al hacer clic en "Urban"
 function cambiarEstiloUrban() {
     // Cambiar el fondo del header a blanco
     document.querySelector('header').style.backgroundColor = 'white';
@@ -802,7 +800,9 @@ function cambiarEstiloUrban() {
     
    // Selecciona el elemento de video por su etiqueta "video"
     
-    videoElement.src = 'urban.mp4';
+    const videoElement = document.querySelector('video');
+    videoElement.querySelector('source').src = 'urban.mp4';
+    videoElement.load(); // Recargar el video
 
 
     // Cambiar el texto en la sección top-vendido
@@ -877,25 +877,22 @@ document.querySelector('#urban').addEventListener('click', cambiarEstiloUrban);
 
 function restaurarEstadoInicial() {
     // Restaurar el fondo del header
-    document.querySelector('header').style.backgroundColor = ''; // Esto eliminará el estilo de fondo
+    document.querySelector('header').style.backgroundColor = 'black'; // Esto eliminará el estilo de fondo
 
     // Restaurar el color de los enlaces (a) en el nav
     const enlaces = document.querySelectorAll('nav ul li a');
     for (let enlace of enlaces) {
-        enlace.style.color = ''; // Esto eliminará el estilo de color
+        enlace.style.color = 'white'; // Esto eliminará el estilo de color
     }
-    
-    // Cambia el atributo "src" del video
-    videoElement.src = 'luxury2.mp4';
 
     // Restaurar el trozo de header img
-    document.querySelector('header ul').style.background = '';
+    document.querySelector('header ul').style.background = 'luxury3.png';
 
     // Restaurar el texto en la sección hero
     document.querySelector('.hero-content h1').textContent = 'Bienvenido a  i-Clothes';
     document.querySelector('.hero-content p.eslogan').textContent = 'Tu destino para el éxito, la moda y el estilo de vida emprendedor.';
+
     // Restaurar el src del video
-    const videoElement = document.querySelector('video');
     videoElement.querySelector('source').src = 'luxury2.mp4';
     videoElement.load(); // Recargar el video
 
