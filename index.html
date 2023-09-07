@@ -874,12 +874,10 @@ function restaurarEstadoInicial() {
 
     // Restaurar el color de los enlaces (a) en el nav
     const enlaces = document.querySelectorAll('nav ul li a');
-    for (let enlace of enlaces) {
-        enlace.style.color = 'white'; // Esto eliminará el estilo de color
-    }
+    enlaces.style.color = "white";
 
     // Restaurar el trozo de header img
-    document.querySelector('header ul').style.background = 'luxury3.png';
+    document.querySelector('header ul').style.backgroundImage = 'luxury3.png';
 
     // Restaurar el texto en la sección hero
     document.querySelector('.hero-content h1').textContent = 'Bienvenido a  i-Clothes';
