@@ -836,24 +836,24 @@ function cambiarEstiloUrban() {
 
     // Cambiar el texto en la segunda sección de class="products"
     document.querySelector('.products:last-of-type h2').textContent = 'Nuestra Colección de Urban Short';
-
+    segundaseccion = document.querySelectorAll('.products')[1];
     // Cambiar el primer .product en la segunda sección
-    document.querySelector('.products:last-of-type .product:first-of-type img').src = 'urban16.png';
-    document.querySelector('.products:last-of-type .product:first-of-type h3').textContent = 'Urban Short I';
-    document.querySelector('.products:last-of-type .product:first-of-type p').textContent = 'Diseño rompedor y cómodo';
-    document.querySelector('.products:last-of-type .product:first-of-type p.precio').textContent = '39,99€';
+    segundaseccion.('.product:first-of-type img').src = 'urban16.png';
+    segundaseccion.('.product:first-of-type h3').textContent = 'Urban Short I';
+    segundaseccion.('.product:first-of-type p').textContent = 'Diseño rompedor y cómodo';
+    segundaseccion.('.product:first-of-type p.precio').textContent = '39,99€';
 
     // Cambiar el segundo .product en la segunda sección
-    document.querySelector('.products:last-of-type .product:nth-of-type(2) img').src = 'urban17.png';
-    document.querySelector('.products:last-of-type .product:nth-of-type(2) h3').textContent = 'Urban Short II';
-    document.querySelector('.products:last-of-type .product:nth-of-type(2) p').textContent = 'Diseño rompedor y cómodo';
-    document.querySelector('.products:last-of-type .product:nth-of-type(2) p.precio').textContent = '39,99€';
+     segundaseccion.('.product:nth-of-type(1) img').src = 'urban17.png';
+    segundaseccion.('.product:nth-of-type(1) h3').textContent = 'Urban Short II';
+    segundaseccion.('.product:nth-of-type(1) p').textContent = 'Diseño rompedor y cómodo';
+    segundaseccion.('.product:nth-of-type(1) p.precio').textContent = '39,99€';
 
     // Cambiar el tercer .product en la segunda sección
-    document.querySelector('.products:last-of-type .product:nth-of-type(3) img').src = 'urban18.png';
-    document.querySelector('.products:last-of-type .product:nth-of-type(3) h3').textContent = 'Urban Short III';
-    document.querySelector('.products:last-of-type .product:nth-of-type(3) p').textContent = 'Diseño rompedor y cómodo';
-    document.querySelector('.products:last-of-type .product:nth-of-type(3) p.precio').textContent = '39,99€';
+    segundaseccion.('.product:nth-of-type(2) img').src = 'urban18.png';
+    segundaseccion.('.product:nth-of-type(2) h3').textContent = 'Urban Short III';
+    segundaseccion.('.product:nth-of-type(2) p').textContent = 'Diseño rompedor y cómodo';
+   segundaseccion.('.product:nth-of-type(2) p.precio').textContent = '39,99€';
 }
 
 // Agregar un evento de clic al elemento con id "urban"
