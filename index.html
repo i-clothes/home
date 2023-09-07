@@ -769,7 +769,7 @@
    <div class="sticky-cart2">
     <div class="sticky-cart">
     </div>
-    <button id="irAlProbador">Ir al probador</button>
+    <button id="irAlProbador" onclick="guardarCarritoEnLocalStorage()">Ir al probador</button>
 </div>
 
 
@@ -980,29 +980,35 @@ function actualizarCarrito() {
 
 
 
-        // Agrega un event listener al botón "Ir al probador"
-document.getElementById('irAlProbador').addEventListener('click', () => {
-  // Obtén los datos de los productos en el carrito
-  const carrito = obtenerCarrito(); // Implementa esta función para obtener los datos del carrito
+// Función para guardar el carrito en el Local Storage
+function guardarCarritoEnLocalStorage() {
+  // Obtén todos los elementos con la clase "product-add"
+  const productElements = document.querySelectorAll('.product-add');
 
-  // Guarda los datos en el localStorage como una cadena JSON
+  // Crea un array para almacenar los datos del carrito
+  const carrito = [];
+
+  // Itera sobre los elementos del carrito para obtener los datos de cada producto
+  productElements.forEach(productElement => {
+    const nombreProducto = productElement.querySelector('.nombre-producto').textContent;
+    const precioProducto = productElement.querySelector('.precio-producto').textContent;
+    const cantidadProducto = productElement.querySelector('.cantidad-producto').textContent;
+
+    // Agrega los datos del producto al array del carrito
+    carrito.push({
+      nombre: nombreProducto,
+      precio: precioProducto,
+      cantidad: cantidadProducto,
+    });
+  });
+
+  // Guarda el carrito en el Local Storage como una cadena JSON
   localStorage.setItem('carrito', JSON.stringify(carrito));
-  
-  // Redirige al usuario a la página del probador (cambia la URL a tu página deseada)
-  window.location.href = 'checkout.html';
-});
 
-// Función para obtener los datos del carrito desde el localStorage
-function obtenerCarrito() {
-  const carritoExistente = localStorage.getItem('carrito');
-  if (carritoExistente) {
-    // Si hay datos en el localStorage, conviértelos de nuevo a un objeto JavaScript
-    return JSON.parse(carritoExistente);
-  } else {
-    // Si no hay datos, devuelve un carrito vacío (puedes ajustar esto según tu estructura de datos)
-    return [];
-  }
+  // Redirige al usuario al probador (cambia la URL a tu página deseada)
+  window.location.href = 'checkout.html';
 }
+
 
 
 
