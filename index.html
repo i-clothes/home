@@ -893,6 +893,35 @@ cartIconContainer.addEventListener('click', function () {
 });
 
 
+         // Selecciona todos los botones "Añadir al carrito"
+  const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+  // Agrega un evento de clic a cada botón
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const productContainer = button.closest('.product'); // Encuentra el contenedor del producto
+      const productName = productContainer.querySelector('h3').textContent; // Obtiene el nombre del producto
+      const productPrice = productContainer.querySelector('.precio').textContent; // Obtiene el precio del producto
+      const productImageSrc = productContainer.querySelector('img').src; // Obtiene la fuente de la imagen del producto
+
+      // Crea un nuevo elemento div para el producto en el carrito
+      const cartProduct = document.createElement('div');
+      cartProduct.classList.add('product-add');
+      cartProduct.innerHTML = `
+        <img src="${productImageSrc}" alt="Producto añadido al carrito">
+        <span class="nombre-producto">${productName}</span>
+        <p class="precio-producto">${productPrice}</p>
+        <div class="opciones-carrito">
+          <i class="fas fa-trash-alt"></i>
+        </div>
+      `;
+
+      // Agrega el producto al contenedor del carrito
+      const cartContainer = document.querySelector('.sticky-cart');
+      cartContainer.appendChild(cartProduct);
+    });
+  });
+
     </script>
 </body>
 </html>
