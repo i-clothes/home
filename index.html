@@ -780,6 +780,8 @@
         <p>&copy; 2023  i-Clothes. Todos los derechos reservados.</p>
     </footer>
     <script>
+
+        const videoElement = document.getElementById('videoslider').src;
      // Función para cambiar el estilo al hacer clic en "Urban"
 function cambiarEstiloUrban() {
     // Cambiar el fondo del header a blanco
@@ -799,7 +801,7 @@ function cambiarEstiloUrban() {
     document.querySelector('.hero-content p.eslogan').textContent = 'Incluso en un ambiente chill tu presencia se notará';
     
    // Selecciona el elemento de video por su etiqueta "video"
-    const videoElement = document.getElementById('videoslider').src;
+    
     videoElement.src = 'urban.mp4';
 
 
