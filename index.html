@@ -871,34 +871,76 @@ cartIconContainer.addEventListener('click', function () {
 });
 
 
-         // Selecciona todos los botones "Añadir al carrito"
-  const addToCartButtons = document.querySelectorAll('.agregar-carrito');
+       // Selecciona todos los botones "Añadir al carrito"
+const addToCartButtons = document.querySelectorAll('.agregar-carrito');
 
-  // Agrega un evento de clic a cada botón
-  addToCartButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const productContainer = button.closest('.product'); // Encuentra el contenedor del producto
-      const productName = productContainer.querySelector('h3').textContent; // Obtiene el nombre del producto
-      const productPrice = productContainer.querySelector('.precio').textContent; // Obtiene el precio del producto
-      const productImageSrc = productContainer.querySelector('img').src; // Obtiene la fuente de la imagen del producto
+// Agrega un evento de clic a cada botón
+addToCartButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const productContainer = button.closest('.product'); // Encuentra el contenedor del producto
+    const productName = productContainer.querySelector('h3').textContent; // Obtiene el nombre del producto
+    const productPrice = productContainer.querySelector('.precio').textContent; // Obtiene el precio del producto
+    const productImageSrc = productContainer.querySelector('img').src; // Obtiene la fuente de la imagen del producto
 
-      // Crea un nuevo elemento div para el producto en el carrito
-      const cartProduct = document.createElement('div');
-      cartProduct.classList.add('product-add');
-      cartProduct.innerHTML = `
-        <img src="${productImageSrc}" alt="Producto añadido al carrito">
-        <span class="nombre-producto">${productName}</span>
-        <p class="precio-producto">${productPrice}</p>
-        <div class="opciones-carrito">
-          <i class="fas fa-trash-alt"></i>
-        </div>
-      `;
+    // Crea un nuevo objeto de producto
+    const product = {
+      name: productName,
+      price: productPrice,
+      imageSrc: productImageSrc,
+    };
 
-      // Agrega el producto al contenedor del carrito
-      const cartContainer = document.querySelector('.sticky-cart');
-      cartContainer.appendChild(cartProduct);
-    });
+    // Agrega el producto al carrito
+    agregarAlCarrito(product);
   });
+});
+
+// Carrito de compras
+const carrito = [];
+
+// Agregar producto al carrito
+function agregarAlCarrito(producto) {
+  // Buscar si el producto ya está en el carrito
+  const productoExistente = carrito.find(item => item.name === producto.name);
+
+  if (productoExistente) {
+    // Si el producto ya existe, incrementa el contador
+    productoExistente.cantidad++;
+  } else {
+    // Si el producto no existe, agrégalo al carrito
+    carrito.push({ ...producto, cantidad: 1 });
+  }
+
+  // Actualiza la visualización del carrito
+  actualizarCarrito();
+}
+
+// Actualiza la visualización del carrito en la página
+function actualizarCarrito() {
+  const carritoContainer = document.querySelector('.sticky-cart');
+
+  // Limpia el contenido actual del carrito
+  carritoContainer.innerHTML = '';
+
+  // Recorre los productos en el carrito y muestra cada uno
+  carrito.forEach(item => {
+    const productAdd = document.createElement('div');
+    productAdd.classList.add('product-add');
+
+    // Configura la estructura del producto en el carrito
+    productAdd.innerHTML = `
+      <img src="${item.imageSrc}" alt="Producto añadido al carrito">
+      <span class="nombre-producto">${item.name}</span>
+      <p class="precio-producto">${item.price}</p>
+      <span class="cantidad-producto">${item.cantidad}</span>
+      <div class="opciones-carrito">
+        <i class="fas fa-trash-alt"></i>
+      </div>
+    `;
+
+    carritoContainer.appendChild(productAdd);
+  });
+}
+
 
     </script>
 </body>
