@@ -794,8 +794,11 @@ function cambiarEstiloUrban() {
     document.querySelector('.hero-content h1').textContent = 'Bienvenido a la sección Urbana';
     document.querySelector('.hero-content p.eslogan').textContent = 'Incluso en un ambiente chill tu presencia se notará';
 
-     // Cambiar video
+
+    // Cambiar video
+    video = document.querySelector('.hero video');
     document.querySelector('.hero video source').src = 'urban.mp4';
+    video.load()
     
     // Cambiar el texto en la sección top-vendido
     document.querySelector('.top-vendido h1').textContent = 'Más Vendido Urban Style Classic';
@@ -885,7 +888,9 @@ function restaurarEstadoInicial() {
     document.querySelector('.hero-content p.eslogan').textContent = 'Tu destino para el éxito, la moda y el estilo de vida emprendedor.';
 
     // Cambiar video
+    video = document.querySelector('.hero video');
     document.querySelector('.hero video source').src = 'luxury2.mp4';
+    video.load()
 
     // Restaurar el texto en la sección top-vendido
     document.querySelector('.top-vendido h1').textContent = 'Conjunto i-Clothes Luxury Star';
