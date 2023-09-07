@@ -777,6 +777,27 @@ urban.addEventListener('click', function () {
   }
 });
 
+        // Variables para controlar la visibilidad de floating-div
+let isFloatingDivVisible = false;
+const floatingDiv = document.querySelector('.floating-div');
+
+// Obtén el elemento con la clase "cart-icon-container"
+const cartIconContainer = document.querySelector('.cart-icon-container');
+
+// Agrega un event listener al elemento "cart-icon-container"
+cartIconContainer.addEventListener('click', function () {
+  // Alterna la visibilidad de floating-div
+  isFloatingDivVisible = !isFloatingDivVisible;
+  
+  // Muestra u oculta floating-div según el estado actual
+  if (isFloatingDivVisible) {
+    floatingDiv.style.display = 'block';
+  } else {
+    floatingDiv.style.display = 'none';
+  }
+});
+
+
     </script>
 </body>
 </html>
