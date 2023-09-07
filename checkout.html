@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <title>Stories de Instagram</title>
+    <style>
+        body {
+            padding: 10px;
+            height: 100vh;
+            background-color: #F1F4F8;
+            font-family: 'Varela Round', sans-serif;
+        }
+
+        .story-container {
+            display: flex;
+            justify-content: center; /* Centrar horizontalmente */
+            align-items: center; /* Centrar verticalmente */
+        }
+
+        .story-bubble {
+            width: 60px;
+            height: 60px;
+            margin: 0 5px;
+            background: linear-gradient(135deg, #feda75 0%, #fa7e1e 100%);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: moveGradient 3s linear infinite alternate;
+            position: relative; /* Para posicionar el texto encima */
+        }
+
+        .story-bubble p {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            padding: 0;
+            font-size: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        @keyframes moveGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .story-bubble img {
+            width: 48px;
+            height: 48px;
+            border-radius: 30px;
+        }
+
+        .expanded-story {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+        }
+
+        .expanded-story img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .ventajas-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px auto;
+        }
+
+        .ventaja {
+            text-align: center;
+            width: calc(16.666% - 20px);
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .ventaja img {
+            width: 50px;
+        }
+
+        .ventaja p {
+            margin-top: 10px;
+        }
+        @media (max-width: 500px) {
+            .ventaja p {
+                display: none;
+            }
+        
+            .ventaja {
+                border-radius: 30px;
+            }
+            .ventaja img {
+                width: 30px;
+            }
+        }
+        
+        .reserva-section {
+            text-align: center;
+            background-color: white;
+            padding: 40px 0;
+            border-radius: 10px;
+            border: 1px solid #CAD3E7;
+
+        }
+
+        .reserva-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+
+        .reserva-option {
+            text-align: center;
+            width: 50%;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+            border: 3px solid #EAEAEA;
+           webkit-filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.1));
+    filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.1));
+        }
+        .pago-option {
+            text-align: center;
+    padding: 20px;
+    margin: 10px 10px auto;
+    transition: background-color 0.3s;
+    border: 3px solid #EAEAEA;
+    webkit-filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.1));
+    filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.1));
+        }
+
+        .pago-option img {
+            width: 60px;
+        }
+       
+
+        .reserva-option h3 {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .reserva-option img {
+            width: 60px;
+        }
+
+          .reserva-option.active {
+            border: 3px solid #66CD54;
+        }
+
+        .oferta{
+            padding: 18px;
+            border: 1px solid #f8c75a;
+            background: #fbf8e5;
+            margin: 20px;
+        }
+
+        
+
+       .upsell-container {
+            position: relative;
+            display: inline-block;
+        }
+
+
+        .upsell img {
+            animation-direction: alternate;
+            animation-duration: 0.5s;
+            animation-name: move;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        .upsell span {
+            font-size: 14px;
+            line-height: 1.3;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(-50%);
+            }
+            100% {
+                transform: translateY(-50%) translateX(10px);
+            }
+        }
+
+        .reviews-section {
+            text-align: center;
+            padding: 40px 0;
+            overflow: hidden;
+        }
+
+        .review-container {
+               display: flex;
+    width: max-content;
+    animation: moverEjemplos 100s linear infinite;
+        }
+
+ @keyframes moverEjemplos {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+        .review {
+            width: 300px;
+            padding: 20px;
+           background: #FDFCE8;
+    border: 1px solid #D6D6D6;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 6px;
+    padding: 20px;
+        }
+
+        @keyframes scrollReviews {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        #stripe {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #CAD3E7;
+    margin: 20px;
+}
+
+#stripe h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+#stripe form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#stripe label {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+#stripe input {
+    padding: 10px;
+    border: 1px solid #EAEAEA;
+    border-radius: 5px;
+}
+
+#card-element {
+    padding: 10px;
+    border: 1px solid #EAEAEA;
+    border-radius: 5px;
+}
+
+#submit-button {
+    background-color: #66CD54;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#submit-button:hover {
+    background-color: #4CAF50;
+}
+
+      .notification {
+            position: fixed;
+            bottom: 5px;
+            left: 0;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            transform: translateX(-100%);
+            display: flex;
+            align-items: center;
+        }
+
+        .notification img {
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        .top-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+            z-index: 3;
+}
+
+.top-section h2 {
+    font-size: 18px;
+    margin: 0;
+    text-align: center;
+}
+
+#ofertaTickets {
+    font-weight: bold;
+    color: #E68B00;
+}
+
+.progress-bar-container {
+    width: 90%;
+    height: 15px;
+    background-color: #EAEAEA;
+    margin: auto;
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #E68B00;
+    width: 50%;
+    border-radius: 30px;
+    transition: width 0.3s;
+}
+
+/*.progress-bar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #FFC87C;
+    border-radius: 30px;
+}*/
+    </style>
+</head>
+<body>
+    <div class="top-section" id="topsection" style="display: none">
+    <h2>Sólo quedan <span id="ofertaTickets">15</span> tickets</h2>
+    <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+</div>
+</div>
+     <div class="story-container">
+        <div class="story-bubble" data-image="lareserva.jpeg">
+            <p>La Reserva</p>
+            <img src="lareserva.jpeg">
+        </div>
+        <div class="story-bubble" data-image="lafiebre.jpg">
+            <p>La Fiebre</p>
+            <img src="lafiebre.jpg">
+        </div>
+        <div class="story-bubble" data-image="dcopas.jpg">
+            <p>Dcopas</p>
+            <img src="dcopas.jpg">
+        </div>
+        <div class="story-bubble" data-image="samsara.jpg">
+            <p>Samsara</p>
+            <img src="samsara.jpg">
+        </div>
+    </div>
+
+    <div class="expanded-story">
+        <img src="app.png">
+    </div>
+<div class="ventajas-container">
+    <div class="ventaja">
+        <img src="https://uploads-ssl.webflow.com/647e1129446b59ed59875239/64c97ff226dbbd40bf39537a_Guia.svg">
+        <p>Guías expertos en fiesta</p>
+    </div>
+    <div class="ventaja">
+        <img src="https://uploads-ssl.webflow.com/647e1129446b59ed59875239/64c97ff176a557b5693978d2_Cocktail.svg">
+        <p>Ruta por 3 bares y 1 discoteca</p>
+    </div>
+    <div class="ventaja">
+        <img src="https://uploads-ssl.webflow.com/647e1129446b59ed59875239/64c97ff281124da2291beec5_Vip.svg">
+        <p>Accesos VIP incluidos y bebida</p>
+    </div>
+    <div class="ventaja">
+        <img src="https://uploads-ssl.webflow.com/647e1129446b59ed59875239/64c97ff2db8b12cae4e08561_Amigos.svg">
+        <p>Conoces gente de calidad</p>
+    </div>
+</div>
+
+<div class="reserva-section">
+    <h1>Reserva Ahora</h1>
+    <div class="reserva">
+    <div class="reserva-options" id="reserva">
+       <div class="reserva1">
+            <div class="reserva-option">
+                <h3>1 Persona</h3>
+                <img src="persona1.png">
+                <span style="font-size: 20px; color: #66CD54; font-weight: bolder;">30€</span><span style="font-size: 12px; color: red; text-decoration:line-through;">35€</span>
+            </div>
+            <div class="reserva-option">
+                <h3>3 Personas</h3>
+                <img src="persona3.png">
+                <span style="font-size: 20px; color: #66CD54; font-weight: bolder;">80€</span><span style="font-size: 12px; color: red; text-decoration:line-through;">99€</span>
+            </div>
+            </div>
+           <div class="reserva1">
+            <div class="reserva-option">
+                <h3>2 Personas</h3>
+                <img src="persona2.png">
+                <span style="font-size: 20px; color: #66CD54; font-weight: bolder;">55€</span><span style="font-size: 12px; color: red; text-decoration:line-through;">65€</span>
+            </div>
+            <div class="reserva-option">
+                <h3>4 Personas</h3>
+                <img src="persona4.png">
+                <span style="font-size: 20px; color: #66CD54; font-weight: bolder;">110€</span><span style="font-size: 12px; color: red; text-decoration:line-through;">125€</span>
+            </div>
+        </div>    
+    </div>
+    <div class="pago-options" id="pago" style="display:none">
+       <div class="pago-option">
+            <h3>Tarjeta</h3>
+            <img src="persona1.png">
+        </div>
+        <div class="pago-option">
+            <h3>Efectivo</h3>
+            <img src="persona3.png">
+        </div>
+    </div>
+        <div class="container" style="display:none" id="stripe">
+              <h2>Formulario y Pago</h2>
+              <form id="payment-form">
+                <label for="name">Nombre Completo</label>
+                <input type="text" id="name" required>
+                
+                <label for="email">Correo Electrónico</label>
+                <input type="email" id="email" required>
+                
+                <label for="phone">Número de Teléfono</label>
+                <input type="tel" id="phone" required>
+                
+                <div id="card-element">
+                  <!-- Unidad de formulario de Stripe -->
+                </div>
+                
+                <button id="submit-button">Realizar Pago</button>
+              </form>
+            </div>
+     <div class="oferta">
+            <div class="upsell-container">
+                 <div class="upsell-icon"></div>
+                <div class="upsell">
+                    <img  src="arrow.png" width="25"><input type="checkbox"><span>Sí, quiero usar la mochila de protección del guía</span>
+                    <p>Se trate de una mochila que llevará el guía donde podrás guardar tus pertenencias y el guía se hará cargo y te recordará que lo tienes, además tus cosas quedan seguras 24h - 72h siguientes en nuestras oficinas por sólo <span style="font-weight: bolder;">10€ extra</span></span></p>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+     <div class="reviews-section">
+        <h1>Reseñas de Crawls Tours</h1>
+        <div class="review-container">
+            <div class="review">
+                <p>¡Increíble experiencia con Crawls Tours! El guía fue genial y los lugares visitados fueron asombrosos.</p>
+            </div>
+            <div class="review">
+                <p>Recomiendo encarecidamente Crawls Tours. Tuve un tiempo fantástico con un grupo increíble.</p>
+            </div>
+            <div class="review">
+                <p>Una forma emocionante de descubrir Madrid. Cada tour es único y lleno de sorpresas.</p>
+            </div>
+            <div class="review">
+                <p>Los recorridos de Crawls Tours son una excelente manera de conocer la ciudad y su historia.</p>
+            </div>
+            <div class="review">
+                <p>Had an amazing time with Crawls Tours! The guide was great and the places we visited were breathtaking.</p>
+            </div>
+            <div class="review">
+                <p>Highly recommend Crawls Tours. I had a fantastic time with an incredible group.</p>
+            </div>
+            <div class="review">
+                <p>An exciting way to discover Madrid. Each tour is unique and full of surprises.</p>
+            </div>
+            <div class="review">
+                <p>Crawls Tours' excursions are an excellent way to get to know the city and its history.</p>
+            </div>
+            <div class="review">
+                <p>¡Increíble experiencia con Crawls Tours! El guía fue genial y los lugares visitados fueron asombrosos.</p>
+            </div>
+            <div class="review">
+                <p>¡Increíble experiencia con Crawls Tours! El guía fue genial y los lugares visitados fueron asombrosos.</p>
+            </div>
+            <div class="review">
+                <p>¡Increíble experiencia con Crawls Tours! El guía fue genial y los lugares visitados fueron asombrosos.</p>
+            </div>
+        </div>
+    </div>
+     <div class="notification">
+        <h4><span id="cliente">Ana</span> acaba de comprar <span id="numeroTickets">2</span></h4>
+        <img src="https://cf.ecommercebusinessclub.com/hosted/images/03/3dbafc2e424a4e91c7038740ba33f6/ENTRADAS-ebl.png" style="width: 50px">
+    </div>
+<script src="https://js.stripe.com/v3/"></script>
+    <script>
+        const storyBubbles = document.querySelectorAll(".story-bubble");
+        const expandedStory = document.querySelector(".expanded-story");
+        const expandedImg = expandedStory.querySelector("img");
+       
+
+        storyBubbles.forEach((bubble) => {
+            bubble.addEventListener("click", () => {
+                expandedImg.src = bubble.dataset.image;
+                expandedStory.style.display = "flex";
+                setTimeout(() => {
+                    expandedStory.style.display = "none";
+                }, 5000);
+            });
+        });
+        const pago = document.getElementById('pago');
+        const reserva = document.getElementById('reserva');
+          const reservaOptions = document.querySelectorAll(".reserva-option");
+        let activeOption = null;
+
+        reservaOptions.forEach((option) => {
+            option.addEventListener("click", () => {
+                reserva.style.display = "none";
+                pago.style.display = "block";
+            });
+        });
+
+ const stripe1 = document.getElementById('stripe');
+const pagoOptions = document.querySelectorAll(".pago-option");
+const topsection = document.getElementById('topsection')
+
+pagoOptions.forEach((option) => {
+    option.addEventListener("click", () => {
+
+                stripe1.style.display = "block";
+                        pago.style.display = "none";
+                            topsection.style.display = "block";
+    });
+});
+
+         // Configuración de Stripe
+  const stripe = Stripe('TU_CLAVE_PUBLICA_DE_STRIPE');
+  const elements = stripe.elements();
+  const cardElement = elements.create('card');
+  cardElement.mount('#card-element');
+
+  // Manejar el envío del formulario
+  const form = document.getElementById('payment-form');
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const { token, error } = await stripe.createToken(cardElement);
+
+    if (error) {
+      // Manejar el error
+      console.error(error.message);
+    } else {
+      // Enviar token a tu servidor
+      console.log(token);
+    }
+  });
+
+
+
+        const notification = document.querySelector(".notification");
+const clienteSpan = document.getElementById("cliente");
+const numeroTicketsSpan = document.getElementById("numeroTickets");
+const ofertaTicketsSpan = document.getElementById("ofertaTickets"); // Nuevo elemento agregado
+
+        
+
+const notifications = [
+    { cliente: "Ana", numeroTickets: "2" },
+    { cliente: "Michel", numeroTickets: "4" },
+    { cliente: "Myriam", numeroTickets: "3" },
+    { cliente: "David", numeroTickets: "2" }
+];
+const progressBar = document.getElementById('progressBar');
+const progressBarContainer = document.querySelector('.progress-bar-container');
+        
+let notificationIndex = 0;
+let ofertaTicketsValue = 15; // Valor inicial de los tickets
+
+function updateNotification() {
+    const { cliente, numeroTickets } = notifications[notificationIndex];
+    clienteSpan.textContent = cliente;
+    numeroTicketsSpan.textContent = numeroTickets;
+
+     const progressIncrement = 10;
+     const progressValue = (progressIncrement * (notificationIndex + 1)) + '%';
+     progressBar.style.width = progressValue;
+
+    // Disminuir el valor de ofertaTicketsValue
+    ofertaTicketsValue -= parseInt(numeroTickets);
+    ofertaTicketsSpan.textContent = ofertaTicketsValue;
+
+    notification.style.transform = "translateX(-100%)";
+    setTimeout(() => {
+        notification.style.transform = "translateX(0)";
+    }, 200);
+    setTimeout(() => {
+        notification.style.transform = "translateX(-100%)";
+    }, 4800);
+    notificationIndex = (notificationIndex + 1) % notifications.length;
+}
+
+updateNotification(); // Llamarlo inmediatamente al cargar la página
+setInterval(updateNotification, 60000);
+
+
+       
+    </script>
+</body>
+</html>
