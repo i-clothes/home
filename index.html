@@ -588,6 +588,48 @@
     color: #333;
 }
 
+/* Estilo para el contenedor principal */
+.info-envios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para los elementos dentro del contenedor */
+.info-envios > div {
+    margin: 10px 0;
+    padding: 10px;
+}
+
+/* Estilo para los párrafos */
+.info-envios p {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Estilo para los títulos */
+.info-envios h2 {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo para los íconos (si los usas) */
+.info-envios i {
+    font-size: 24px;
+    color: #007bff; /* Azul */
+}
 
 
     </style>
@@ -668,6 +710,20 @@
                         <span class="popup-close">×</span>
                         <h2>Información de Envíos</h2>
                         <!-- Contenido del popup de envíos aquí -->
+                          <div class="info-envios">
+                                <div>
+                                    <p id="personas"></p> personas están viendo este producto.
+                                </div>
+                                <div>
+                                    <p id="direccion"></p>
+                                </div>
+                                <div>
+                                    <p id="tiempo"></p>
+                                </div>
+                                <div>
+                                    <p id="pedido"></p>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -1319,6 +1375,81 @@ closePopupButton.addEventListener('click', () => {
     // Evento para ocultar el popup de envíos al hacer clic en el botón de cierre (×)
     var popupEnviosClose = document.querySelector(".popup-envios .popup-close");
     popupEnviosClose.addEventListener("click", ocultarPopupEnvios);
+
+
+
+// ENVIO CONTADOR
+
+// aleatorio.js
+var container = document.getElementById("aleatorio");
+var aleatorio = Math.floor(Math.random() * 100);
+container.innerHTML = aleatorio;
+
+// direccion.js
+$.get("https://ipinfo.io", function (response) {
+    $("#address").html("Envío a : " + response.city + ", " + response.region);
+}, "jsonp");
+
+
+// contador.js
+function sumarDias(fecha, dias) {
+    fecha.setDate(fecha.getDate() + dias);
+    return fecha;
+}
+
+function formatoFecha(fecha) {
+    var opciones = { weekday: 'long', day: 'numeric', month: 'long' };
+    return fecha.toLocaleDateString('es-ES', opciones);
+}
+
+function formatoNumero(numero) {
+    return numero.toString().padStart(2, '0'); // Asegura que el número tenga al menos dos dígitos
+}
+
+let fecha = new Date(); // Fecha actual
+var diaSemana = fecha.getDay(); // 0 = domingo, 1 = lunes, etc.
+
+// Si es viernes, establecer la fecha de entrega al martes de la semana siguiente
+if (diaSemana === 5) {
+    fecha = sumarDias(fecha, 4); // Sumar 4 días para llegar al martes
+} else if (diaSemana === 6) {
+    fecha = sumarDias(fecha, 3);
+} else if (diaSemana === 0) {
+    fecha = sumarDias(fecha, 2);
+} else {
+    fecha = sumarDias(fecha, 1); // Sumar 1 día para llegar al día siguiente
+}
+
+var fechaEntrega = fecha;
+var fechaSimplificada = formatoFecha(fechaEntrega);
+
+// Contador 24H antes
+var fechaLimite = new Date(fechaEntrega);
+fechaLimite.setHours(22, 7, 5);
+fechaLimite.setDate(fechaLimite.getDate() - 1);
+
+// Asegurarse de que la fecha límite esté en el futuro
+var ahora = new Date().getTime();
+while (fechaLimite.getTime() <= ahora) {
+    fechaLimite = new Date(fechaLimite.getTime() + 24 * 60 * 60 * 1000); // Sumar 24 horas
+}
+
+var x = setInterval(function () {
+    ahora = new Date().getTime();
+    var distancia = fechaLimite - ahora;
+
+    var horas = formatoNumero(Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+    var minutos = formatoNumero(Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60)));
+    var segundos = formatoNumero(Math.floor((distancia % (1000 * 60)) / 1000));
+
+    document.getElementById("pedido").innerHTML = "Haz tu pedido en " + horas + ":" + minutos + ":" + segundos + " y recíbelo el " + fechaSimplificada + "!";
+
+    if (distancia < 0) {
+        // Reiniciar la fecha límite para comenzar el contador de nuevo
+        fechaLimite = new Date(fechaLimite.getTime() + 24 * 60 * 60 * 1000); // Sumar 24 horas
+    }
+}, 1000);
+
 
     </script>
 </body>
