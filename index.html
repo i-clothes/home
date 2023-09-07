@@ -809,6 +809,13 @@ function cambiarEstiloUrban() {
     // Cambiar el texto en la primera sección de class="products"
     document.querySelector('.products:first-of-type h2').textContent = 'Nuestra colección de camisetas Urban Classic';
 
+
+    // Cambiar el fondo de la sección .know-what-you-want
+    document.querySelector('.know-what-you-want').style.backgroundImage = 'url(section3.png)';
+
+    // Cambiar el fondo de la sección .top-vendido
+    document.querySelector('.top-vendido').style.backgroundImage = 'url(section5.png)';
+
     // Cambiar el primer .product
     document.querySelector('.products:first-of-type .product:first-of-type img').src = 'urban3.png';
     document.querySelector('.products:first-of-type .product:first-of-type h3').textContent = 'Urban Classic I';
