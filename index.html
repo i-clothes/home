@@ -1063,6 +1063,8 @@ function actualizarCarrito() {
                 // Restar 1 a la cantidad-producto
                 cantidadProducto--;
 
+                console.log(`Cantidad Producto: ${cantidadProducto}`);
+
                 // Actualizar la cantidad-producto en el elemento HTML
                 cantidadProductoElement.textContent = cantidadProducto;
 
@@ -1070,6 +1072,7 @@ function actualizarCarrito() {
                 if (cantidadProducto <= 0) {
                     // Si es 0 o menos, eliminar completamente el elemento .product-add
                     productAddElement.remove();
+                    console.log('Elemento eliminado');
                 }
             });
         });
