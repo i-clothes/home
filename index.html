@@ -425,7 +425,7 @@
   width: 300px; /* Puedes ajustar el ancho según tus necesidades */
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-    display: flex;
+    display: none;
   flex-direction: column;
 }
 
@@ -1086,6 +1086,17 @@ function guardarCarritoEnLocalStorage() {
   window.location.href = 'checkout.html';
 }
 
+// Función para mostrar el carrito al hacer clic en "agregar-carrito"
+function mostrarCarrito() {
+    const stickyCart2 = document.querySelector('.sticky-cart2');
+    stickyCart2.style.display = 'flex';
+}
+
+// Obtener todos los elementos con la clase "agregar-carrito" y agregar un evento de clic a cada uno
+const agregarCarritoButtons = document.querySelectorAll('.agregar-carrito');
+agregarCarritoButtons.forEach(function (boton) {
+    boton.addEventListener('click', mostrarCarrito);
+});
 
 
 
