@@ -412,6 +412,75 @@
   max-height: 50%;
 }
 
+
+        /* Agrega estilos para sticky-cart */
+.sticky-cart {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px 20px;
+  z-index: 9999; /* Asegúrate de que aparezca encima de otros elementos */
+}
+
+/* Modifica estilos para product-add */
+.product-add {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 20px; /* Añade un margen derecho entre elementos */
+}
+
+.product-add img {
+  max-width: 30px; /* Ajusta el tamaño de la imagen según tus necesidades */
+  margin-right: 10px; /* Añade un margen derecho entre la imagen y el texto */
+}
+
+/* Agrega estilos para opciones de carrito */
+.opciones-carrito {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.opciones-carrito:hover {
+  background-color: #f39c12; /* Cambia el fondo al hacer hover */
+  color: #fff; /* Cambia el color de texto al hacer hover */
+}
+
+/* Estilo para el ícono de eliminar dentro de opciones-carrito */
+.opciones-carrito i {
+  font-size: 16px;
+  margin-top: 5px; /* Añade un margen superior */
+}
+
+/* Asegúrate de que los elementos se ajusten al ancho de la pantalla en dispositivos pequeños */
+@media (max-width: 768px) {
+  .sticky-cart {
+    flex-direction: column; /* Cambia a una columna en pantallas pequeñas */
+    align-items: flex-end; /* Alinea los elementos a la derecha */
+    padding: 10px; /* Ajusta el espaciado vertical */
+  }
+
+  .product-add {
+    margin-right: 0; /* Elimina el margen derecho en pantallas pequeñas */
+    margin-bottom: 10px; /* Añade un margen inferior para separar elementos */
+  }
+
+  .opciones-carrito {
+    margin-top: 5px; /* Añade un margen superior */
+  }
+}
+
+
     </style>
 </head>
 <body>
@@ -672,6 +741,14 @@
     <div class="cart-icon-container">
   <div class="cart-icon">
   </div>
+        <div class="sticky-cart">
+            <div class="product-add">
+                <img src="" ><span class="nombre-producto"></span><p class="precio-producto"></p>
+                <div class="opciones-carrito">
+                    <i>Eliminar</i>
+                </div>
+            </div>
+        </div>
 </div>
 
     <footer>
