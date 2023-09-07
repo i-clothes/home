@@ -712,7 +712,7 @@
                         <!-- Contenido del popup de envíos aquí -->
                           <div class="info-envios">
                                 <div>
-                                    <p id="personas"></p> personas están viendo este producto.
+                                    <p id="aleatorio"></p> personas están viendo este producto.
                                 </div>
                                 <div>
                                     <p id="direccion"></p>
@@ -1365,9 +1365,9 @@ closePopupButton.addEventListener('click', () => {
         // ENVIO CONTADOR
 
                 // aleatorio.js
-               // var container = document.getElementById("aleatorio");
-                // var aleatorio = Math.floor(Math.random() * 100);
-                // container.innerHTML = aleatorio;
+               var container = document.getElementById("aleatorio");
+                var aleatorio = Math.floor(Math.random() * 100);
+                 container.innerHTML = aleatorio;
                 
                 // direccion.js
                 $.get("https://ipinfo.io", function (response) {
