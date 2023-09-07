@@ -712,16 +712,13 @@
                         <!-- Contenido del popup de envíos aquí -->
                           <div class="info-envios">
                                 <div>
-                                    <p id="aleatorio"></p> personas están viendo este producto.
+                                    <p id="pedido"></p> personas están viendo este producto.
                                 </div>
                                 <div>
                                     <p id="direccion"></p>
                                 </div>
                                 <div>
-                                    <p id="tiempo"></p>
-                                </div>
-                                <div>
-                                    <p id="pedido"></p>
+                                    <p id="aleatorio"></p>
                                 </div>
                             </div>
                     </div>
@@ -1426,7 +1423,7 @@ closePopupButton.addEventListener('click', () => {
                     var minutos = formatoNumero(Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60)));
                     var segundos = formatoNumero(Math.floor((distancia % (1000 * 60)) / 1000));
                 
-                    document.getElementById("pedido").innerHTML = "Haz tu pedido en " + horas + ":" + minutos + ":" + segundos + " y recíbelo el " + fechaSimplificada + "!";
+                    document.getElementById("pedido").innerHTML = "Haz tu pedido en " + horas + ":" + minutos + ":" + segundos + " y recíbelo el " + fechaSimplificada;
                 
                     if (distancia < 0) {
                         // Reiniciar la fecha límite para comenzar el contador de nuevo
