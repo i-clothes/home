@@ -1371,7 +1371,7 @@ closePopupButton.addEventListener('click', () => {
                 
                 // direccion.js
                 $.get("https://ipinfo.io", function (response) {
-                    $("#address").html("Envío a : " + response.city + ", " + response.region);
+                    $("#direccion").html("Envío a : " + response.city + ", " + response.region);
                 }, "jsonp");
                 
                 
