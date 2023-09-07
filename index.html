@@ -476,6 +476,27 @@
 }
 
 
+        /* Estilos para el botón "Ir al probador" */
+#irAlProbador {
+  background-color: #3498db; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno (arriba/abajo, izquierda/derecha) */
+  border: none; /* Quita el borde */
+  border-radius: 5px; /* Borde redondeado */
+  cursor: pointer; /* Cambia el cursor al pasar el ratón */
+  font-size: 16px; /* Tamaño de fuente */
+}
+
+/* Estilos cuando se pasa el ratón por encima del botón */
+#irAlProbador:hover {
+  background-color: #2980b9; /* Color de fondo al pasar el ratón */
+}
+
+/* Estilos cuando se hace clic en el botón */
+#irAlProbador:active {
+  background-color: #1c6da8; /* Color de fondo al hacer clic */
+}
+
     </style>
 </head>
 <body>
@@ -743,8 +764,9 @@
 
    <div class="sticky-cart">
   <div class="product-add">
-      <buttom>Ir al probador</buttom>
+      
   </div>
+<button id="irAlProbador">Ir al probador</button>
 </div>
 
 
@@ -952,6 +974,33 @@ function actualizarCarrito() {
     carritoContainer.appendChild(productAdd);
   });
 }
+
+
+
+        // Agrega un event listener al botón "Ir al probador"
+document.getElementById('irAlProbador').addEventListener('click', () => {
+  // Obtén los datos de los productos en el carrito
+  const carrito = obtenerCarrito(); // Implementa esta función para obtener los datos del carrito
+
+  // Guarda los datos en el localStorage como una cadena JSON
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+  
+  // Redirige al usuario a la página del probador (cambia la URL a tu página deseada)
+  window.location.href = 'pagina-del-probador.html';
+});
+
+// Función para obtener los datos del carrito desde el localStorage
+function obtenerCarrito() {
+  const carritoExistente = localStorage.getItem('carrito');
+  if (carritoExistente) {
+    // Si hay datos en el localStorage, conviértelos de nuevo a un objeto JavaScript
+    return JSON.parse(carritoExistente);
+  } else {
+    // Si no hay datos, devuelve un carrito vacío (puedes ajustar esto según tu estructura de datos)
+    return [];
+  }
+}
+
 
 
     </script>
