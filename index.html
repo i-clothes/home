@@ -834,9 +834,11 @@ function cambiarEstiloUrban() {
     document.querySelector('.products .product:nth-of-type(3) p').textContent = 'Diseño elegante y clásico';
     document.querySelector('.products .product:nth-of-type(3) p.precio').textContent = '39,99€';
 
-    // Cambiar el texto en la segunda sección de class="products"
-    document.querySelector('.products:last-of-type h2').textContent = 'Nuestra Colección de Urban Short';
+   
+    // Segunda Sección
     segundaseccion = document.querySelectorAll('.products')[1];
+    segundaseccion.('h2').textContent = 'Nuestra Colección de Urban Short';
+    
     // Cambiar el primer .product en la segunda sección
     segundaseccion.('.product:first-of-type img').src = 'urban16.png';
     segundaseccion.('.product:first-of-type h3').textContent = 'Urban Short I';
