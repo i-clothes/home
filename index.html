@@ -667,157 +667,114 @@
         <p>&copy; 2023  i-Clothes. Todos los derechos reservados.</p>
     </footer>
     <script>
-       // Obtén todos los elementos con la clase "inner-div"
-const innerDivs = document.querySelectorAll('.inner-div');
-
-// Agrega un event listener para cada div interno
-innerDivs.forEach((div) => {
-  div.addEventListener('click', () => {
-    // Cambia el fondo del div al hacer clic
-    div.style.backgroundColor = 'orange';
-  });
-});
-
-const cartIconContainer = document.querySelector('.cart-icon-container');
+     
+// Obtén los elementos que deseas modificar
 const luxury = document.getElementById('luxury');
 const urban = document.getElementById('urban');
-let isVisible = false;
-
-cartIconContainer.addEventListener('click', function () {
-  isVisible = !isVisible;
-  if (isVisible) {
-    luxury.style.display = 'block';
-    urban.style.display = 'block';
-  } else {
-    luxury.style.display = 'none';
-    urban.style.display = 'none';
-  }
-});
-
 const header = document.querySelector('header');
 const navLinks = document.querySelectorAll('header nav ul li a');
 const navUl = document.querySelector('header nav ul');
 const videoElement = document.querySelector('.hero video');
+const knowWhatYouWantSection = document.querySelector('.know-what-you-want');
+const h1KnowWhatYouWant = knowWhatYouWantSection.querySelector('h1');
+const paragraphs = knowWhatYouWantSection.querySelectorAll('p');
+const topVendidoSection = document.querySelector('.top-vendido');
+const h1TopVendido = topVendidoSection.querySelector('h1');
+const imgElement = topVendidoSection.querySelector('img');
+const precioSpan = topVendidoSection.querySelector('#precio');
+const precioTachadoSpan = topVendidoSection.querySelector('#precioTachado');
+const productsH2 = document.querySelector('.products h2');
+const productImages = document.querySelectorAll('.products .product img');
+const sectionPantalones = document.getElementById('pantalones');
 
+// Define una función para restaurar el estado inicial
+function restaurarEstadoInicial() {
+  header.style.backgroundColor = 'black';
+  navLinks.forEach(link => {
+    link.style.color = 'white';
+  });
+  navUl.style.background = 'url(luxury3.png) no-repeat center bottom';
+  videoElement.src = 'luxury2.mp4';
+  videoElement.load();
+  knowWhatYouWantSection.style.backgroundImage = 'url(section1.png)';
+  heroContent.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+  heroContent.style.color = '#fff';
+  h1KnowWhatYouWant.textContent = 'Sabemos lo que quieres';
+  if (paragraphs.length >= 2) {
+    paragraphs[0].textContent = 'Sabemos lo que estás sacrificando, quieres sacrificar y pensar que cuando tengas X cantidad de dinero empezarás a cuidarte, hacer ejercicio, a tener éxito en otras áreas, pero esto no es así.';
+    paragraphs[1].textContent = 'Tienes que actuar, pensar y vestir como si ya fueras exitoso, y lo mejor de todo es que no necesitas gastar una barbaridad de dinero para vestir bien.';
+  }
+  h1TopVendido.textContent = 'Conjunto i-Clothes Luxury Star';
+  topVendidoSection.style.backgroundImage = 'url(section2.png)';
+  imgElement.src = 'luxury6.png';
+  imgElement.alt = 'Conjunto Luxury Star';
+  precioSpan.textContent = '79,99€';
+  precioTachadoSpan.innerHTML = '<del>109,99€</del>';
+  productsH2.textContent = 'Nuestra Colección Polos Luxury';
+  if (productImages.length >= 3) {
+    productImages[0].src = 'luxury7.png';
+    productImages[1].src = 'luxury8.png';
+    productImages[2].src = 'luxury15.png';
+  }
+  if (sectionPantalones) {
+    const h2Element = sectionPantalones.querySelector('h2');
+    if (h2Element) {
+      h2Element.textContent = 'Nuestra Colección Pantalones Luxury';
+    }
+    const productImagesPantalones = sectionPantalones.querySelectorAll('.product img');
+    if (productImagesPantalones.length >= 3) {
+      productImagesPantalones[0].src = 'luxury1.png';
+      productImagesPantalones[1].src = 'luxury4.png';
+      productImagesPantalones[2].src = 'luxury5.png';
+    }
+  }
+}
+
+// Agrega un event listener para el elemento con id "urban"
 urban.addEventListener('click', function () {
+  restaurarEstadoInicial();
+  // Realiza los cambios específicos para el modo "Urban"
   header.style.backgroundColor = 'white';
   navLinks.forEach(link => {
     link.style.color = 'black';
   });
   navUl.style.background = 'url(urban4.png) no-repeat center bottom';
-
-  // Cambiar el src del video
   videoElement.src = 'urban.mp4';
-  videoElement.load(); // Recargar el video con la nueva fuente
-
-  // Cambiar el fondo de .know-what-you-want
-  const knowWhatYouWant = document.querySelector('.know-what-you-want');
-  knowWhatYouWant.style.backgroundImage = 'url(section3.png)';
-
-  // Cambiar el fondo y el color del texto de .hero-content
-  const heroContent = document.querySelector('.hero-content');
+  videoElement.load();
+  knowWhatYouWantSection.style.backgroundImage = 'url(section3.png)';
   heroContent.style.backgroundColor = 'rgba(219, 207, 207, 0.8)';
   heroContent.style.color = 'black';
-
-  heroContent.querySelector('h1').textContent = 'Hoy te sientes más de Urbano';
-
-
-// Cambiar el texto del H1 en .know-what-you-want
-const knowWhatYouWantSection = document.querySelector('.know-what-you-want');
-const h1KnowWhatYouWant = knowWhatYouWantSection.querySelector('h1');
-
-if (h1KnowWhatYouWant) {
-  h1KnowWhatYouWant.textContent = 'Urban Style';
-}
-
-// Cambiar el texto de las etiquetas <p> en .know-what-you-want
-const paragraphs = knowWhatYouWantSection.querySelectorAll('p');
-
-if (paragraphs.length >= 2) {
-  paragraphs[0].textContent = 'Nos encanta el estilo urbano pero pulcro, limpio y minimalista.';
-  paragraphs[1].textContent = 'Encontrarás diseños minimalistas sencillos pero que te darán una gran presencia.';
-}
-
-// Cambiar el texto del H1 en .top-vendido
-const topVendidoSection = document.querySelector('.top-vendido');
-const h1TopVendido = topVendidoSection.querySelector('h1');
-
-if (h1TopVendido) {
+  h1KnowWhatYouWant.textContent = 'Hoy te sientes más de Urbano';
+  if (paragraphs.length >= 2) {
+    paragraphs[0].textContent = 'Nos encanta el estilo urbano pero pulcro, limpio y minimalista.';
+    paragraphs[1].textContent = 'Encontrarás diseños minimalistas sencillos pero que te darán una gran presencia.';
+  }
   h1TopVendido.textContent = 'Camiseta Urban Classic';
-}
-
-// Cambiar el fondo de la sección .top-vendido
-topVendidoSection.style.backgroundImage = 'url(section5.png)';
-
-// Cambiar la imagen en .top-vendido
-const imgElement = topVendidoSection.querySelector('img');
-
-if (imgElement) {
+  topVendidoSection.style.backgroundImage = 'url(section5.png)';
   imgElement.src = 'iclothes2.png';
   imgElement.alt = 'Camiseta Urban Classic';
-}
-
-// Cambiar el contenido del span con id "precio" en .top-vendido
-const precioSpan = topVendidoSection.querySelector('#precio');
-
-if (precioSpan) {
   precioSpan.textContent = '39,99€';
-}
-
-// Cambiar el contenido del span con id "precioTachado" en .top-vendido
-const precioTachadoSpan = topVendidoSection.querySelector('#precioTachado');
-
-if (precioTachadoSpan) {
   precioTachadoSpan.innerHTML = '<del>50€</del>';
-}
-
-// Obtén el elemento con id "urban"
-const urban = document.getElementById('urban');
-
-// Obtén el elemento H2 dentro de la sección .products
-const productsH2 = document.querySelector('.products h2');
-
-  // Cambia el texto del elemento H2
   productsH2.textContent = 'Colección Urban Chillwork';
-
-    
-  // Obtén todas las imágenes de los productos dentro de la sección .products
-  const productImages = document.querySelectorAll('.products .product img');
-
-  // Verifica si hay al menos 3 imágenes de productos
   if (productImages.length >= 3) {
-    // Cambia el atributo src de las imágenes de los productos
     productImages[0].src = 'urban3.png';
     productImages[1].src = 'urban5.png';
     productImages[2].src = 'urban6.png';
   }
-
-
-    // Obtener la sección con id "pantalones"
-const sectionPantalones = document.getElementById('pantalones');
-
-// Verificar si la sección existe
-if (sectionPantalones) {
-  // Cambiar el texto del elemento H2 dentro de la sección
-  const h2Element = sectionPantalones.querySelector('h2');
-  if (h2Element) {
-    h2Element.textContent = 'Nuestra Colección Urban ChillWork';
+  if (sectionPantalones) {
+    const h2Element = sectionPantalones.querySelector('h2');
+    if (h2Element) {
+      h2Element.textContent = 'Nuestra Colección Urban ChillWork';
+    }
+    const productImagesPantalones = sectionPantalones.querySelectorAll('.product img');
+    if (productImagesPantalones.length >= 3) {
+      productImagesPantalones[0].src = 'urban1.png';
+      productImagesPantalones[1].src = 'urban2.png';
+      productImagesPantalones[2].src = 'urban7.png';
+    }
   }
-
-  // Obtener todas las imágenes de los productos dentro de la sección
-  const productImages = sectionPantalones.querySelectorAll('.product img');
-
-  // Verificar si hay al menos 3 imágenes de productos
-  if (productImages.length >= 3) {
-    // Cambiar el atributo src de las imágenes de los productos
-    productImages[0].src = 'urban16.png';
-    productImages[1].src = 'urban17.png';
-    productImages[2].src = 'urban18.png';
-  }
-}
-
-
 });
+
     </script>
 </body>
 </html>
