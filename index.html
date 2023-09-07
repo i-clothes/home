@@ -504,7 +504,7 @@
         </div>
     </div>
     </section>
-    <section class="products">
+    <section class="products" id="pantalones">
         <h2>Nuestra Colección Pantalones Luxury</h2>
         <div class="product">
         <img src="luxury1.png">
@@ -791,6 +791,31 @@ const productsH2 = document.querySelector('.products h2');
     productImages[1].src = 'urban5.png';
     productImages[2].src = 'urban6.png';
   }
+
+
+    // Obtener la sección con id "pantalones"
+const sectionPantalones = document.getElementById('pantalones');
+
+// Verificar si la sección existe
+if (sectionPantalones) {
+  // Cambiar el texto del elemento H2 dentro de la sección
+  const h2Element = sectionPantalones.querySelector('h2');
+  if (h2Element) {
+    h2Element.textContent = 'Nuestra Colección Urban ChillWork';
+  }
+
+  // Obtener todas las imágenes de los productos dentro de la sección
+  const productImages = sectionPantalones.querySelectorAll('.product img');
+
+  // Verificar si hay al menos 3 imágenes de productos
+  if (productImages.length >= 3) {
+    // Cambiar el atributo src de las imágenes de los productos
+    productImages[0].src = 'urban16.png';
+    productImages[1].src = 'urban17.png';
+    productImages[2].src = 'urban18.png';
+  }
+}
+
 
 });
     </script>
