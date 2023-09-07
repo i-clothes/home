@@ -1082,6 +1082,31 @@ agregarCarritoButtons.forEach(function (boton) {
     boton.addEventListener('click', mostrarCarrito);
 });
 
+        
+document.addEventListener("DOMContentLoaded", function () {
+    // Obtener referencias a los elementos HTML
+    const videoPlayer = document.getElementById("videoPlayer");
+    const videoSource = document.getElementById("videoSource");
+    const urbanButton = document.getElementById("urban");
+    const luxuryButton = document.getElementById("luxury");
+
+    // Función para cambiar el src del video
+    function changeVideoSource(src) {
+        videoSource.src = src;
+        videoPlayer.load(); // Recargar el video para que utilice la nueva fuente
+        videoPlayer.play(); // Iniciar la reproducción automáticamente si se desea
+    }
+
+    // Asignar eventos de clic a los botones
+    urbanButton.addEventListener("click", function () {
+        changeVideoSource("urban.mp4");
+    });
+
+    luxuryButton.addEventListener("click", function () {
+        changeVideoSource("luxury2.mp4");
+    });
+});
+
 
 
     </script>
