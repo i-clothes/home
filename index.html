@@ -790,8 +790,8 @@ function cambiarEstiloUrban() {
         enlace.style.color = 'black';
     }
 
-    // Cambiar el fondo de la sección hero
-    document.querySelector('.hero').style.background = 'url(urban4.png) no-repeat center bottom';
+    // Cambiar el trozo de header img
+    document.querySelector('header ul').style.background = 'url(urban4.png) no-repeat center bottom';
 
     // Cambiar el texto en la sección hero
     document.querySelector('.hero-content h1').textContent = 'Bienvenido a la sección Urbana';
@@ -805,7 +805,7 @@ function cambiarEstiloUrban() {
     document.querySelector('.top-vendido .product p.precio').textContent = '39,99€';
 
     // Cambiar el texto en la primera sección de class="products"
-    document.querySelector('.products:first-of-type h2').textContent = 'Nuestra colección de camisetas Urban Classic';
+    document.querySelector('.products:first-of-type h3').textContent = 'Nuestra colección de camisetas Urban Classic';
 
     // Cambiar el primer .product
     document.querySelector('.products:first-of-type .product:first-of-type img').src = 'urban3.png';
@@ -849,7 +849,7 @@ function cambiarEstiloUrban() {
 
 // Agregar un evento de clic al elemento con id "urban"
 document.querySelector('#urban').addEventListener('click', cambiarEstiloUrban);
-</script>
+
 
 
 
