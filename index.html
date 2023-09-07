@@ -505,6 +505,8 @@
 /* Estilos para el contenedor del popup */
 .popup-tallas {
     display: none; /* Ocultar el popup inicialmente */
+    justify-content: center;
+    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -1234,10 +1236,10 @@ toggleTallasButtons.forEach(function(button) {
         const popupTallasContainer = button.closest('.product').querySelector('.popup-tallas');
 
         // Mostrar u ocultar el popup de tallas
-        if (popupTallasContainer.style.display === 'block') {
+        if (popupTallasContainer.style.display === 'flex') {
             popupTallasContainer.style.display = 'none';
         } else {
-            popupTallasContainer.style.display = 'block';
+            popupTallasContainer.style.display = 'flex';
         }
     });
 });
