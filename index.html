@@ -762,7 +762,18 @@ const productsH2 = document.querySelector('.products h2');
 
   // Cambia el texto del elemento H2
   productsH2.textContent = 'Colección Urban Chillwork';
+// Agrega un event listener para el clic en el elemento con id "urban"
+urban.addEventListener('click', function () {
+  // Obtén todas las imágenes de los productos dentro de la sección .products
+  const productImages = document.querySelectorAll('.products .product img');
 
+  // Verifica si hay al menos 3 imágenes de productos
+  if (productImages.length >= 3) {
+    // Cambia el atributo src de las imágenes de los productos
+    productImages[0].src = 'urban3.png';
+    productImages[1].src = 'urban4.png';
+    productImages[2].src = 'urban5.png';
+  }
 
 });
     </script>
