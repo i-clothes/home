@@ -1242,6 +1242,18 @@ toggleTallasButtons.forEach(function(button) {
     });
 });
 
+// Obtener el elemento del botón de cierre (×)
+const closePopupButton = document.querySelector('.popup-close');
+
+// Obtener el elemento del popup
+const popup = document.querySelector('.popup-tallas');
+
+// Agregar un evento de clic al botón de cierre
+closePopupButton.addEventListener('click', () => {
+    // Ocultar el popup al hacer clic en el botón de cierre
+    popup.style.display = 'none';
+});
+
         
 
     </script>
