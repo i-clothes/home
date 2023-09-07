@@ -870,14 +870,16 @@ document.querySelector('#urban').addEventListener('click', cambiarEstiloUrban);
 
 function restaurarEstadoInicial() {
     // Restaurar el fondo del header
-    document.querySelector('header').style.backgroundColor = ''; // Esto eliminará el estilo de fondo
+    document.querySelector('header').style.backgroundColor = 'black'; // Esto eliminará el estilo de fondo
 
     // Restaurar el color de los enlaces (a) en el nav
     const enlaces = document.querySelectorAll('nav ul li a');
-    enlaces.style.color = '';
+    for (let enlace of enlaces) {
+        enlace.style.color = 'white'; // Esto eliminará el estilo de color
+    }
 
     // Restaurar el trozo de header img
-    document.querySelector('header ul').style.backgroundImage = '';
+    document.querySelector('header ul').style.background = 'luxury3.png';
 
     // Restaurar el texto en la sección hero
     document.querySelector('.hero-content h1').textContent = 'Bienvenido a  i-Clothes';
