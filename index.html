@@ -1337,23 +1337,18 @@ agregarCarritoButtons.forEach(function (boton) {
 });
 
 
-        // Obtener todos los elementos con la clase "toggle-popup-tallas"
-const toggleTallasButtons = document.querySelectorAll('.toggle-popup-tallas');
+// Obtener el botón "Ver Tallas" en la sección .top-vendido
+const togglePopupTallasButton = document.querySelector('.top-vendido .toggle-popup-tallas');
 
-// Iterar sobre los botones "Ver Tallas" y agregar eventos de clic
-toggleTallasButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-        // Obtener el elemento de contenedor del popup de tallas más cercano
-        const popupTallasContainer = button.closest('.product').querySelector('.popup-tallas');
+// Obtener el popup de tallas correspondiente a la sección .top-vendido
+const popupTallasContainer = document.querySelector('.top-vendido .popup-tallas');
 
-        // Mostrar u ocultar el popup de tallas
-        if (popupTallasContainer.style.display === 'flex') {
-            popupTallasContainer.style.display = 'none';
-        } else {
-            popupTallasContainer.style.display = 'flex';
-        }
-    });
+// Agregar un evento de clic al botón "Ver Tallas"
+togglePopupTallasButton.addEventListener('click', function() {
+    // Mostrar el popup de tallas
+    popupTallasContainer.style.display = 'flex';
 });
+
 
 // Obtener el elemento del botón de cierre (×)
 const closePopupButton = document.querySelector('.popup-close');
