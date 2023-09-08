@@ -1574,9 +1574,6 @@ productElements.forEach(function(productElement) {
 
         
 
-// Variable global para llevar un registro de los productos a los que se les ha dado like
-const productosConLike = new Set();
-
 // Obtener todos los elementos con la clase "likes"
 const likeButtons = document.querySelectorAll('.likes');
 
@@ -1586,10 +1583,10 @@ likeButtons.forEach(function(likeButton) {
     let numeroLikes = parseInt(numeroLikesElement.textContent, 10) || 0; // Obtener el valor actual o 0 si no hay un valor válido
 
     likeButton.addEventListener('click', function() {
-        // Verificar si el producto ya tiene un like
-        const productoId = likeButton.dataset.productoId;
+        // Verificar si ya se ha dado like
+        const haDadoLike = likeButton.classList.contains('liked');
 
-        if (!productosConLike.has(productoId)) {
+        if (!haDadoLike) {
             // Cambiar el color del corazón a rojo
             const heartIcon = likeButton.querySelector('.fas.fa-heart');
             heartIcon.style.color = 'red';
@@ -1600,14 +1597,12 @@ likeButtons.forEach(function(likeButton) {
             // Actualizar el contenido de .numeroLikes con el nuevo valor
             numeroLikesElement.textContent = numeroLikes;
 
-            // Agregar el producto a la lista de productos con like
-            productosConLike.add(productoId);
-
-            // Deshabilitar el botón de "Dar Like"
-            likeButton.disabled = true;
+            // Agregar la clase "liked" para deshabilitar futuros clics
+            likeButton.classList.add('liked');
         }
     });
 });
+
 
 
 
