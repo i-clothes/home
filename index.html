@@ -1555,6 +1555,22 @@ togglePopupEnviosButtons.forEach(function(button) {
 
 
 
+
+        // Obtener todos los elementos con la clase "product"
+const productElements = document.querySelectorAll('.product');
+
+// Iterar sobre los elementos y agregar el número aleatorio en cada uno
+productElements.forEach(function(productElement) {
+    // Obtener el elemento "numeroLikes" dentro del producto actual
+    const numeroLikesElement = productElement.querySelector('.numeroLikes');
+
+    // Generar un número aleatorio entre 1000 y 1200
+    const numeroLikes = Math.floor(Math.random() * (1200 - 1000 + 1)) + 1000;
+
+    // Establecer el número aleatorio en el elemento "numeroLikes" del producto actual
+    numeroLikesElement.textContent = numeroLikes;
+});
+
 // Obtener todos los elementos con la clase "likes"
 const likeButtons = document.querySelectorAll('.likes');
 
@@ -1572,26 +1588,6 @@ likeButtons.forEach(function(likeButton) {
         numeroLikes++;
         numeroLikesElement.textContent = numeroLikes;
     });
-});
-
-
-
-
-
-
-        // Obtener todos los elementos con la clase "product"
-const productElements = document.querySelectorAll('.product');
-
-// Iterar sobre los elementos y agregar el número aleatorio en cada uno
-productElements.forEach(function(productElement) {
-    // Obtener el elemento "numeroLikes" dentro del producto actual
-    const numeroLikesElement = productElement.querySelector('.numeroLikes');
-
-    // Generar un número aleatorio entre 1000 y 1200
-    const numeroLikes = Math.floor(Math.random() * (1200 - 1000 + 1)) + 1000;
-
-    // Establecer el número aleatorio en el elemento "numeroLikes" del producto actual
-    numeroLikesElement.textContent = numeroLikes;
 });
 
 
