@@ -1451,9 +1451,36 @@ closePopupButton.addEventListener('click', () => {
         popupEnvios.style.display = "none";
     }
 
-    // Evento para mostrar el popup de envíos al hacer clic en "Ver Envíos"
-    var togglePopupEnvios = document.querySelectorAll(".toggle-popup-envios");
-    togglePopupEnvios.addEventListener("click", mostrarPopupEnvios);
+// Obtener el botón "Ver Envíos" en la sección .top-vendido
+const togglePopupEnviosButton = document.querySelector('.top-vendido .toggle-popup-envios');
+
+// Obtener el popup de envíos correspondiente a la sección .top-vendido
+const popupEnviosContainer = document.querySelector('.top-vendido .popup-envios');
+
+// Obtener todos los elementos con la clase "toggle-popup-envíos"
+const togglePopupEnviosButtons = document.querySelectorAll('.toggle-popup-envios');
+
+// Agregar un evento de clic al botón "Ver Envíos" en la sección .top-vendido
+togglePopupEnviosButton.addEventListener('click', function() {
+    // Mostrar el popup de envíos
+    popupEnviosContainer.style.display = 'flex';
+
+    // Llamar a la función mostrarPopupEnvios
+    mostrarPopupEnvios();
+});
+
+// Iterar sobre los botones "Ver Envíos" y agregar eventos de clic para abrir el mismo popup y llamar a la función
+togglePopupEnviosButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        // Mostrar el popup de envíos
+        popupEnviosContainer.style.display = 'flex';
+
+        // Llamar a la función mostrarPopupEnvios
+        mostrarPopupEnvios();
+    });
+});
+
+
 
 
 
