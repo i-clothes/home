@@ -1452,21 +1452,19 @@ closePopupButton.addEventListener('click', () => {
         popupEnvios.style.display = "none";
     }
 
-  // Obtener todos los elementos con la clase "toggle-popup-envios"
-const togglePopupEnviosButtons = document.querySelectorAll('.toggle-popup-envios');
+// Obtener el botón "Ver Envíos" en la sección .top-vendido
+const togglePopupEnviosButton = document.querySelector('.top-vendido .toggle-popup-envios');
 
-// Iterar sobre los botones "Ver Envíos" y agregar eventos de clic
-togglePopupEnviosButtons.forEach(function(button) {
-    button.addEventListener('click', function(event) {
-        // Obtener el elemento del popup de envíos más cercano al botón clicado
-        const popupEnviosContainer = event.target.closest('.product').querySelector('.popup-envios');
+// Obtener el popup de envíos correspondiente a la sección .top-vendido
+const popupEnviosContainer = document.querySelector('.top-vendido .popup-envios');
 
-        // Mostrar el popup de envíos
-        popupEnviosContainer.style.display = 'flex';
+// Agregar un evento de clic al botón "Ver Envíos"
+togglePopupEnviosButton.addEventListener('click', function() {
+    // Mostrar el popup de envíos
+    popupEnviosContainer.style.display = 'flex';
 
-        // Llamar a la función mostrarPopupEnvios
-        mostrarPopupEnvios();
-    });
+    // Llamar a la función mostrarPopupEnvios
+    mostrarPopupEnvios();
 });
 
 
