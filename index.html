@@ -1337,16 +1337,23 @@ agregarCarritoButtons.forEach(function (boton) {
 });
 
 
-// Obtener el botón "Ver Tallas" en la sección .top-vendido
-const togglePopupTallasButton = document.querySelector('.top-vendido .toggle-popup-tallas');
 
 // Obtener el popup de tallas correspondiente a la sección .top-vendido
 const popupTallasContainer = document.querySelector('.top-vendido .popup-tallas');
 
-// Agregar un evento de clic al botón "Ver Tallas"
-togglePopupTallasButton.addEventListener('click', function() {
-    // Mostrar el popup de tallas
-    popupTallasContainer.style.display = 'flex';
+        // Obtener todos los elementos con la clase "toggle-popup-tallas"
+const togglePopupTallasButtons = document.querySelectorAll('.toggle-popup-tallas');
+
+// Obtener el popup de tallas en la sección .top-vendido
+const popupTallasContainer = document.querySelector('.top-vendido .popup-tallas');
+
+// Iterar sobre los botones "Ver Tallas" y agregar eventos de clic
+togglePopupTallasButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        // Mostrar el popup de tallas
+        popupTallasContainer.style.display = 'flex';
+       
+    });
 });
 
 
@@ -1447,20 +1454,10 @@ closePopupButton.addEventListener('click', () => {
         popupEnvios.style.display = "none";
     }
 
-        // Obtener todos los elementos con la clase "toggle-popup-tallas"
-const togglePopupTallasButtons = document.querySelectorAll('.toggle-popup-tallas');
+    // Evento para mostrar el popup de envíos al hacer clic en "Ver Envíos"
+    var togglePopupEnvios = document.querySelectorAll(".toggle-popup-envios");
+    togglePopupEnvios.addEventListener("click", mostrarPopupEnvios);
 
-// Obtener el popup de tallas en la sección .top-vendido
-const popupTallasContainer = document.querySelector('.top-vendido .popup-tallas');
-
-// Iterar sobre los botones "Ver Tallas" y agregar eventos de clic
-togglePopupTallasButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-        // Mostrar el popup de tallas
-        popupTallasContainer.style.display = 'flex';
-        mostrarPopupEnvios();
-    });
-});
 
 
     // Evento para ocultar el popup de envíos al hacer clic en el botón de cierre (×)
