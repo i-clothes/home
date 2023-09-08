@@ -671,7 +671,7 @@
                   <p>Diseños únicos para inspirar tu jornada emprendedora.</p>
                   <p class="precio">50€</p>
                   <div class="product-options">
-                        <div class="option">
+                        <div class="option likes">
                           <i class="fas fa-heart"></i> Dar Like (<span class="numeroLikes"></span>)
                         </div>
                         <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
@@ -734,7 +734,7 @@
               <p>Diseños únicos para inspirar tu jornada emprendedora.</p>
               <p class="precio">50€</p>
                   <div class="product-options">
-                        <div class="option">
+                        <div class="option likes">
                           <i class="fas fa-heart"></i> Dar Like (<span class="numeroLikes"></span>)
                         </div>
                         <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
@@ -766,7 +766,7 @@
   <p>Diseños únicos para inspirar tu jornada emprendedora.</p>
   <p class="precio">50€</p>
   <div class="product-options">
-    <div class="option">
+    <div class="option likes">
                           <i class="fas fa-heart"></i> Dar Like (<span class="numeroLikes"></span>)
                         </div>
     <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
@@ -797,7 +797,7 @@
   <p>Diseños únicos para inspirar tu jornada emprendedora.</p>
   <p class="precio">50€</p>
   <div class="product-options">
-    <div class="option">
+    <div class="option likes">
                           <i class="fas fa-heart"></i> Dar Like (<span class="numeroLikes"></span>)
                         </div>
     <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
@@ -831,7 +831,7 @@
                   <p>Diseños únicos para inspirar tu jornada emprendedora.</p>
                   <p class="precio">50€</p>
                   <div class="product-options">
-                        <div class="option">
+                        <div class="option likes">
                           <i class="fas fa-heart"></i> Dar Like (<span class="numeroLikes"></span>)
                         </div>
                         <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
@@ -861,7 +861,7 @@
                   <p>Diseños únicos para inspirar tu jornada emprendedora.</p>
                   <p class="precio">50€</p>
                   <div class="product-options">
-                        <div class="option">
+                        <div class="option likes">
                           <i class="fas fa-heart"></i> Dar Like (<span class="numeroLikes"></span>)
                         </div>
                         <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
@@ -891,7 +891,7 @@
                   <p>Diseños únicos para inspirar tu jornada emprendedora.</p>
                   <p class="precio">50€</p>
                   <div class="product-options">
-                        <div class="option">
+                        <div class="option likes">
                           <i class="fas fa-heart"></i> Dar Like (<span class="numeroLikes"></span>)
                         </div>
                         <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
@@ -1555,16 +1555,25 @@ togglePopupEnviosButtons.forEach(function(button) {
 
 
 
-// Obtener todos los elementos con la clase .fas.fa-heart
-const heartIcons = document.querySelectorAll('.fas.fa-heart');
+// Obtener todos los elementos con la clase "likes"
+const likeButtons = document.querySelectorAll('.likes');
 
-// Iterar sobre los elementos y agregar eventos de clic
-heartIcons.forEach(function(heartIcon) {
-    heartIcon.addEventListener('click', function() {
+// Iterar sobre los elementos "likes" y agregar eventos de clic
+likeButtons.forEach(function(likeButton) {
+    const numeroLikesElement = likeButton.querySelector('.numeroLikes');
+    let numeroLikes = parseInt(numeroLikesElement.textContent, 10) || 0; // Obtener el valor actual o 0 si no hay un valor válido
+
+    likeButton.addEventListener('click', function() {
         // Cambiar el color del corazón a rojo
+        const heartIcon = likeButton.querySelector('.fas.fa-heart');
         heartIcon.style.color = 'red';
+
+        // Incrementar el número de likes y actualizar el contenido
+        numeroLikes++;
+        numeroLikesElement.textContent = numeroLikes;
     });
 });
+
 
 
 
