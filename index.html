@@ -677,7 +677,7 @@
                         <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
                           <i class="fas fa-shopping-cart"></i> Añadir al carrito
                         </div>
-                        <div class="option">
+                        <div class="option whatsapp">
                           <i class="fas fa-share"></i> Compartir
                         </div>
                   </div>
@@ -740,7 +740,7 @@
                         <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
                           <i class="fas fa-shopping-cart"></i> Añadir al carrito
                         </div>
-                        <div class="option">
+                        <div class="option whatsapp">
                           <i class="fas fa-share"></i> Compartir
                         </div>
                       </div>
@@ -772,7 +772,7 @@
     <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
       <i class="fas fa-shopping-cart"></i> Añadir al carrito
     </div>
-    <div class="option">
+    <div class="option whatsapp">
       <i class="fas fa-share"></i> Compartir
     </div>            
   </div>
@@ -803,7 +803,7 @@
     <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
       <i class="fas fa-shopping-cart"></i> Añadir al carrito
     </div>
-    <div class="option">
+    <div class="option whatsapp">
       <i class="fas fa-share"></i> Compartir
     </div>
   </div>
@@ -837,7 +837,7 @@
                         <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
                           <i class="fas fa-shopping-cart"></i> Añadir al carrito
                         </div>
-                        <div class="option">
+                        <div class="option whatsapp">
                           <i class="fas fa-share"></i> Compartir
                         </div>
                   </div>
@@ -867,7 +867,7 @@
                         <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
                           <i class="fas fa-shopping-cart"></i> Añadir al carrito
                         </div>
-                        <div class="option">
+                        <div class="option whatsapp">
                           <i class="fas fa-share"></i> Compartir
                         </div>
                   </div>
@@ -897,7 +897,7 @@
                         <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
                           <i class="fas fa-shopping-cart"></i> Añadir al carrito
                         </div>
-                        <div class="option">
+                        <div class="option whatsapp">
                           <i class="fas fa-share"></i> Compartir
                         </div>
                   </div>
@@ -1603,6 +1603,28 @@ likeButtons.forEach(function(likeButton) {
     });
 });
 
+// Obtener todos los elementos con la clase "whatsapp"
+const whatsappButtons = document.querySelectorAll('.whatsapp');
+
+// Iterar sobre los elementos "whatsapp" y agregar eventos de clic
+whatsappButtons.forEach(function(whatsappButton) {
+    whatsappButton.addEventListener('click', function() {
+        // Obtener el nombre de la prenda (texto H3 .product)
+        const nombrePrenda = whatsappButton.closest('.product').querySelector('h3').textContent;
+
+        // Crear el mensaje predeterminado con el nombre de la prenda
+        const mensaje = `Me encantó 😍😍 esta prenda ${nombrePrenda} >> Visita https://i-clothes.github.io/home/`;
+
+        // Escapar caracteres especiales para que el mensaje sea una URL válida
+        const mensajeEscapado = encodeURIComponent(mensaje);
+
+        // Crear el enlace de WhatsApp con el mensaje
+        const enlaceWhatsapp = `https://api.whatsapp.com/send?text=${mensajeEscapado}`;
+
+        // Redirigir a WhatsApp con el mensaje predeterminado
+        window.location.href = enlaceWhatsapp;
+    });
+});
 
 
 
