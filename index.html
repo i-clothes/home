@@ -1555,6 +1555,16 @@ togglePopupEnviosButtons.forEach(function(button) {
 
 
 
+// Obtener todos los elementos con la clase .fas.fa-heart
+const heartIcons = document.querySelectorAll('.fas.fa-heart');
+
+// Iterar sobre los elementos y agregar eventos de clic
+heartIcons.forEach(function(heartIcon) {
+    heartIcon.addEventListener('click', function() {
+        // Cambiar el color del corazón a rojo
+        heartIcon.style.color = 'red';
+    });
+});
 
 
 
