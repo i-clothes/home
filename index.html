@@ -672,7 +672,7 @@
                   <p class="precio">50€</p>
                   <div class="product-options">
                         <div class="option">
-                          <i class="fas fa-heart"></i> Dar Like
+                          <i class="fas fa-heart"></i> Dar Like (<span class="numeroLikes"></span>)
                         </div>
                         <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
                           <i class="fas fa-shopping-cart"></i> Añadir al carrito
@@ -735,7 +735,7 @@
               <p class="precio">50€</p>
                   <div class="product-options">
                         <div class="option">
-                          <i class="fas fa-heart"></i> Dar Like
+                          <i class="fas fa-heart"></i> Dar Like (<span class="numeroLikes"></span>)
                         </div>
                         <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
                           <i class="fas fa-shopping-cart"></i> Añadir al carrito
@@ -767,8 +767,8 @@
   <p class="precio">50€</p>
   <div class="product-options">
     <div class="option">
-      <i class="fas fa-heart"></i> Dar Like
-    </div>
+                          <i class="fas fa-heart"></i> Dar Like (<span class="numeroLikes"></span>)
+                        </div>
     <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
       <i class="fas fa-shopping-cart"></i> Añadir al carrito
     </div>
@@ -798,8 +798,8 @@
   <p class="precio">50€</p>
   <div class="product-options">
     <div class="option">
-      <i class="fas fa-heart"></i> Dar Like
-    </div>
+                          <i class="fas fa-heart"></i> Dar Like (<span class="numeroLikes"></span>)
+                        </div>
     <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
       <i class="fas fa-shopping-cart"></i> Añadir al carrito
     </div>
@@ -832,7 +832,7 @@
                   <p class="precio">50€</p>
                   <div class="product-options">
                         <div class="option">
-                          <i class="fas fa-heart"></i> Dar Like
+                          <i class="fas fa-heart"></i> Dar Like (<span class="numeroLikes"></span>)
                         </div>
                         <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
                           <i class="fas fa-shopping-cart"></i> Añadir al carrito
@@ -862,7 +862,7 @@
                   <p class="precio">50€</p>
                   <div class="product-options">
                         <div class="option">
-                          <i class="fas fa-heart"></i> Dar Like
+                          <i class="fas fa-heart"></i> Dar Like (<span class="numeroLikes"></span>)
                         </div>
                         <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
                           <i class="fas fa-shopping-cart"></i> Añadir al carrito
@@ -892,7 +892,7 @@
                   <p class="precio">50€</p>
                   <div class="product-options">
                         <div class="option">
-                          <i class="fas fa-heart"></i> Dar Like
+                          <i class="fas fa-heart"></i> Dar Like (<span class="numeroLikes"></span>)
                         </div>
                         <div class="option agregar-carrito"> <!-- Agregamos la clase "agregar-carrito" al botón -->
                           <i class="fas fa-shopping-cart"></i> Añadir al carrito
@@ -1565,6 +1565,23 @@ heartIcons.forEach(function(heartIcon) {
         heartIcon.style.color = 'red';
     });
 });
+
+
+        // Obtener todos los elementos con la clase "option"
+const optionElements = document.querySelectorAll('.option');
+
+// Iterar sobre los elementos y agregar el número aleatorio en cada uno
+optionElements.forEach(function(optionElement) {
+    // Obtener el elemento "numeroLikes" dentro de la opción actual
+    const numeroLikesElement = optionElement.querySelector('.numeroLikes');
+
+    // Generar un número aleatorio entre 1000 y 1200
+    const numeroLikes = Math.floor(Math.random() * (1200 - 1000 + 1)) + 1000;
+
+    // Establecer el número aleatorio en el elemento "numeroLikes" de la opción actual
+    numeroLikesElement.textContent = numeroLikes;
+});
+
 
 
 
