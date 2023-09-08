@@ -1567,21 +1567,23 @@ heartIcons.forEach(function(heartIcon) {
 });
 
 
-        // Obtener todos los elementos con la clase "option"
-const optionElements = document.querySelectorAll('.option');
+
+
+
+        // Obtener todos los elementos con la clase "product"
+const productElements = document.querySelectorAll('.product');
 
 // Iterar sobre los elementos y agregar el número aleatorio en cada uno
-optionElements.forEach(function(optionElement) {
-    // Obtener el elemento "numeroLikes" dentro de la opción actual
-    const numeroLikesElement = optionElement.querySelector('.numeroLikes');
+productElements.forEach(function(productElement) {
+    // Obtener el elemento "numeroLikes" dentro del producto actual
+    const numeroLikesElement = productElement.querySelector('.numeroLikes');
 
     // Generar un número aleatorio entre 1000 y 1200
     const numeroLikes = Math.floor(Math.random() * (1200 - 1000 + 1)) + 1000;
 
-    // Establecer el número aleatorio en el elemento "numeroLikes" de la opción actual
+    // Establecer el número aleatorio en el elemento "numeroLikes" del producto actual
     numeroLikesElement.textContent = numeroLikes;
 });
-
 
 
 
