@@ -98,6 +98,7 @@
 
         .ventaja i {
             width: 50px;
+            color: #FFCD00;
         }
 
         .ventaja p {
@@ -432,33 +433,10 @@
 </div>
 
 <div class="reserva-section">
-    <h1>Reserva Ahora</h1>
+    <h1>Elige </h1>
     <div class="reserva">
-    <div class="reserva-options" id="reserva">
-       <div class="reserva1">
-            <div class="reserva-option">
-                <h3>1 Persona</h3>
-                <img src="persona1.png">
-                <span style="font-size: 20px; color: #66CD54; font-weight: bolder;">30€</span><span style="font-size: 12px; color: red; text-decoration:line-through;">35€</span>
-            </div>
-            <div class="reserva-option">
-                <h3>3 Personas</h3>
-                <img src="persona3.png">
-                <span style="font-size: 20px; color: #66CD54; font-weight: bolder;">80€</span><span style="font-size: 12px; color: red; text-decoration:line-through;">99€</span>
-            </div>
-            </div>
-           <div class="reserva1">
-            <div class="reserva-option">
-                <h3>2 Personas</h3>
-                <img src="persona2.png">
-                <span style="font-size: 20px; color: #66CD54; font-weight: bolder;">55€</span><span style="font-size: 12px; color: red; text-decoration:line-through;">65€</span>
-            </div>
-            <div class="reserva-option">
-                <h3>4 Personas</h3>
-                <img src="persona4.png">
-                <span style="font-size: 20px; color: #66CD54; font-weight: bolder;">110€</span><span style="font-size: 12px; color: red; text-decoration:line-through;">125€</span>
-            </div>
-        </div>    
+    <div class="reserva-options reserva-container" id="reserva">
+           
     </div>
     <div class="pago-options" id="pago" style="display:none">
        <div class="pago-option">
@@ -654,7 +632,42 @@ function updateNotification() {
 updateNotification(); // Llamarlo inmediatamente al cargar la página
 setInterval(updateNotification, 60000);
 
+// Recupera los datos del localStorage
+  const reservaData = JSON.parse(localStorage.getItem('tu_clave_de_almacenamiento_local'));
 
+  // Verifica si hay datos en el JSON
+  if (reservaData && reservaData.length > 0) {
+    const reservaContainer = document.getElementById('reserva-container');
+
+    // Itera sobre los datos y crea elementos HTML para cada elemento en el JSON
+    reservaData.forEach((item) => {
+      const reservaOption = document.createElement('div');
+      reservaOption.classList.add('reserva-option');
+
+      const nombreElement = document.createElement('h3');
+      nombreElement.textContent = item.nombre;
+
+      const precioElement = document.createElement('span');
+      precioElement.classList.add('precio');
+      precioElement.style.fontSize = '20px';
+      precioElement.style.color = '#66CD54';
+      precioElement.style.fontWeight = 'bolder';
+      precioElement.textContent = item.precio;
+
+      const cantidadElement = document.createElement('span');
+      cantidadElement.classList.add('cantidad');
+      cantidadElement.textContent = item.cantidad;
+
+      reservaOption.appendChild(nombreElement);
+      reservaOption.appendChild(precioElement);
+      reservaOption.appendChild(cantidadElement);
+
+      reservaContainer.appendChild(reservaOption);
+    });
+  } else {
+    // Manejar el caso en el que no hay datos en el localStorage
+    console.log('No hay datos en el localStorage');
+  }
        
     </script>
 </body>
