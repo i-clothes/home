@@ -678,10 +678,6 @@ footer {
     font-size: 16px;
 }
 
-.footer-newsletter form {
-    display: flex;
-    align-items: center;
-}
 
 .footer-newsletter input[type="email"] {
     width: 250px;
@@ -734,6 +730,31 @@ footer {
   background-color: #f0f0f0; /* Cambia el color a tu preferencia */
 }
 
+        
+@media screen and (min-width: 820px) {
+  /* Estilos para cuando la pantalla tiene un ancho mínimo de 820px */
+
+  /* Cambiar el display del footer a block */
+  .footer {
+    display: block;
+  }
+
+  /* Centrar el texto en ul dentro de .footer-links */
+  .footer-links ul {
+    text-align: center;
+  }
+
+  /* Estilos para el formulario dentro de .footer-newsletter */
+  .footer-newsletter form {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Estilos para las imágenes dentro de .footer-pagos */
+  .footer-pagos img {
+    width: 100%;
+  }
+}
 
     </style>
 </head>
