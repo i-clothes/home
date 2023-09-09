@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="ICL.png" type="image/x-icon">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title> i-clothes - Tu Éxito, Tu Estilo</title>
     <link rel="stylesheet" href="styles.css">
@@ -791,12 +793,14 @@ footer {
             overflow: hidden;
             white-space: nowrap;
             position: relative;
+            font-family: 'Allerta Stencil', sans-serif;
         }
 
         .letras {
             animation: moveText 5s linear infinite; /* 5s es la duración del movimiento */
             display: inline-block;
-            padding: 10px; /* Añade espaciado alrededor del texto */
+            padding: 2px;
+            border: 1px 0 solid black;
         }
 
         @keyframes moveText {
@@ -1299,6 +1303,9 @@ footer {
     <script>
 
 function cambiarEstiloUrban() {
+    
+     document.body.style.fontFamily = "'Varela Round', sans-serif";
+    
     // Cambiar el fondo del header a blanco
     document.querySelector('header').style.backgroundColor = 'white';
 
@@ -1392,6 +1399,8 @@ function cambiarEstiloUrban() {
 document.querySelector('#urban').addEventListener('click', cambiarEstiloUrban);
 
 function restaurarEstadoInicial() {
+
+ document.body.style.fontFamily = "sans-serif";
     // Restaurar el fondo del header
     document.querySelector('header').style.backgroundColor = 'black'; // Esto eliminará el estilo de fondo
 
