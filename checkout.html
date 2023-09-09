@@ -95,7 +95,7 @@
             border-radius: 10px;
         }
 
-        .ventaja img {
+        .ventaja i {
             width: 50px;
         }
 
@@ -363,6 +363,13 @@
     transition: width 0.3s;
 }
 
+.historias{
+    padding: 5px;
+}
+        .historias h3{
+    text-align:center;
+}
+
 /*.progress-bar::before {
     content: "";
     position: absolute;
@@ -377,49 +384,48 @@
 </head>
 <body>
     <div class="top-section" id="topsection" style="display: none">
-    <h2>Sólo quedan <span id="ofertaTickets">15</span> tickets</h2>
+    <h2>Sólo quedan <span id="ofertaTickets">25</span> unidades</h2>
     <div class="progress-bar-container">
             <div class="progress-bar" id="progressBar"></div>
         </div>
 </div>
 </div>
-     <div class="story-container">
-        <div class="story-bubble" data-image="lareserva.jpeg">
-            <p>La Reserva</p>
-            <img src="lareserva.jpeg">
+     <div class="historias">
+         <h3">Últimas Reviews</h3>
+    <div class="story-container">
+        <div class="story-bubble" data-image="reviewsall.png">
+            <img src="reviewsall.png">
         </div>
-        <div class="story-bubble" data-image="lafiebre.jpg">
-            <p>La Fiebre</p>
-            <img src="lafiebre.jpg">
+        <div class="story-bubble" data-image="reviewsall2.png">
+            <img src="reviewasll2.png">
         </div>
-        <div class="story-bubble" data-image="dcopas.jpg">
-            <p>Dcopas</p>
-            <img src="dcopas.jpg">
+        <div class="story-bubble" data-image="reviewasll3.png">
+            <img src="reviewasll3.png">
         </div>
-        <div class="story-bubble" data-image="samsara.jpg">
-            <p>Samsara</p>
-            <img src="samsara.jpg">
+        <div class="story-bubble" data-image="reviewasll4.png">
+            <img src="reviewasll4.png">
         </div>
     </div>
 
+</div>
     <div class="expanded-story">
         <img src="app.png">
     </div>
 <div class="ventajas-container">
     <div class="ventaja">
-        <img src="https://uploads-ssl.webflow.com/647e1129446b59ed59875239/64c97ff226dbbd40bf39537a_Guia.svg">
+        <i class="fas fa-box"></i>
         <p>Guías expertos en fiesta</p>
     </div>
     <div class="ventaja">
-        <img src="https://uploads-ssl.webflow.com/647e1129446b59ed59875239/64c97ff176a557b5693978d2_Cocktail.svg">
+        <i class="fas fa-ruler-combined"></i>
         <p>Ruta por 3 bares y 1 discoteca</p>
     </div>
     <div class="ventaja">
-        <img src="https://uploads-ssl.webflow.com/647e1129446b59ed59875239/64c97ff281124da2291beec5_Vip.svg">
+       <i class="fas fa-info-circle"></i>
         <p>Accesos VIP incluidos y bebida</p>
     </div>
     <div class="ventaja">
-        <img src="https://uploads-ssl.webflow.com/647e1129446b59ed59875239/64c97ff2db8b12cae4e08561_Amigos.svg">
+       <i class="fas fa-credit-card"></i>
         <p>Conoces gente de calidad</p>
     </div>
 </div>
