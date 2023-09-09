@@ -764,6 +764,19 @@ footer {
 .footer-newsletter button {
     font-size: 9px;
     }
+
+     .letrastransicionales {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .letrastransicionales .letras {
+        display: none;
+    }
+
+    .letrastransicionales .letras:first-child {
+        display: block;
+    }
 }
 
 .banner {
@@ -807,7 +820,8 @@ footer {
             animation: moveText 5s linear infinite; /* 5s es la duración del movimiento */
             display: inline-block;
             padding: 2px;
-            border: 1px 0 solid black;
+            border: 1px dashed black;
+    border-width: 2px 0;
             text-align: end;
         }
 
