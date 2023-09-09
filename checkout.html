@@ -372,6 +372,26 @@
     text-align:center;
 }
 
+        .desplegable {
+  border: 1px solid #ccc;
+  margin: 10px;
+}
+
+.encabezado {
+  background-color: #F1F4F8;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.contenido {
+  padding: 10px;
+  display: none;
+}
+
+
 /*.progress-bar::before {
     content: "";
     position: absolute;
@@ -433,7 +453,17 @@
 </div>
 
 <div class="reserva-section">
-    <h1>Elige </h1>
+        <div class="desplegable">
+          <div class="encabezado">
+            <h2>Título de la sección</h2>
+            <i class="fas fa-arrow-down"></i>
+          </div>
+          <div class="contenido">
+            <p>Contenido de la sección desplegable...</p>
+          </div>
+        </div>
+
+    <h1>i-Clothes Oficial</h1>
     <div class="reserva">
     <div class="reserva-options reserva-container" id="reserva">
            
@@ -671,6 +701,32 @@ setInterval(updateNotification, 60000);
     // Manejar el caso en el que no hay datos en el localStorage
     console.log('No hay datos en el localStorage');
   }
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const encabezado = document.querySelector('.encabezado');
+  const contenido = document.querySelector('.contenido');
+  const flecha = document.querySelector('.fa-arrow-down');
+
+  // Por defecto, el contenido está oculto
+  let desplegado = false;
+
+  encabezado.addEventListener('click', function () {
+    if (desplegado) {
+      contenido.style.display = 'none';
+      flecha.classList.remove('fa-arrow-up');
+      flecha.classList.add('fa-arrow-down');
+    } else {
+      contenido.style.display = 'block';
+      flecha.classList.remove('fa-arrow-down');
+      flecha.classList.add('fa-arrow-up');
+    }
+
+    // Cambiar el estado del desplegable
+    desplegado = !desplegado;
+  });
+});
+
        
     </script>
 </body>
