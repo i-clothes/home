@@ -756,6 +756,29 @@ footer {
   }
 }
 
+.banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            overflow: hidden; /* Ocultar historias adicionales en dispositivos pequeños */
+            padding: 10px;
+        }
+
+        .story {
+            flex: 1;
+            text-align: center;
+            margin: 0 10px;
+            display: none; /* Ocultar todas las historias inicialmente */
+        }
+
+        .story img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
@@ -1049,6 +1072,42 @@ footer {
             <div class="about-description">
                 <p>i-clothes es una marca de ropa creado por emprendedores de éxito que conoces pero que quieren permanecer en el anonimato hasta nuevo aviso</p>
             </div>
+        </div>
+    </section>
+    <section class="banner">
+        <!-- Historia 1 -->
+        <div class="story">
+            <a href="checkout.html">
+                <img src="reviewsall.png" alt="Story 1">
+            </a>
+        </div>
+
+        <!-- Historia 2 -->
+        <div class="story">
+            <a href="checkout.html">
+                <img src="reviewsall2.png" alt="Story 2">
+            </a>
+        </div>
+
+        <!-- Historia 3 -->
+        <div class="story">
+            <a href="checkout.html">
+                <img src="reviewsall3.png" alt="Story 3">
+            </a>
+        </div>
+
+        <!-- Historia 4 -->
+        <div class="story">
+            <a href="checkout.html">
+                <img src="reviewsall4.png" alt="Story 4">
+            </a>
+        </div>
+
+        <!-- Historia 5 -->
+        <div class="story">
+            <a href="checkout.html">
+                <img src="reviewsall5.png" alt="Story 5">
+            </a>
         </div>
     </section>
  <section class="reviews-section">
@@ -1800,7 +1859,19 @@ whatsappButtons.forEach(function(whatsappButton) {
 });
 
 
+ // JavaScript para crear el efecto de carrusel
+        let currentIndex = 0;
+        const stories = document.querySelectorAll('.story');
 
+        function showNextStory() {
+            stories[currentIndex].style.display = 'none';
+            currentIndex = (currentIndex + 1) % stories.length;
+            stories[currentIndex].style.display = 'block';
+        }
+
+        // Mostrar la primera historia y luego programar el cambio de historias cada 3 segundos
+        stories[currentIndex].style.display = 'block';
+        setInterval(showNextStory, 3000); // Cambiar de historia cada 3 segundos
 
     </script>
 </body>
