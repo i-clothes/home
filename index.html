@@ -783,6 +783,31 @@ footer {
             cursor: pointer;
         }
 
+
+         /* Estilos CSS para la sección de letras transicionales */
+        .letrastransicionales {
+            background-color: #FFCD00;
+            color: #000000;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .letras {
+            animation: moveText 5s linear infinite; /* 5s es la duración del movimiento */
+            display: inline-block;
+            padding: 10px; /* Añade espaciado alrededor del texto */
+        }
+
+        @keyframes moveText {
+            0% {
+                transform: translateX(100%); /* Mover el texto a la derecha */
+            }
+            100% {
+                transform: translateX(-100%); /* Mover el texto a la izquierda */
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -809,6 +834,9 @@ footer {
             <p class="eslogan">Tu destino para el éxito, la moda y el estilo de vida emprendedor.</p>
             <a href="#" class="cta-button">Explora Nuestra Colección</a>
         </div>
+    </section>
+    <section class="letrastransicionales">
+        <p class="letras">CON CUALQUIER COMPRA</p>
     </section>
     <section class="know-what-you-want">
     <h1>Persigues tus sueños y buscas tu mejor versión eres I-clothes</h1>
