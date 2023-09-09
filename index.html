@@ -632,6 +632,86 @@
 }
 
 
+        /* Estilos para el footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Estilos para los enlaces del footer */
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para la sección de garantías */
+.footer-garantias {
+    margin-top: 20px;
+}
+
+/* Estilos para la sección de newsletter */
+.footer-newsletter h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.footer-newsletter form {
+    display: flex;
+    align-items: center;
+}
+
+.footer-newsletter input[type="email"] {
+    width: 250px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.footer-newsletter button {
+    background-color: #fff;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.footer-newsletter button:hover {
+    background-color: #ccc;
+}
+
+/* Estilos para la sección de métodos de pago */
+.footer-pagos {
+    margin-top: 20px;
+}
+
+/* Estilos para los logos de métodos de pago */
+.footer-pagos img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+
+
     </style>
 </head>
 <body>
@@ -1028,9 +1108,33 @@
 </div>
  
 
-    <footer>
-        <p>&copy; 2023  i-Clothes. Todos los derechos reservados.</p>
-    </footer>
+   <footer>
+    <div class="footer-links">
+        <ul>
+            <li><a href="#">Política de Empresa</a></li>
+            <li><a href="#">Política de Envíos</a></li>
+            <li><a href="#">Política de Devolución y Reembolso</a></li>
+            <li><a href="#">Aviso Legal</a></li>
+        </ul>
+    </div>
+    
+    <div class="footer-garantias">
+        <!-- Aquí puedes incluir los iconos y sellos de garantías -->
+    </div>
+    
+    <div class="footer-newsletter">
+        <h4>Suscríbete a nuestro boletín</h4>
+        <form action="#" method="post">
+            <input type="email" name="email" placeholder="Tu correo electrónico" required>
+            <button type="submit">Suscribirse</button>
+        </form>
+    </div>
+    
+    <div class="footer-pagos">
+        <!-- Aquí puedes incluir los logos de los métodos de pago -->
+    </div>
+</footer>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
 
