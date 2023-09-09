@@ -633,7 +633,7 @@ updateNotification(); // Llamarlo inmediatamente al cargar la página
 setInterval(updateNotification, 60000);
 
 // Recupera los datos del localStorage
-  const reservaData = JSON.parse(localStorage.getItem('tu_clave_de_almacenamiento_local'));
+  const reservaData = JSON.parse(localStorage.getItem('carrito'));
 
   // Verifica si hay datos en el JSON
   if (reservaData && reservaData.length > 0) {
