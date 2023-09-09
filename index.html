@@ -1941,7 +1941,10 @@ whatsappButtons.forEach(function(whatsappButton) {
         stories[currentIndex].style.display = 'block';
         setInterval(showNextStory, 3000); // Cambiar de historia cada 3 segundos
 
-document.addEventListener('DOMContentLoaded', function () {
+
+
+
+        document.addEventListener('DOMContentLoaded', function () {
   // Verificar si hay datos en el Local Storage
   const carritoEnLocalStorage = localStorage.getItem('carrito');
 
@@ -1949,8 +1952,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // Parsear los datos del carrito desde JSON
     const carrito = JSON.parse(carritoEnLocalStorage);
 
-    // Obtener el elemento .sticky-cart
-    const stickyCart = document.querySelector('.sticky-cart');
+    // Obtener el elemento .sticky-cart2
+    const stickyCart2 = document.querySelector('.sticky-cart2');
+
+    // Cambiar el estilo de .sticky-cart2 a flex
+    stickyCart2.style.display = 'flex';
+
+    // Obtener el elemento .sticky-cart dentro de .sticky-cart2
+    const stickyCart = stickyCart2.querySelector('.sticky-cart');
 
     // Iterar sobre los datos del carrito y crear elementos para cada producto
     carrito.forEach(producto => {
@@ -1987,11 +1996,12 @@ document.addEventListener('DOMContentLoaded', function () {
       opcionesCarrito.appendChild(eliminarIcon);
       productAdd.appendChild(opcionesCarrito);
 
-      // Agregar productAdd al elemento .sticky-cart
+      // Agregar productAdd al elemento .sticky-cart dentro de .sticky-cart2
       stickyCart.appendChild(productAdd);
     });
   }
 });
+
 
 
     </script>
