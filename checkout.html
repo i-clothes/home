@@ -519,11 +519,9 @@ border-radius: 10px 10px 0 0;
 
      
     <div class="reserva" id="mejoraPedido" style="display:none">
-        <div class="reserva-options reserva-container" >
-        </div>
-         <div class="oferta">
-                <div class="upsell-container">
-                     <div class="upsell-icon"></div>
+                 <div class="reserva-options reserva-container" > </div>
+                 <div class="oferta">
+                    <div class="upsell-container">
                     <div class="upsell">
                         <img  src="arrow.png" width="25"><input type="checkbox"><span>Sí, quiero enviarlo con el Kit para Regalo</span>
                         <p>Caja Regalo + Etiquetas de Cartón +  Dedicatoria por tan sólo <span style="font-weight: bolder;">10€ extra</span></span></p>
@@ -535,10 +533,8 @@ border-radius: 10px 10px 0 0;
                     </div>
                     </div>
                 </div>
-            <div class="container">
-            <button id="continuar2">Continuar</button>
-        </div>
-        </div>
+         <button id="continuar2">Continuar</button>
+  </div>
         <div class="container" id="stripe" style="display:none">
               <h2>Forma de Pago</h2>
               <form id="payment-form">
@@ -551,7 +547,6 @@ border-radius: 10px 10px 0 0;
                 <button id="submit-button">Realizar Pago</button>
               </form>
         </div>
-    </div>
 </section>
      
      <div class="notification">
@@ -768,7 +763,7 @@ infoForm.addEventListener('submit', function (event) {
   document.getElementById('info').style.display = 'none';
 
   // Muestra la sección "mejoraPedido"
-  mejoraPedido.style.display = 'flex';
+  mejoraPedido.style.display = 'block';
 });
 
 // Agrega un event listener para el clic en "Continuar2"
