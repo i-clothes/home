@@ -1670,12 +1670,14 @@ function guardarCarritoEnLocalStorage() {
     const nombreProducto = productElement.querySelector('.nombre-producto').textContent;
     const precioProducto = productElement.querySelector('.precio-producto').textContent;
     const cantidadProducto = productElement.querySelector('.cantidad-producto').textContent;
+    const imagenProducto = productElement.querySelector('img').getAttribute('src'); // Obtiene la URL de la imagen
 
     // Agrega los datos del producto al array del carrito
     carrito.push({
       nombre: nombreProducto,
       precio: precioProducto,
       cantidad: cantidadProducto,
+      imagen: imagenProducto, // Agrega el nombre de la imagen
     });
   });
 
@@ -1685,6 +1687,7 @@ function guardarCarritoEnLocalStorage() {
   // Redirige al usuario al probador (cambia la URL a tu página deseada)
   window.location.href = 'checkout.html';
 }
+
 
 // Función para mostrar el carrito al hacer clic en "agregar-carrito"
 function mostrarCarrito() {
