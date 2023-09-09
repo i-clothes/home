@@ -637,32 +637,35 @@ setInterval(updateNotification, 60000);
 
   // Verifica si hay datos en el JSON
   if (reservaData && reservaData.length > 0) {
-    const reservaContainer = document.getElementById('reserva-container');
+    const reservaContainers = document.querySelectorAll('.reserva-container');
 
-    // Itera sobre los datos y crea elementos HTML para cada elemento en el JSON
-    reservaData.forEach((item) => {
-      const reservaOption = document.createElement('div');
-      reservaOption.classList.add('reserva-option');
+    // Itera sobre los contenedores con la clase .reserva-container
+    reservaContainers.forEach((container) => {
+      // Itera sobre los datos y crea elementos HTML para cada elemento en el JSON
+      reservaData.forEach((item) => {
+        const reservaOption = document.createElement('div');
+        reservaOption.classList.add('reserva-option');
 
-      const nombreElement = document.createElement('h3');
-      nombreElement.textContent = item.nombre;
+        const nombreElement = document.createElement('h3');
+        nombreElement.textContent = item.nombre;
 
-      const precioElement = document.createElement('span');
-      precioElement.classList.add('precio');
-      precioElement.style.fontSize = '20px';
-      precioElement.style.color = '#66CD54';
-      precioElement.style.fontWeight = 'bolder';
-      precioElement.textContent = item.precio;
+        const precioElement = document.createElement('span');
+        precioElement.classList.add('precio');
+        precioElement.style.fontSize = '20px';
+        precioElement.style.color = '#66CD54';
+        precioElement.style.fontWeight = 'bolder';
+        precioElement.textContent = item.precio;
 
-      const cantidadElement = document.createElement('span');
-      cantidadElement.classList.add('cantidad');
-      cantidadElement.textContent = item.cantidad;
+        const cantidadElement = document.createElement('span');
+        cantidadElement.classList.add('cantidad');
+        cantidadElement.textContent = item.cantidad;
 
-      reservaOption.appendChild(nombreElement);
-      reservaOption.appendChild(precioElement);
-      reservaOption.appendChild(cantidadElement);
+        reservaOption.appendChild(nombreElement);
+        reservaOption.appendChild(precioElement);
+        reservaOption.appendChild(cantidadElement);
 
-      reservaContainer.appendChild(reservaOption);
+        container.appendChild(reservaOption);
+      });
     });
   } else {
     // Manejar el caso en el que no hay datos en el localStorage
