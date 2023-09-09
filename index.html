@@ -1941,6 +1941,59 @@ whatsappButtons.forEach(function(whatsappButton) {
         stories[currentIndex].style.display = 'block';
         setInterval(showNextStory, 3000); // Cambiar de historia cada 3 segundos
 
+document.addEventListener('DOMContentLoaded', function () {
+  // Verificar si hay datos en el Local Storage
+  const carritoEnLocalStorage = localStorage.getItem('carrito');
+
+  if (carritoEnLocalStorage) {
+    // Parsear los datos del carrito desde JSON
+    const carrito = JSON.parse(carritoEnLocalStorage);
+
+    // Obtener el elemento .sticky-cart
+    const stickyCart = document.querySelector('.sticky-cart');
+
+    // Iterar sobre los datos del carrito y crear elementos para cada producto
+    carrito.forEach(producto => {
+      const productAdd = document.createElement('div');
+      productAdd.classList.add('product-add');
+
+      const imagen = document.createElement('img');
+      imagen.setAttribute('src', producto.imagen);
+      imagen.alt = 'Producto añadido al carrito';
+
+      const nombreProducto = document.createElement('span');
+      nombreProducto.classList.add('nombre-producto');
+      nombreProducto.textContent = producto.nombre;
+
+      const precioProducto = document.createElement('p');
+      precioProducto.classList.add('precio-producto');
+      precioProducto.textContent = producto.precio;
+
+      const cantidadProducto = document.createElement('span');
+      cantidadProducto.classList.add('cantidad-producto');
+      cantidadProducto.textContent = producto.cantidad;
+
+      const opcionesCarrito = document.createElement('div');
+      opcionesCarrito.classList.add('opciones-carrito');
+
+      const eliminarIcon = document.createElement('i');
+      eliminarIcon.classList.add('fas', 'fa-trash-alt', 'restar-cantidad');
+
+      // Agregar los elementos al elemento productAdd
+      productAdd.appendChild(imagen);
+      productAdd.appendChild(nombreProducto);
+      productAdd.appendChild(precioProducto);
+      productAdd.appendChild(cantidadProducto);
+      opcionesCarrito.appendChild(eliminarIcon);
+      productAdd.appendChild(opcionesCarrito);
+
+      // Agregar productAdd al elemento .sticky-cart
+      stickyCart.appendChild(productAdd);
+    });
+  }
+});
+
+
     </script>
 </body>
 </html>
