@@ -435,6 +435,57 @@ border-radius: 10px 10px 0 0;
     margin: 3px;
 }
 
+        /* Estilo para el contenedor de productos */
+.contenedor-productos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espacio entre los productos */
+}
+
+/* Estilo para cada producto individual */
+.producto {
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: calc(33.33% - 20px); /* Ajusta el ancho de cada producto según el diseño deseado */
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Estilo para la imagen del producto */
+.imagenResumen {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.imagenResumen img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Estilo para la cantidad en la imagen */
+.imagenResumen span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ffcd00;
+  color: #000;
+  padding: 5px 10px;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+/* Estilo para el nombre del producto */
+.nombreproducto {
+  font-weight: bold;
+}
+
+/* Estilo para el precio del producto */
+.precio {
+  font-size: 16px;
+  color: #333;
+}
+
+
 /*.progress-bar::before {
     content: "";
     position: absolute;
@@ -502,7 +553,7 @@ border-radius: 10px 10px 0 0;
             <i class="fas fa-arrow-down"></i>
           </div>
           <div class="contenido">
-            <p>Contenido de la sección desplegable...</p>
+            <div class="contenedor-productos"></div>
           </div>
         </div>
 
@@ -796,6 +847,53 @@ continuar2Button.addEventListener('click', function () {
 });
 
 
+// Obtén una referencia al elemento .contenedor-productos
+const contenedorProductos = document.querySelector('.contenedor-productos');
+
+// Tu JSON de ejemplo
+const jsonDatos = [{"nombre":"Conjunto i-Clothes Luxury Star","precio":"50€","cantidad":"1","imagen":"https://i-clothes.github.io/home/luxury6.png"}];
+
+// Itera sobre los datos del JSON y crea elementos HTML para cada producto
+jsonDatos.forEach(producto => {
+    // Crea el elemento div para el producto
+    const productoDiv = document.createElement('div');
+    productoDiv.classList.add('producto');
+
+    // Crea el elemento div para la imagen del producto
+    const imagenResumenDiv = document.createElement('div');
+    imagenResumenDiv.classList.add('imagenResumen');
+
+    // Crea la imagen y establece su fuente desde el JSON
+    const imagen = document.createElement('img');
+    imagen.src = producto.imagen;
+
+    // Crea un elemento span para mostrar la cantidad
+    const cantidadSpan = document.createElement('span');
+    cantidadSpan.textContent = producto.cantidad;
+
+    // Agrega la imagen y el span al div de la imagen
+    imagenResumenDiv.appendChild(imagen);
+    imagenResumenDiv.appendChild(cantidadSpan);
+
+    // Crea los elementos de párrafo para el nombre y el precio del producto
+    const nombreProductoP = document.createElement('p');
+    nombreProductoP.classList.add('nombreproducto');
+    nombreProductoP.textContent = producto.nombre;
+
+    const precioP = document.createElement('p');
+    precioP.classList.add('precio');
+    precioP.textContent = producto.precio;
+
+    // Agrega los elementos de la imagen, nombre y precio al div del producto
+    productoDiv.appendChild(imagenResumenDiv);
+    productoDiv.appendChild(nombreProductoP);
+    productoDiv.appendChild(precioP);
+
+    // Agrega el producto al contenedor principal (.contenedor-productos)
+    contenedorProductos.appendChild(productoDiv);
+});
+
+        
        
     </script>
 </body>
