@@ -847,51 +847,56 @@ continuar2Button.addEventListener('click', function () {
 });
 
 
-// Obtén una referencia al elemento .contenedor-productos
-const contenedorProductos = document.querySelector('.contenedor-productos');
 
-// Tu JSON de ejemplo
-const jsonDatos = [{"nombre":"Conjunto i-Clothes Luxury Star","precio":"50€","cantidad":"1","imagen":"https://i-clothes.github.io/home/luxury6.png"}];
 
-// Itera sobre los datos del JSON y crea elementos HTML para cada producto
-jsonDatos.forEach(producto => {
-    // Crea el elemento div para el producto
-    const productoDiv = document.createElement('div');
-    productoDiv.classList.add('producto');
+// Obtén el JSON del Local Storage
+const carritoJSON = localStorage.getItem('carrito');
 
-    // Crea el elemento div para la imagen del producto
-    const imagenResumenDiv = document.createElement('div');
-    imagenResumenDiv.classList.add('imagenResumen');
+// Verifica si hay datos en el Local Storage
+if (carritoJSON) {
+  // Parsea el JSON a un objeto JavaScript
+  const carrito = JSON.parse(carritoJSON);
 
-    // Crea la imagen y establece su fuente desde el JSON
+  // Obtén el contenedor de productos
+  const contenedorProductos = document.querySelector('.contenedor-productos');
+
+  // Itera sobre los productos en el carrito
+  carrito.forEach(producto => {
+    // Crea un elemento de producto
+    const productoElemento = document.createElement('div');
+    productoElemento.classList.add('producto');
+
+    // Crea el elemento de imagen y cantidad
+    const imagenResumen = document.createElement('div');
+    imagenResumen.classList.add('imagenResumen');
+
     const imagen = document.createElement('img');
     imagen.src = producto.imagen;
 
-    // Crea un elemento span para mostrar la cantidad
-    const cantidadSpan = document.createElement('span');
-    cantidadSpan.textContent = producto.cantidad;
+    const cantidad = document.createElement('span');
+    cantidad.textContent = producto.cantidad;
 
-    // Agrega la imagen y el span al div de la imagen
-    imagenResumenDiv.appendChild(imagen);
-    imagenResumenDiv.appendChild(cantidadSpan);
+    imagenResumen.appendChild(imagen);
+    imagenResumen.appendChild(cantidad);
 
-    // Crea los elementos de párrafo para el nombre y el precio del producto
-    const nombreProductoP = document.createElement('p');
-    nombreProductoP.classList.add('nombreproducto');
-    nombreProductoP.textContent = producto.nombre;
+    // Crea el elemento de nombre y precio
+    const nombreProducto = document.createElement('p');
+    nombreProducto.classList.add('nombreproducto');
+    nombreProducto.textContent = producto.nombre;
 
-    const precioP = document.createElement('p');
-    precioP.classList.add('precio');
-    precioP.textContent = producto.precio;
+    const precio = document.createElement('p');
+    precio.classList.add('precio');
+    precio.textContent = producto.precio;
 
-    // Agrega los elementos de la imagen, nombre y precio al div del producto
-    productoDiv.appendChild(imagenResumenDiv);
-    productoDiv.appendChild(nombreProductoP);
-    productoDiv.appendChild(precioP);
+    // Agrega los elementos al producto
+    productoElemento.appendChild(imagenResumen);
+    productoElemento.appendChild(nombreProducto);
+    productoElemento.appendChild(precio);
 
-    // Agrega el producto al contenedor principal (.contenedor-productos)
-    contenedorProductos.appendChild(productoDiv);
-});
+    // Agrega el producto al contenedor de productos
+    contenedorProductos.appendChild(productoElemento);
+  });
+}
 
         
        
