@@ -866,6 +866,10 @@ z-index: 5;
             color: white;
             border-radius: 10px 0 0 10px; /* Border-radius personalizado */
             transition: transform 0.3s, background-color 0.3s; /* Agregamos la transición del fondo */
+                font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
         }
 
         /* Estilos cuando el interruptor está marcado (checked) */
@@ -2044,39 +2048,42 @@ whatsappButtons.forEach(function(whatsappButton) {
 
 
 
- // Obtener una referencia al elemento con ID "switch"
-    var switchElement = document.getElementById('switch');
+// Obtener una referencia al elemento con ID "switch"
+var switchElement = document.getElementById('switch');
 
-    // Obtener una referencia a la sección con clase "botonSlider"
-    var botonSliderSection = document.querySelector('.botonSlider');
+// Obtener una referencia a la sección con clase "botonSlider"
+var botonSliderSection = document.querySelector('.botonSlider');
 
-    // Función para comprobar si el elemento "switch" está visible en la ventana
-    function isElementInViewport(element) {
-        var rect = element.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
+// Función para comprobar si el elemento "switch" está visible en la ventana
+function isElementInViewport(element) {
+    var rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+// Función para controlar la visibilidad de la sección "botonSlider"
+function checkVisibility() {
+    var windowWidth = window.innerWidth || document.documentElement.clientWidth;
+
+    if (windowWidth > 560 && isElementInViewport(switchElement)) {
+        // El ancho de la pantalla es mayor a 560px y el elemento "switch" está visible, muestra la sección "botonSlider"
+        botonSliderSection.style.display = 'none';
+    } else {
+        // El ancho de la pantalla es menor o igual a 560px o el elemento "switch" no está visible, muestra la sección "botonSlider"
+        botonSliderSection.style.display = 'block';
     }
+}
 
-    // Función para controlar la visibilidad de la sección "botonSlider"
-    function checkVisibility() {
-        if (isElementInViewport(switchElement)) {
-            // El elemento "switch" está visible, muestra la sección "botonSlider"
-            botonSliderSection.style.display = 'none';
-        } else {
-            // El elemento "switch" no está visible, oculta la sección "botonSlider"
-            botonSliderSection.style.display = 'block';
-        }
-    }
+// Escucha el evento de desplazamiento (scroll) para verificar la visibilidad
+window.addEventListener('scroll', checkVisibility);
+window.addEventListener('resize', checkVisibility); // Escuchar cambios en el tamaño de la ventana
 
-    // Escucha el evento de desplazamiento (scroll) para verificar la visibilidad
-    window.addEventListener('scroll', checkVisibility);
-
-    // Verifica la visibilidad inicial
-    checkVisibility();
+// Verifica la visibilidad inicial
+checkVisibility();
 
 
 
