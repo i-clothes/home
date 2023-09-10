@@ -940,9 +940,6 @@ z-index: 5;
             text-align: center;
         }
 
-        .complemento  input[type="radio"]{
-            display:none
-        }
 
         .checkeable span{
         margin: 10px;
@@ -950,13 +947,22 @@ z-index: 5;
     padding: 5px;
     font-size: 20px;
 }
+        
+.complemento {
+    margin: 10px;
+    border: 1px solid black;
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
 
-        .checkeable input:checked + span {
+.complemento.activar-seleccionado {
     background: orange;
     color: white;
     padding: 10px;
     margin: 10px;
 }
+
 
 
     </style>
@@ -1011,28 +1017,16 @@ z-index: 5;
               
     <div class="complementos">
         <div class="complemento">
-            <label class="checkeable">
-                <input type="radio" name="tallaje">
                 <span>S</span>
-            </label>
         </div>
-    <div class="complemento">
-            <label class="checkeable">
-                <input type="radio" name="tallaje">
+     <div class="complemento">
                 <span>M</span>
-            </label>
         </div>
-        <div class="complemento">
-            <label class="checkeable">
-                <input type="radio" name="tallaje">
+         <div class="complemento">
                 <span>L</span>
-            </label>
         </div>
-        <div class="complemento">
-            <label class="checkeable">
-                <input type="radio" name="tallaje">
+         <div class="complemento">
                 <span>XL</span>
-            </label>
         </div>
     </div>
 
@@ -1895,51 +1889,20 @@ addToCartButtons.forEach(button => {
 // Carrito de compras
 const carrito = [];
 
-// Función para agregar un producto al carrito
 function agregarAlCarrito(producto) {
-  // Obtener todos los elementos de radio button con name="tallaje"
-  const tallas = document.querySelectorAll('input[type="radio"]:checked');
-  const carritoAviso = document.querySelector('.carritoAviso');
-  let tallaSeleccionada = false;
+  // Verificar si el producto ya está en el carrito
+  const productoExistente = carrito.find(item => item.name === producto.name);
 
-  // Verificar si se ha seleccionado una talla
-  for (const talla of tallas) {
-    if (talla.checked) {
-      tallaSeleccionada = true;
-      break;
-    }
-  }
-
-  if (tallaSeleccionada) {
-    // Si se ha seleccionado una talla, realizar la lógica para agregar al carrito
-    carritoAviso.textContent = 'Añadir al carrito';
-
-    // Buscar si el producto ya está en el carrito
-    const productoExistente = carrito.find(item => item.name === producto.name);
-
-    if (productoExistente) {
-      // Si el producto ya existe, incrementa el contador
-      productoExistente.cantidad++;
-    } else {
-      // Si el producto no existe, agrégalo al carrito
-      carrito.push({ ...producto, cantidad: 1 });
-    }
-
-    // Actualiza la visualización del carrito
-    actualizarCarrito();
+  if (productoExistente) {
+    // Si el producto ya existe, incrementa el contador
+    productoExistente.cantidad++;
   } else {
-    // Si no se ha seleccionado una talla, mostrar un mensaje de aviso
-    carritoAviso.textContent = 'Selecciona la Talla';
-
-    // Agregar efecto de parpadeo a los elementos .complemento
-    const complementos = document.querySelectorAll('.complemento');
-    complementos.forEach((complemento) => {
-      complemento.style.boxShadow = '0px 0px 10px 6px orange';
-      setTimeout(() => {
-        complemento.style.boxShadow = 'none';
-      }, 500); // Duración del parpadeo en milisegundos
-    });
+    // Si el producto no existe, agrégalo al carrito
+    carrito.push({ ...producto, cantidad: 1 });
   }
+
+  // Actualiza la visualización del carrito en la página
+  actualizarCarrito();
 }
 
 // Actualiza la visualización del carrito en la página
@@ -1970,11 +1933,50 @@ function actualizarCarrito() {
 }
 
 
+// NUEVO CODIGO
+
+// Obtener todos los contenedores de "complementos"
+const complementosContainers = document.querySelectorAll('.complementos');
+
+// Iterar a través de cada contenedor
+complementosContainers.forEach((complementosContainer) => {
+  // Obtener los elementos específicos dentro del contenedor actual
+  const carritoAviso = complementosContainer.querySelector('.carritoAviso');
+  const agregarCarritoBtn = complementosContainer.querySelector('.agregar-carrito');
+
+  agregarCarritoBtn.addEventListener('click', () => {
+    // Obtener la clase .activar-seleccionado más cercana al botón clickeado
+    const activarSeleccionado = complementosContainer.querySelector('.activar-seleccionado');
+
+    let alMenosUnComplementoSeleccionado = !!activarSeleccionado;
+
+    if (alMenosUnComplementoSeleccionado) {
+      // Si al menos un .complemento tiene la clase .activar-seleccionado
+      // Realizar la lógica para agregar al carrito
+      carritoAviso.textContent = 'Añadir al carrito';
+
+      // Resto del código para agregar al carrito y otras operaciones
+      // ...
+    } else {
+      // Si no hay ningún .complemento con la clase .activar-seleccionado
+      // Mostrar un mensaje de aviso
+      carritoAviso.textContent = 'Selecciona la Talla';
+
+      // Agregar efecto de parpadeo a los elementos .complemento
+      const complementos = complementosContainer.querySelectorAll('.complemento');
+      complementos.forEach((complemento) => {
+        complemento.style.boxShadow = '0px 0px 10px 6px orange';
+        setTimeout(() => {
+          complemento.style.boxShadow = 'none';
+        }, 500); // Duración del parpadeo en milisegundos
+      });
+    }
+  });
+});
 
 
 
-
-        
+ 
 
 
 // Obtener todos los elementos .opciones-carrito dentro de .sticky-cart
@@ -2489,6 +2491,23 @@ function updateNotification() {
 
 updateNotification(); // Llamarlo inmediatamente al cargar la página
 setInterval(updateNotification, 60000);
+
+
+        const complementos = document.querySelectorAll('.complementos');
+
+complementos.forEach((complemento) => {
+    const opciones = complemento.querySelectorAll('.complemento');
+    
+    opciones.forEach((opcion) => {
+        opcion.addEventListener('click', () => {
+            // Remover la clase .activar-seleccionado de todas las opciones dentro de este conjunto
+            opciones.forEach((o) => o.classList.remove('activar-seleccionado'));
+            
+            // Agregar la clase .activar-seleccionado a la opción clicada
+            opcion.classList.add('activar-seleccionado');
+        });
+    });
+});
 
 
     </script>
