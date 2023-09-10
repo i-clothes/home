@@ -821,12 +821,13 @@ footer {
             }
         }
 
-       .toggle-switch {
+       /* Estilos del interruptor */
+        .toggle-switch {
             position: relative;
             display: inline-block;
-            width: 60px;
+            width: 125px; /* Ancho personalizado */
             height: 30px;
-            background-color: #fff;
+            background-color: #FFCD00; /* Color de fondo personalizado */
             border: 1px solid #ccc;
             border-radius: 30px;
             cursor: pointer;
@@ -837,16 +838,18 @@ footer {
             position: absolute;
             top: 2px;
             left: 2px;
-            width: 26px;
+            width: 50px; /* Ancho personalizado */
             height: 26px;
             background-color: #000;
-            border-radius: 50%;
-            transition: transform 0.3s;
+            border-radius: 10px 0 0 10px; /* Border-radius personalizado */
+            transition: transform 0.3s, background-color 0.3s; /* Agregamos la transición del fondo */
         }
 
         /* Estilos cuando el interruptor está marcado (checked) */
         .toggle-switch input:checked + .slider {
-            transform: translateX(30px);
+            transform: translateX(70px); /* Posición personalizada */
+            background-color: white; /* Color de fondo personalizado cuando está marcado */
+            border-radius: 0 10px 10px 0; /* Border-radius personalizado cuando está marcado */
         }
 
         /* Estilos para ocultar el input */
