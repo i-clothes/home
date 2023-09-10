@@ -1039,7 +1039,7 @@ z-index: 5;
                   <div class="product-options">
                         <div class="capsula">
                             <div class="option agregar-carrito"> 
-                              <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                              <i class="fas fa-shopping-cart"></i><span class="carritoAviso">Selecciona la Talla</span> 
                             </div>
                                    <div class="capsula2">
                                         <div class="option likes">
@@ -1895,21 +1895,51 @@ addToCartButtons.forEach(button => {
 // Carrito de compras
 const carrito = [];
 
-// Agregar producto al carrito
+// Función para agregar un producto al carrito
 function agregarAlCarrito(producto) {
-  // Buscar si el producto ya está en el carrito
-  const productoExistente = carrito.find(item => item.name === producto.name);
+  // Obtener todos los elementos de radio button con name="tallaje"
+  const tallas = document.querySelectorAll('input[name="tallaje"]');
+  const carritoAviso = document.querySelector('.carritoAviso');
+  let tallaSeleccionada = false;
 
-  if (productoExistente) {
-    // Si el producto ya existe, incrementa el contador
-    productoExistente.cantidad++;
-  } else {
-    // Si el producto no existe, agrégalo al carrito
-    carrito.push({ ...producto, cantidad: 1 });
+  // Verificar si se ha seleccionado una talla
+  for (const talla of tallas) {
+    if (talla.checked) {
+      tallaSeleccionada = true;
+      break;
+    }
   }
 
-  // Actualiza la visualización del carrito
-  actualizarCarrito();
+  if (tallaSeleccionada) {
+    // Si se ha seleccionado una talla, realizar la lógica para agregar al carrito
+    carritoAviso.textContent = 'Añadir al carrito';
+
+    // Buscar si el producto ya está en el carrito
+    const productoExistente = carrito.find(item => item.name === producto.name);
+
+    if (productoExistente) {
+      // Si el producto ya existe, incrementa el contador
+      productoExistente.cantidad++;
+    } else {
+      // Si el producto no existe, agrégalo al carrito
+      carrito.push({ ...producto, cantidad: 1 });
+    }
+
+    // Actualiza la visualización del carrito
+    actualizarCarrito();
+  } else {
+    // Si no se ha seleccionado una talla, mostrar un mensaje de aviso
+    carritoAviso.textContent = 'Selecciona la Talla';
+
+    // Agregar efecto de parpadeo a los elementos .complemento
+    const complementos = document.querySelectorAll('.complemento');
+    complementos.forEach((complemento) => {
+      complemento.style.boxShadow = '0px 0px 10px 6px orange';
+      setTimeout(() => {
+        complemento.style.boxShadow = 'none';
+      }, 500); // Duración del parpadeo en milisegundos
+    });
+  }
 }
 
 // Actualiza la visualización del carrito en la página
@@ -1938,6 +1968,7 @@ function actualizarCarrito() {
     carritoContainer.appendChild(productAdd);
   });
 }
+
 
 
 
