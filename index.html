@@ -1345,7 +1345,7 @@ z-index: 5;
  
 <div class="notification">
         <h4><span id="cliente">Ana</span> acaba de comprar <span id="articuloComprado">2</span></h4>
-        <img src="" style="width: 50px">
+        <img src="" id="imagenArticulo" style="width: 50px">
     </div>
 
     
@@ -2142,19 +2142,23 @@ var toggleSwitchInput = document.getElementById('toggle-switch-input');
 
 
 const notification = document.querySelector(".notification");
+const imagenArticulo = document.getElementById("imagenArticulo");
 
 const productNames = document.querySelectorAll(".product h3");
+const productImages = document.querySelectorAll(".product img");
 
 const notifications = [
-    { cliente: "Ana", articuloComprado: getRandomProductName() },
-    { cliente: "Michel", articuloComprado: getRandomProductName() },
-    { cliente: "Myriam", articuloComprado: getRandomProductName() },
-    { cliente: "David", articuloComprado: getRandomProductName() }
+    { cliente: "Ana", articuloComprado: getRandomProduct() },
+    { cliente: "Michel", articuloComprado: getRandomProduct() },
+    { cliente: "Myriam", articuloComprado: getRandomProduct() },
+    { cliente: "David", articuloComprado: getRandomProduct() }
 ];
 
-function getRandomProductName() {
+function getRandomProduct() {
     const randomIndex = Math.floor(Math.random() * productNames.length);
-    return productNames[randomIndex].textContent;
+    const productName = productNames[randomIndex].textContent;
+    const productImageSrc = productImages[randomIndex].getAttribute("src");
+    return { nombre: productName, imagen: productImageSrc };
 }
 
 function updateNotification() {
@@ -2163,7 +2167,9 @@ function updateNotification() {
     const articuloCompradoSpan = document.getElementById("articuloComprado");
 
     clienteSpan.textContent = cliente;
-    articuloCompradoSpan.textContent = articuloComprado;
+    articuloCompradoSpan.textContent = articuloComprado.nombre;
+
+    imagenArticulo.setAttribute("src", articuloComprado.imagen);
 
     notification.style.transform = "translateX(-100%)";
     setTimeout(() => {
@@ -2176,6 +2182,7 @@ function updateNotification() {
 
 updateNotification(); // Llamarlo inmediatamente al cargar la página
 setInterval(updateNotification, 60000);
+
 
     </script>
 </body>
