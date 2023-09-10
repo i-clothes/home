@@ -923,6 +923,7 @@ z-index: 5;
     align-items: center;
 }
 
+
 /* Estilos para el contenedor de tallas */
 .tallaje {
     display: flex;
@@ -932,46 +933,25 @@ z-index: 5;
 
 /* Estilos para cada opción de talla */
 .tallaje label {
-    display: flex;
-    align-items: center;
+    display: inline-block;
     margin-bottom: 5px;
     cursor: pointer;
+    padding: 5px 10px; /* Añadir relleno para un área de clic más grande */
+    border: 2px solid #333; /* Borde de botón */
+    border-radius: 5px; /* Borde redondeado */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave para color de fondo y texto */
 }
 
-/* Estilos para el checkbox oculto */
-.tallaje input[type="checkbox"] {
+/* Estilos para el botón de radio oculto */
+.tallaje input[type="radio"] {
     display: none;
 }
 
-/* Estilos para el diseño personalizado del checkbox */
-.tallaje label::before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #333; /* Color del borde del checkbox */
-    background-color: #fff; /* Fondo del checkbox cuando no está marcado */
-    margin-right: 5px;
-    border-radius: 3px; /* Borde redondeado */
-    transition: all 0.3s ease; /* Transición suave */
-}
-
-/* Estilos para el diseño personalizado del checkbox cuando está marcado */
-.tallaje input[type="checkbox"]:checked + label::before {
-    background-color: #333; /* Fondo del checkbox cuando está marcado */
-    border-color: #333; /* Color del borde del checkbox cuando está marcado */
-}
-
-/* Estilos para el texto de la talla */
-.tallaje label span {
-    /* Estilos de texto personalizados (opcional) */
-    font-size: 16px;
-    font-weight: bold;
-}
-
-/* Cambiar el cursor al pasar sobre el checkbox */
-.tallaje label:hover::before {
-    border-color: #666; /* Color del borde del checkbox al pasar el cursor */
+/* Estilos para el diseño personalizado del botón de radio cuando está marcado */
+.tallaje input[type="radio"]:checked + label {
+    background-color: orange; /* Fondo naranja cuando está marcado */
+    color: white; /* Texto en blanco cuando está marcado */
+    border-color: orange; /* Borde naranja cuando está marcado */
 }
 
 
@@ -1025,20 +1005,21 @@ z-index: 5;
                   <h3>Conjunto i-Clothes Luxury Star</h3>
                   <p>Diseños únicos para inspirar tu jornada emprendedora.</p>
                   <p class="precio">50€</p>
-                <div class="tallaje">
+              <div class="tallaje">
                     <label>
-                        <input type="checkbox" name="talla" value="S"> S
+                        <input type="radio" name="talla" value="S"> <span>S</span>
                     </label>
                     <label>
-                        <input type="checkbox" name="talla" value="M"> M
+                        <input type="radio" name="talla" value="M"> <span>M</span>
                     </label>
                     <label>
-                        <input type="checkbox" name="talla" value="L"> L
+                        <input type="radio" name="talla" value="L"> <span>L</span>
                     </label>
                     <label>
-                        <input type="checkbox" name="talla" value="XL"> XL
+                        <input type="radio" name="talla" value="XL"> <span>XL</span>
                     </label>
                 </div>
+
 
                   <div class="product-options">
                         <div class="capsula">
