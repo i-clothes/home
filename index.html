@@ -1810,6 +1810,12 @@ addToCartButtons.forEach(button => {
     // Cambia el texto de .carritoAviso a "Agregar al Carrito" cuando se hace clic en un .complemento
     complementos.forEach(complemento => {
       complemento.addEventListener('click', () => {
+        // Remueve la clase activar-seleccionado de todos los .complemento en este producto
+        complementos.forEach(c => c.classList.remove('activar-seleccionado'));
+        
+        // Agrega la clase activar-seleccionado al .complemento clicado
+        complemento.classList.add('activar-seleccionado');
+
         carritoAviso.textContent = 'Agregar al Carrito';
       });
     });
