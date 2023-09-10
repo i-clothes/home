@@ -1898,7 +1898,7 @@ const carrito = [];
 // Función para agregar un producto al carrito
 function agregarAlCarrito(producto) {
   // Obtener todos los elementos de radio button con name="tallaje"
-  const tallas = document.querySelectorAll('input[name="tallaje"]');
+  const tallas = document.querySelectorAll('input[type="radio"]:checked');
   const carritoAviso = document.querySelector('.carritoAviso');
   let tallaSeleccionada = false;
 
