@@ -387,31 +387,20 @@
         }
 
         .cart-icon-container {
-  position: fixed;
-  bottom: 10px;
-  right: 0;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 2px solid grey;
-            background: white;
-            cursor: pointer; 
-}
+          position: fixed;
+          bottom: 10px;
+          right: 0;
+        }
 
 
-
-.cart-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-}
 
 /* Estilos para el icono dentro del segundo div */
-.cart-icon i {
-  background: black;
+.cart-icon-container i {
+    background: black;
     color: white;
-    width: 50px;
+    font-size: 38px;
+    padding: 15px;
+    border-radius: 50%;
 }
 
 
@@ -1258,9 +1247,7 @@ footer {
     </div>
     
     <div class="cart-icon-container">
-  <div class="cart-icon">
-        <i class="fas fa-shopping-cart"></i>
-  </div>      
+         <i class="fas fa-shopping-cart"></i>
 </div>
 
    <div class="sticky-cart2">
@@ -1511,21 +1498,7 @@ document.querySelector('#luxury').addEventListener('click', restaurarEstadoInici
 let isFloatingDivVisible = false;
 const floatingDiv = document.querySelector('.floating-div');
 
-// Obtén el elemento con la clase "cart-icon-container"
-const cartIconContainer = document.querySelector('.cart-icon-container');
 
-// Agrega un event listener al elemento "cart-icon-container"
-cartIconContainer.addEventListener('click', function () {
-  // Alterna la visibilidad de floating-div
-  isFloatingDivVisible = !isFloatingDivVisible;
-  
-  // Muestra u oculta floating-div según el estado actual
-  if (isFloatingDivVisible) {
-    floatingDiv.style.display = 'block';
-  } else {
-    floatingDiv.style.display = 'none';
-  }
-});
 
 
        // Selecciona todos los botones "Añadir al carrito"
