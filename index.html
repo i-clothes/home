@@ -823,10 +823,12 @@ footer {
         }
 
         .botonSlider {
+display:none;
  position: fixed; /* Fijar la sección en la ventana del navegador */
-    top: 5px; /* Centrar verticalmente en la mitad superior de la ventana */
     left: 50%; /* Centrar horizontalmente en la mitad izquierda de la ventana */
     transform: translate(-50%, -50%); /* Centrar completamente en el centro de la ventana */
+top: 40px;
+z-index: 5;
 }
 
        /* Estilos del interruptor */
@@ -872,10 +874,10 @@ footer {
 <body>
   <section class="botonSlider">
          <label class="toggle-switch">
-    <input type="checkbox">
-    <span class="slider"></span>
-</label>
-</section>
+            <input type="checkbox">
+            <span class="slider"></span>
+        </label>
+        </section>
     <header>
         <nav>
            <ul>
@@ -905,7 +907,7 @@ footer {
         <p class="letras">ENVÍO GRATIS CON TU PRIMER PEDIDO</p>
         <p class="letras">ENVÍO GRATIS CON TU PRIMER PEDIDO</p>
     </section>
-    <section class="know-what-you-want">
+    <section class="know-what-you-want" id="switch">
     <h1>Persigues tus sueños y buscas tu mejor versión eres I-clothes</h1>
     <p class="eslogan">Vestir bien se trata de estilo y mentalidad, no de dinero</p>
 </section>
@@ -2025,6 +2027,42 @@ whatsappButtons.forEach(function(whatsappButton) {
     });
   }
 });
+
+
+
+ // Obtener una referencia al elemento con ID "switch"
+    var switchElement = document.getElementById('switch');
+
+    // Obtener una referencia a la sección con clase "botonSlider"
+    var botonSliderSection = document.querySelector('.botonSlider');
+
+    // Función para comprobar si el elemento "switch" está visible en la ventana
+    function isElementInViewport(element) {
+        var rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    // Función para controlar la visibilidad de la sección "botonSlider"
+    function checkVisibility() {
+        if (isElementInViewport(switchElement)) {
+            // El elemento "switch" está visible, muestra la sección "botonSlider"
+            botonSliderSection.style.display = 'block';
+        } else {
+            // El elemento "switch" no está visible, oculta la sección "botonSlider"
+            botonSliderSection.style.display = 'none';
+        }
+    }
+
+    // Escucha el evento de desplazamiento (scroll) para verificar la visibilidad
+    window.addEventListener('scroll', checkVisibility);
+
+    // Verifica la visibilidad inicial
+    checkVisibility();
 
 
 
