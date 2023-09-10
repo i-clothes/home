@@ -886,12 +886,12 @@ z-index: 5;
     </style>
 </head>
 <body>
-  <section class="botonSlider">
-         <label class="toggle-switch">
-            <input type="checkbox">
-            <span class="slider">Luxury</span>
-        </label>
-        </section>
+ <section class="botonSlider">
+    <label class="toggle-switch">
+        <input type="checkbox" id="toggle-switch-input">
+        <span class="slider">Luxury</span>
+    </label>
+</section>
     <header>
         <nav>
            <ul>
@@ -2096,6 +2096,24 @@ checkVisibility();
         }
     });
 
+
+
+var toggleSwitchInput = document.getElementById('toggle-switch-input');
+    var sliderSpan = document.querySelector('.toggle-switch .slider');
+    var luxuryButton = document.getElementById('luxury');
+    var urbanButton = document.getElementById('urban');
+    
+    toggleSwitchInput.addEventListener('click', function () {
+        if (sliderSpan.style.transform === 'translateX(50px)') {
+            sliderSpan.style.transform = 'translateX(0)';
+            sliderSpan.textContent = 'Luxury';
+            luxuryButton.click(); // Simula un evento click en #luxury
+        } else {
+            sliderSpan.style.transform = 'translateX(50px)';
+            sliderSpan.textContent = 'Urban';
+            urbanButton.click(); // Simula un evento click en #urban
+        }
+    });
     </script>
 </body>
 </html>
