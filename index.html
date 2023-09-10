@@ -1793,8 +1793,7 @@ const floatingDiv = document.querySelector('.floating-div');
 
         
 
-// Selecciona todos los botones "Añadir al carrito"
-const addToCartButtons = document.querySelectorAll('.agregar-carrito');
+        
 
 // Función para cambiar el texto de carritoAviso
 function cambiarTextoCarrito(carritoAviso, complementos) {
@@ -1818,7 +1817,37 @@ function cambiarTextoCarrito(carritoAviso, complementos) {
   }
 }
 
-// Agrega un evento de clic a cada botón "Añadir al carrito"
+// Función para manejar el clic en un .complemento
+function handleComplementoClick(complemento) {
+  // Encuentra el contenedor del producto
+  const productContainer = complemento.closest('.product');
+  // Obtiene el elemento .carritoAviso específico para este producto
+  const carritoAviso = productContainer.querySelector('.carritoAviso');
+  // Obtiene todos los elementos .complemento dentro de este producto
+  const complementos = productContainer.querySelectorAll('.complemento');
+
+  // Remueve la clase activar-seleccionado de todos los .complemento en este producto
+  complementos.forEach(c => c.classList.remove('activar-seleccionado'));
+
+  // Agrega la clase activar-seleccionado al .complemento clicado
+  complemento.classList.add('activar-seleccionado');
+
+  // Llama a la función para cambiar el texto de carritoAviso
+  cambiarTextoCarrito(carritoAviso, complementos);
+}
+
+// Agregar evento de clic a todos los elementos .complemento
+const complementos = document.querySelectorAll('.complemento');
+complementos.forEach(complemento => {
+  complemento.addEventListener('click', () => {
+    handleComplementoClick(complemento);
+  });
+});
+
+// Selecciona todos los botones "Añadir al carrito"
+const addToCartButtons = document.querySelectorAll('.agregar-carrito');
+
+// Agrega un evento de clic a cada botón
 addToCartButtons.forEach(button => {
   button.addEventListener('click', () => {
     const productContainer = button.closest('.product'); // Encuentra el contenedor del producto
@@ -1831,20 +1860,6 @@ addToCartButtons.forEach(button => {
 
     // Obtiene todos los elementos .complemento dentro de este producto
     const complementos = productContainer.querySelectorAll('.complemento');
-
-    // Cambia el texto de carritoAviso cuando se hace clic en un .complemento
-    complementos.forEach(complemento => {
-      complemento.addEventListener('click', () => {
-        // Remueve la clase activar-seleccionado de todos los .complemento en este producto
-        complementos.forEach(c => c.classList.remove('activar-seleccionado'));
-
-        // Agrega la clase activar-seleccionado al .complemento clicado
-        complemento.classList.add('activar-seleccionado');
-
-        // Llama a la función para cambiar el texto de carritoAviso
-        cambiarTextoCarrito(carritoAviso, complementos);
-      });
-    });
 
     // Llama a la función para cambiar el texto de carritoAviso
     cambiarTextoCarrito(carritoAviso, complementos);
@@ -1864,6 +1879,12 @@ addToCartButtons.forEach(button => {
     }
   });
 });
+
+
+
+
+
+        
 
 
 
