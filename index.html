@@ -281,11 +281,6 @@
     }
 }
 
-@media (min-width: 560px) {
-    .botonSlider {
-        display: block;
-    }
-}
 .product-tallas {
     display: flex;
     justify-content: space-between;
@@ -2054,27 +2049,17 @@ var switchElement = document.getElementById('switch');
 // Obtener una referencia a la sección con clase "botonSlider"
 var botonSliderSection = document.querySelector('.botonSlider');
 
-// Función para comprobar si el elemento "switch" está visible en la ventana
-function isElementInViewport(element) {
-    var rect = element.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
-
 // Función para controlar la visibilidad de la sección "botonSlider"
 function checkVisibility() {
     var windowWidth = window.innerWidth || document.documentElement.clientWidth;
+    var switchRect = switchElement.getBoundingClientRect();
 
-    if (windowWidth > 560 && isElementInViewport(switchElement)) {
-        // El ancho de la pantalla es mayor a 560px y el elemento "switch" está visible, muestra la sección "botonSlider"
-        botonSliderSection.style.display = 'none';
-    } else {
-        // El ancho de la pantalla es menor o igual a 560px o el elemento "switch" no está visible, muestra la sección "botonSlider"
+    if (windowWidth <= 560 && switchRect.bottom < 0) {
+        // El ancho de la pantalla es igual o menor a 560px y el elemento "switch" está arriba de la vista, muestra la sección "botonSlider"
         botonSliderSection.style.display = 'block';
+    } else {
+        // En otros casos, oculta la sección "botonSlider"
+        botonSliderSection.style.display = 'none';
     }
 }
 
