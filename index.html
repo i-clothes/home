@@ -924,38 +924,8 @@ z-index: 5;
 }
 
 
-/* Estilos para el contenedor de tallas */
-.tallaje {
-        display: flex;
-    margin-bottom: 10px;
-    justify-content: center;
-}
 
-/* Estilos para cada opción de talla */
-.tallaje label {
-    display: inline-block;
-    margin-bottom: 5px;
-    cursor: pointer;
-    padding: 5px 10px; /* Añadir relleno para un área de clic más grande */
-    border: 2px solid #333; /* Borde de botón */
-    border-radius: 5px; /* Borde redondeado */
-    transition: background-color 0.3s, color 0.3s; /* Transición suave para color de fondo y texto */
-}
-
-/* Estilos para el botón de radio oculto */
-.tallaje input[type="radio"] {
-    display: none;
-}
-
-/* Estilos para el diseño personalizado del botón de radio cuando está marcado */
-.tallaje input[type="radio"]:checked + label {
-    background-color: orange; /* Fondo naranja cuando está marcado */
-    color: white; /* Texto en blanco cuando está marcado */
-    border-color: orange; /* Borde naranja cuando está marcado */
-}
-
-
-  #complementos {
+  .complementos {
             background-color: #fff;
             padding: 20px;
             border-radius: 5px;
@@ -966,7 +936,7 @@ z-index: 5;
             align-items: center;
         }
 
-        #complementos h2 {
+        .complementos h2 {
             font-size: 24px;
             margin-bottom: 20px;
             text-align: center;
@@ -1053,44 +1023,31 @@ z-index: 5;
                   <h3>Conjunto i-Clothes Luxury Star</h3>
                   <p>Diseños únicos para inspirar tu jornada emprendedora.</p>
                   <p class="precio">50€</p>
-              <div class="tallaje">
-                    <label>
-                        <input type="radio" name="talla" value="S"> <span>S</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="talla" value="M"> <span>M</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="talla" value="L"> <span>L</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="talla" value="XL"> <span>XL</span>
-                    </label>
-                </div>
-                <div id="complementos">
+              
+    <div class="complementos">
         <div class="complemento">
             <label class="checkeable">
                 <input type="checkbox">
-                <img src="icono1.png" alt="Icono">
+                <span>S</span>
             </label>
-            <div class="unidades">
-                <p>Bolsa de Hielo</p>
-                <button class="sumar" style="background: orange;padding: 8px; border-radius: 50%; font-size: 15px; cursor: pointer;">+</button>
-                <input type="number" min="0" style="width:35px">
-                <button class="restar" style="background: orange;padding: 8px; border-radius: 50%; font-size: 15px; cursor: pointer;">-</button>
-            </div>
+        </div>
+    <div class="complemento">
+            <label class="checkeable">
+                <input type="checkbox">
+                <span>M</span>
+            </label>
         </div>
         <div class="complemento">
             <label class="checkeable">
                 <input type="checkbox">
-                <img src="icono1.png" alt="Icono">
+                <span>L</span>
             </label>
-            <div class="unidades">
-                <p>Bolsa de Hielo</p>
-                <button class="sumar" style="background: orange;padding: 8px; border-radius: 50%; font-size: 15px; cursor: pointer;">+</button>
-                <input type="number" min="0" style="width:35px">
-                <button class="restar" style="background: orange;padding: 8px; border-radius: 50%; font-size: 15px; cursor: pointer;">-</button>
-            </div>
+        </div>
+        <div class="complemento">
+            <label class="checkeable">
+                <input type="checkbox">
+                <span>XL</span>
+            </label>
         </div>
     </div>
 
