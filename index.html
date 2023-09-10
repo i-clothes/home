@@ -1982,19 +1982,26 @@ function guardarCarritoEnLocalStorage() {
 
 // Función para mostrar el carrito al hacer clic en "agregar-carrito"
 function mostrarCarrito() {
+  // Obtener el elemento .agregar-carrito .carritoAviso
+  const carritoAviso = this.querySelector('.carritoAviso');
+
+  // Verificar si el texto es "Agregar al Carrito"
+  if (carritoAviso.textContent.trim() === 'Agregar al Carrito') {
     const stickyCart2 = document.querySelector('.sticky-cart2');
     stickyCart2.style.display = 'flex';
 
-      // Obtener el elemento .cart-icon-container
+    // Obtener el elemento .cart-icon-container
     const cartIcon = document.querySelector('.cart-icon-container');
-cartIcon.style.display = 'flex';
+    cartIcon.style.display = 'flex';
+  }
 }
 
 // Obtener todos los elementos con la clase "agregar-carrito" y agregar un evento de clic a cada uno
 const agregarCarritoButtons = document.querySelectorAll('.agregar-carrito');
 agregarCarritoButtons.forEach(function (boton) {
-    boton.addEventListener('click', mostrarCarrito);
+  boton.addEventListener('click', mostrarCarrito);
 });
+
 
 
 
