@@ -2104,12 +2104,12 @@ var toggleSwitchInput = document.getElementById('toggle-switch-input');
     var urbanButton = document.getElementById('urban');
     
     toggleSwitchInput.addEventListener('click', function () {
-        if (sliderSpan.style.transform === 'translateX(50px)') {
+        if (sliderSpan.style.transform === 'translateX(70px)') {
             sliderSpan.style.transform = 'translateX(0)';
             sliderSpan.textContent = 'Luxury';
             luxuryButton.click(); // Simula un evento click en #luxury
         } else {
-            sliderSpan.style.transform = 'translateX(50px)';
+            sliderSpan.style.transform = 'translateX(70px)';
             sliderSpan.textContent = 'Urban';
             urbanButton.click(); // Simula un evento click en #urban
         }
