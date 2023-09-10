@@ -1872,16 +1872,24 @@ addToCartButtons.forEach(button => {
     const productName = productContainer.querySelector('h3').textContent; // Obtiene el nombre del producto
     const productPrice = productContainer.querySelector('.precio').textContent; // Obtiene el precio del producto
     const productImageSrc = productContainer.querySelector('img').src; // Obtiene la fuente de la imagen del producto
-    
-    // Verifica si al menos un elemento .complemento tiene la clase .activar-seleccionado
-    const complementos = productContainer.querySelectorAll('.complemento');
-    const tallaSeleccionada = [...complementos].some(complemento => complemento.classList.contains('activar-seleccionado'));
 
-    // Obtener el elemento .carritoAviso específico para este producto
+    // Obtiene el elemento .carritoAviso específico para este producto
     const carritoAviso = productContainer.querySelector('.carritoAviso');
 
+    // Agrega el evento de clic a todos los elementos .complemento
+    const complementos = productContainer.querySelectorAll('.complemento');
+    complementos.forEach(complemento => {
+      complemento.addEventListener('click', () => {
+        // Cambia el texto de .carritoAviso a "Agregar al Carrito" cuando se hace clic en un .complemento
+        carritoAviso.textContent = 'Agregar al Carrito';
+      });
+    });
+
+    // Verifica si al menos un elemento .complemento tiene la clase .activar-seleccionado
+    const tallaSeleccionada = [...complementos].some(complemento => complemento.classList.contains('activar-seleccionado'));
+
     if (!tallaSeleccionada) {
-      // Si no se ha seleccionado una talla, mostrar el efecto de parpadeo en .complementos
+      // Si no se ha seleccionado una talla, muestra el efecto de parpadeo en .complementos
       complementos.forEach(complemento => {
         complemento.style.boxShadow = '0px 0px 10px 6px orange';
         setTimeout(() => {
@@ -1889,24 +1897,21 @@ addToCartButtons.forEach(button => {
         }, 500); // Duración del parpadeo en milisegundos
       });
       
-      // Cambiar el texto de .carritoAviso a "Selecciona la Talla"
+      // Cambia el texto de .carritoAviso a "Selecciona la Talla"
       carritoAviso.textContent = 'Selecciona la Talla';
     } else {
-      // Si se ha seleccionado una talla, cambia el texto de .carritoAviso a "Agregar al Carrito"
-      carritoAviso.textContent = 'Agregar al Carrito';
-
-      // Crea un nuevo objeto de producto
+      // Si se ha seleccionado una talla, agrega el producto al carrito
       const product = {
         name: productName,
         price: productPrice,
         imageSrc: productImageSrc,
       };
 
-      // Agrega el producto al carrito
       agregarAlCarrito(product);
     }
   });
 });
+
 
 
         
