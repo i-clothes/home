@@ -883,6 +883,25 @@ z-index: 5;
             height: 0;
         }
 
+ .notification {
+            position: fixed;
+            bottom: 5px;
+            left: 0;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            transform: translateX(-100%);
+            display: flex;
+            align-items: center;
+        }
+
+        .notification img {
+            width: 50px;
+            margin-right: 10px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -1324,7 +1343,12 @@ z-index: 5;
     <button id="irAlProbador" onclick="guardarCarritoEnLocalStorage()">Ir al probador</button>
 </div>
  
+<div class="notification">
+        <h4><span id="cliente">Ana</span> acaba de comprar <span id="articuloComprado">2</span></h4>
+        <img src="" style="width: 50px">
+    </div>
 
+    
    <footer>
     <div class="footer-links">
         <h4>Información</h4>
@@ -2114,6 +2138,45 @@ var toggleSwitchInput = document.getElementById('toggle-switch-input');
             urbanButton.click(); // Simula un evento click en #urban
         }
     });
+
+
+
+const notification = document.querySelector(".notification");
+
+const productNames = document.querySelectorAll(".product h3");
+
+const notifications = [
+    { cliente: "Ana", articuloComprado: getRandomProductName() },
+    { cliente: "Michel", articuloComprado: getRandomProductName() },
+    { cliente: "Myriam", articuloComprado: getRandomProductName() },
+    { cliente: "David", articuloComprado: getRandomProductName() }
+];
+
+function getRandomProductName() {
+    const randomIndex = Math.floor(Math.random() * productNames.length);
+    return productNames[randomIndex].textContent;
+}
+
+function updateNotification() {
+    const { cliente, articuloComprado } = notifications.shift();
+    const clienteSpan = document.getElementById("cliente");
+    const articuloCompradoSpan = document.getElementById("articuloComprado");
+
+    clienteSpan.textContent = cliente;
+    articuloCompradoSpan.textContent = articuloComprado;
+
+    notification.style.transform = "translateX(-100%)";
+    setTimeout(() => {
+        notification.style.transform = "translateX(0)";
+    }, 200);
+    setTimeout(() => {
+        notification.style.transform = "translateX(-100%)";
+    }, 4800);
+}
+
+updateNotification(); // Llamarlo inmediatamente al cargar la página
+setInterval(updateNotification, 60000);
+
     </script>
 </body>
 </html>
