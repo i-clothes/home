@@ -1862,8 +1862,7 @@ const floatingDiv = document.querySelector('.floating-div');
 
 
 
-
-       // Selecciona todos los botones "Añadir al carrito"
+// Selecciona todos los botones "Añadir al carrito"
 const addToCartButtons = document.querySelectorAll('.agregar-carrito');
 
 // Agrega un evento de clic a cada botón
@@ -1873,18 +1872,44 @@ addToCartButtons.forEach(button => {
     const productName = productContainer.querySelector('h3').textContent; // Obtiene el nombre del producto
     const productPrice = productContainer.querySelector('.precio').textContent; // Obtiene el precio del producto
     const productImageSrc = productContainer.querySelector('img').src; // Obtiene la fuente de la imagen del producto
+    
+    // Verifica si al menos un elemento .complemento tiene la clase .activar-seleccionado
+    const complementos = productContainer.querySelectorAll('.complemento');
+    const tallaSeleccionada = [...complementos].some(complemento => complemento.classList.contains('activar-seleccionado'));
 
-    // Crea un nuevo objeto de producto
-    const product = {
-      name: productName,
-      price: productPrice,
-      imageSrc: productImageSrc,
-    };
+    // Obtener el elemento .carritoAviso específico para este producto
+    const carritoAviso = productContainer.querySelector('.carritoAviso');
 
-    // Agrega el producto al carrito
-    agregarAlCarrito(product);
+    if (!tallaSeleccionada) {
+      // Si no se ha seleccionado una talla, mostrar el efecto de parpadeo en .complementos
+      complementos.forEach(complemento => {
+        complemento.style.boxShadow = '0px 0px 10px 6px orange';
+        setTimeout(() => {
+          complemento.style.boxShadow = 'none';
+        }, 500); // Duración del parpadeo en milisegundos
+      });
+      
+      // Cambiar el texto de .carritoAviso a "Selecciona la Talla"
+      carritoAviso.textContent = 'Selecciona la Talla';
+    } else {
+      // Si se ha seleccionado una talla, cambia el texto de .carritoAviso a "Agregar al Carrito"
+      carritoAviso.textContent = 'Agregar al Carrito';
+
+      // Crea un nuevo objeto de producto
+      const product = {
+        name: productName,
+        price: productPrice,
+        imageSrc: productImageSrc,
+      };
+
+      // Agrega el producto al carrito
+      agregarAlCarrito(product);
+    }
   });
 });
+
+
+        
 
 // Carrito de compras
 const carrito = [];
@@ -1933,46 +1958,7 @@ function actualizarCarrito() {
 }
 
 
-// NUEVO CODIGO
 
-// Obtener todos los contenedores de "complementos"
-const complementosContainers = document.querySelectorAll('.complemento');
-
-// Iterar a través de cada contenedor
-complementosContainers.forEach((complementosContainer) => {
-  // Obtener los elementos específicos dentro del contenedor actual
-  const carritoAviso = complementosContainer.querySelector('.carritoAviso');
-  const agregarCarritoBtn = complementosContainer.querySelector('.agregar-carrito');
-
-  agregarCarritoBtn.addEventListener('click', () => {
-    // Obtener la clase .activar-seleccionado más cercana al botón clickeado
-    const activarSeleccionado = complementosContainer.querySelector('.activar-seleccionado');
-
-    let alMenosUnComplementoSeleccionado = !!activarSeleccionado;
-
-    if (alMenosUnComplementoSeleccionado) {
-      // Si al menos un .complemento tiene la clase .activar-seleccionado
-      // Realizar la lógica para agregar al carrito
-      carritoAviso.textContent = 'Añadir al carrito';
-
-      // Resto del código para agregar al carrito y otras operaciones
-      // ...
-    } else {
-      // Si no hay ningún .complemento con la clase .activar-seleccionado
-      // Mostrar un mensaje de aviso
-      carritoAviso.textContent = 'Selecciona la Talla';
-
-      // Agregar efecto de parpadeo a los elementos .complemento
-      const complementos = complementosContainer.querySelectorAll('.complemento');
-      complementos.forEach((complemento) => {
-        complemento.style.boxShadow = '0px 0px 10px 6px orange';
-        setTimeout(() => {
-          complemento.style.boxShadow = 'none';
-        }, 500); // Duración del parpadeo en milisegundos
-      });
-    }
-  });
-});
 
 
 
