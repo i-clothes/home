@@ -1788,6 +1788,7 @@ let isFloatingDivVisible = false;
 const floatingDiv = document.querySelector('.floating-div');
 
 
+        
 
 // Selecciona todos los botones "Añadir al carrito"
 const addToCartButtons = document.querySelectorAll('.agregar-carrito');
@@ -1803,11 +1804,12 @@ addToCartButtons.forEach(button => {
     // Obtiene el elemento .carritoAviso específico para este producto
     const carritoAviso = productContainer.querySelector('.carritoAviso');
 
-    // Agrega el evento de clic a todos los elementos .complemento
+    // Obtiene todos los elementos .complemento dentro de este producto
     const complementos = productContainer.querySelectorAll('.complemento');
+
+    // Cambia el texto de .carritoAviso a "Agregar al Carrito" cuando se hace clic en un .complemento
     complementos.forEach(complemento => {
       complemento.addEventListener('click', () => {
-        // Cambia el texto de .carritoAviso a "Agregar al Carrito" cuando se hace clic en un .complemento
         carritoAviso.textContent = 'Agregar al Carrito';
       });
     });
@@ -1822,10 +1824,10 @@ addToCartButtons.forEach(button => {
         setTimeout(() => {
           complemento.style.boxShadow = 'none';
         }, 500); // Duración del parpadeo en milisegundos
+
+        // Cambia el texto de .carritoAviso a "Selecciona la Talla"
+        carritoAviso.textContent = 'Selecciona la Talla';
       });
-      
-      // Cambia el texto de .carritoAviso a "Selecciona la Talla"
-      carritoAviso.textContent = 'Selecciona la Talla';
     } else {
       // Si se ha seleccionado una talla, agrega el producto al carrito
       const product = {
@@ -1839,18 +1841,7 @@ addToCartButtons.forEach(button => {
   });
 });
 
-// Define la función cambiarTextoCarrito
-function cambiarTextoCarrito(event) {
-  // Cambia el texto de .carritoAviso a "Agregar al Carrito" cuando se hace clic en un .complemento
-  const carritoAviso = event.currentTarget.closest('.product').querySelector('.carritoAviso');
-  carritoAviso.textContent = 'Agregar al Carrito';
-}
 
-// Agregar evento de clic a todos los elementos .complemento
-const complementos = document.querySelectorAll('.complemento');
-complementos.forEach(complemento => {
-  complemento.addEventListener('click', cambiarTextoCarrito);
-});
 
 
         
@@ -1905,54 +1896,6 @@ function actualizarCarrito() {
 
 
 
-
- 
-
-
-// Obtener todos los elementos .opciones-carrito dentro de .sticky-cart
-const opcionesCarritoElements = document.querySelectorAll('.opciones-carrito');
-
-// Iterar sobre cada elemento .opciones-carrito
-opcionesCarritoElements.forEach(function(opcionesCarritoElement) {
-    opcionesCarritoElement.addEventListener('click', function() {
-        eliminarProducto(opcionesCarritoElement);
-    });
-});
-
-// Función para eliminar el div .product-add más cercano
-function eliminarProducto(element) {
-    // Obtener el elemento .product-add que contiene el elemento pasado como argumento
-    const productAddElement = element.closest('.product-add');
-
-    // Obtener el valor del nombre del producto
-    const nombreProducto = productAddElement.querySelector('.nombre-producto').textContent;
-
-    // Eliminar el producto del localStorage
-    eliminarProductoLocalStorage(nombreProducto);
-
-    // Eliminar el elemento .product-add del DOM
-    productAddElement.remove();
-
-    console.log('Elemento eliminado del DOM');
-
-    // Aquí puedes agregar cualquier otra lógica que necesites después de eliminar el elemento
-}
-
-// Función para eliminar un producto del localStorage por su nombre
-function eliminarProductoLocalStorage(nombreProducto) {
-    // Obtener el array de productos guardados en el localStorage
-    const productosGuardados = JSON.parse(localStorage.getItem('productosCarrito')) || [];
-
-    // Filtrar los productos para eliminar el que coincida con el nombre
-    const nuevosProductos = productosGuardados.filter(function(producto) {
-        return producto.nombre !== nombreProducto;
-    });
-
-    // Guardar los nuevos productos en el localStorage
-    localStorage.setItem('productosCarrito', JSON.stringify(nuevosProductos));
-
-    console.log('Producto eliminado del localStorage');
-}
 
 
 
@@ -2430,21 +2373,7 @@ updateNotification(); // Llamarlo inmediatamente al cargar la página
 setInterval(updateNotification, 60000);
 
 
-// TEXTO AGREGAR CARRITO
 
-complementos.forEach((complemento) => {
-    const opciones = complemento.querySelectorAll('.complemento');
-    
-    opciones.forEach((opcion) => {
-        opcion.addEventListener('click', () => {
-            // Remover la clase .activar-seleccionado de todas las opciones dentro de este conjunto
-            opciones.forEach((o) => o.classList.remove('activar-seleccionado'));
-            
-            // Agregar la clase .activar-seleccionado a la opción clicada
-            opcion.classList.add('activar-seleccionado');
-        });
-    });
-});
 
 
     </script>
