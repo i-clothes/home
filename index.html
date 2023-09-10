@@ -942,28 +942,23 @@ z-index: 5;
             text-align: center;
         }
 
-        .complemento  input[type="checkbox"]{
+        .complemento  input[type="radio"]{
             display:none
         }
 
-        .checkeable input:checked + span {
-    background: orange;
-    padding: 10px;
-    box-shadow: 0px 0px 10px 6px orange;
-    margin: 10px;
+        .checkeable span{
+        margin: 10px;
+    border: 1px solid black;
+    padding: 5px;
+    font-size: 20px;
 }
 
-
-     .checkeable input[type="number"]::-webkit-inner-spin-button,
-     .checkeable input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            appearance: none;
-            margin: 0;
-            width: 20px;
-            text-align: center;
-            border: none;
-            outline: none;
-        }
+        .checkeable input:checked + span {
+    background: orange;
+    color: white
+    padding: 10px;
+    margin: 10px;
+}
 
 
     </style>
@@ -1019,25 +1014,25 @@ z-index: 5;
     <div class="complementos">
         <div class="complemento">
             <label class="checkeable">
-                <input type="checkbox">
+                <input type="radio" name="tallaje">
                 <span>S</span>
             </label>
         </div>
     <div class="complemento">
             <label class="checkeable">
-                <input type="checkbox">
+                <input type="radio" name="tallaje">
                 <span>M</span>
             </label>
         </div>
         <div class="complemento">
             <label class="checkeable">
-                <input type="checkbox">
+                <input type="radio" name="tallaje">
                 <span>L</span>
             </label>
         </div>
         <div class="complemento">
             <label class="checkeable">
-                <input type="checkbox">
+                <input type="radio" name="tallaje">
                 <span>XL</span>
             </label>
         </div>
