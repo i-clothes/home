@@ -335,24 +335,6 @@ width: 90%;
     background-color: #4CAF50;
 }
 
-      .notification {
-            position: fixed;
-            bottom: 5px;
-            left: 0;
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            transform: translateX(-100%);
-            display: flex;
-            align-items: center;
-        }
-
-        .notification img {
-            width: 50px;
-            margin-right: 10px;
-        }
-
         .top-section {
     position: fixed;
     top: 0;
@@ -623,10 +605,7 @@ border-radius: 10px 10px 0 0;
         </div>
 </section>
      
-     <div class="notification">
-        <h4><span id="cliente">Ana</span> acaba de comprar <span id="numeroTickets">2</span></h4>
-        <img src="https://cf.ecommercebusinessclub.com/hosted/images/03/3dbafc2e424a4e91c7038740ba33f6/ENTRADAS-ebl.png" style="width: 50px">
-    </div>
+    
 <div class="reviews-section">
         <h1>Reseñas de Crawls Tours</h1>
         <div class="review-container">
@@ -709,51 +688,6 @@ border-radius: 10px 10px 0 0;
   });
 
 
-
-        const notification = document.querySelector(".notification");
-const clienteSpan = document.getElementById("cliente");
-const numeroTicketsSpan = document.getElementById("numeroTickets");
-const ofertaTicketsSpan = document.getElementById("ofertaTickets"); // Nuevo elemento agregado
-
-        
-
-const notifications = [
-    { cliente: "Ana", numeroTickets: "2" },
-    { cliente: "Michel", numeroTickets: "4" },
-    { cliente: "Myriam", numeroTickets: "3" },
-    { cliente: "David", numeroTickets: "2" }
-];
-const progressBar = document.getElementById('progressBar');
-const progressBarContainer = document.querySelector('.progress-bar-container');
-        
-let notificationIndex = 0;
-let ofertaTicketsValue = 15; // Valor inicial de los tickets
-
-function updateNotification() {
-    const { cliente, numeroTickets } = notifications[notificationIndex];
-    clienteSpan.textContent = cliente;
-    numeroTicketsSpan.textContent = numeroTickets;
-
-     const progressIncrement = 10;
-     const progressValue = (progressIncrement * (notificationIndex + 1)) + '%';
-     progressBar.style.width = progressValue;
-
-    // Disminuir el valor de ofertaTicketsValue
-    ofertaTicketsValue -= parseInt(numeroTickets);
-    ofertaTicketsSpan.textContent = ofertaTicketsValue;
-
-    notification.style.transform = "translateX(-100%)";
-    setTimeout(() => {
-        notification.style.transform = "translateX(0)";
-    }, 200);
-    setTimeout(() => {
-        notification.style.transform = "translateX(-100%)";
-    }, 4800);
-    notificationIndex = (notificationIndex + 1) % notifications.length;
-}
-
-updateNotification(); // Llamarlo inmediatamente al cargar la página
-setInterval(updateNotification, 60000);
 
 // Recupera los datos del localStorage
   const reservaData = JSON.parse(localStorage.getItem('carrito'));
