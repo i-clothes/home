@@ -390,6 +390,7 @@
           position: fixed;
           bottom: 10px;
           right: 0;
+        z-index: 3;
         }
 
 
@@ -407,14 +408,14 @@
 /* Estilos para el contenedor del carrito */
 .sticky-cart2 {
   position: fixed;
-  top: 20px;
+  bottom: 70px;
   right: 20px;
   background-color: white;
   border: 1px solid #ddd;
   padding: 10px;
   width: 300px; /* Puedes ajustar el ancho según tus necesidades */
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+  z-index: 2;
     display: none;
   flex-direction: column;
 }
@@ -821,6 +822,13 @@ footer {
             }
         }
 
+        .botonSlider {
+ position: fixed; /* Fijar la sección en la ventana del navegador */
+    top: 5px; /* Centrar verticalmente en la mitad superior de la ventana */
+    left: 50%; /* Centrar horizontalmente en la mitad izquierda de la ventana */
+    transform: translate(-50%, -50%); /* Centrar completamente en el centro de la ventana */
+}
+
        /* Estilos del interruptor */
         .toggle-switch {
             position: relative;
@@ -862,10 +870,12 @@ footer {
     </style>
 </head>
 <body>
-   <label class="toggle-switch">
+  <section class="botonSlider">
+         <label class="toggle-switch">
     <input type="checkbox">
     <span class="slider"></span>
 </label>
+</section>
     <header>
         <nav>
            <ul>
