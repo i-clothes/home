@@ -1732,6 +1732,10 @@ function guardarCarritoEnLocalStorage() {
 function mostrarCarrito() {
     const stickyCart2 = document.querySelector('.sticky-cart2');
     stickyCart2.style.display = 'flex';
+
+      // Obtener el elemento .cart-icon-container
+    const cartIcon = document.querySelector('.cart-icon-container');
+cartIcon.style.display = 'flex';
 }
 
 // Obtener todos los elementos con la clase "agregar-carrito" y agregar un evento de clic a cada uno
@@ -1996,6 +2000,11 @@ whatsappButtons.forEach(function(whatsappButton) {
 
     // Cambiar el estilo de .sticky-cart2 a flex
     stickyCart2.style.display = 'flex';
+
+  
+      
+    // Cambiar el estilo de .cart-icon-container a flex
+    cartIcon.style.display = 'flex';
 
     // Obtener el elemento .sticky-cart dentro de .sticky-cart2
     const stickyCart = stickyCart2.querySelector('.sticky-cart');
