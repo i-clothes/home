@@ -396,7 +396,7 @@
         .cart-icon-container {
           position: fixed;
           bottom: 10px;
-          right: 0;
+          right: 10px;
         z-index: 3;
 display:none;
         }
@@ -407,7 +407,7 @@ display:none;
 .cart-icon-container i {
     background: black;
     color: white;
-    font-size: 38px;
+    font-size: 30px;
     padding: 15px;
     border-radius: 50%;
 }
@@ -1314,8 +1314,8 @@ z-index: 5;
         </div>
     </div>
     
-    <div class="cart-icon-container">
-         <i class="fas fa-shopping-cart"></i>
+    <div class="cart-icon-container" id="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
 </div>
 
    <div class="sticky-cart2">
@@ -2082,6 +2082,19 @@ window.addEventListener('resize', checkVisibility); // Escuchar cambios en el ta
 checkVisibility();
 
 
+// Obtén una referencia al elemento cart-icon
+    var cartIcon = document.getElementById('cart-icon');
+
+    // Agrega un event listener al elemento cart-icon para alternar la visibilidad de sticky-cart2
+    cartIcon.addEventListener('click', function () {
+        var stickyCart2 = document.querySelector('.sticky-cart2');
+
+        if (stickyCart2.style.display === 'flex') {
+            stickyCart2.style.display = 'none';
+        } else {
+            stickyCart2.style.display = 'flex';
+        }
+    });
 
     </script>
 </body>
