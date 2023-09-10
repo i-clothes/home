@@ -1839,6 +1839,18 @@ addToCartButtons.forEach(button => {
   });
 });
 
+// Define la función cambiarTextoCarrito
+function cambiarTextoCarrito(event) {
+  // Cambia el texto de .carritoAviso a "Agregar al Carrito" cuando se hace clic en un .complemento
+  const carritoAviso = event.currentTarget.closest('.product').querySelector('.carritoAviso');
+  carritoAviso.textContent = 'Agregar al Carrito';
+}
+
+// Agregar evento de clic a todos los elementos .complemento
+const complementos = document.querySelectorAll('.complemento');
+complementos.forEach(complemento => {
+  complemento.addEventListener('click', cambiarTextoCarrito);
+});
 
 
         
