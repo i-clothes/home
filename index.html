@@ -1968,11 +1968,12 @@ function actualizarCarrito() {
 }
 
 
-// Agrega un evento de clic a los botones .restar-cantidad
-document.querySelectorAll('.restar-cantidad').forEach(button => {
-  button.addEventListener('click', () => {
+// Agrega un evento de clic a los botones .opciones-carrito
+document.querySelectorAll('.opciones-carrito').forEach(opcionesCarrito => {
+  const restarCantidadButton = opcionesCarrito.querySelector('.restar-cantidad');
+  restarCantidadButton.addEventListener('click', () => {
     // Encuentra el elemento .product-add correspondiente
-    const productAdd = button.closest('.product-add');
+    const productAdd = opcionesCarrito.closest('.product-add');
 
     // Obtiene el ID del producto desde los atributos de datos
     const productId = productAdd.dataset.id;
@@ -1999,6 +2000,7 @@ document.querySelectorAll('.restar-cantidad').forEach(button => {
     actualizarCarrito();
   });
 });
+
 
 
 
