@@ -457,7 +457,11 @@ display:none;
 
 .product-add .nombre-producto {
   font-weight: bold;
-  flex-grow: 1; /* Hace que ocupe todo el espacio restante */
+ padding-right: 5px;
+}
+
+.product-add .talla-seleccionada {
+  font-weight: bold;
 }
 
 .product-add .precio-producto {
@@ -1905,11 +1909,11 @@ function cambiarTextoCarrito(carritoAviso, complementos) {
 const carrito = [];
 
 function agregarAlCarrito(producto) {
-  // Verificar si el producto ya está en el carrito
-  const productoExistente = carrito.find(item => item.name === producto.name);
+  // Verificar si hay un producto similar en el carrito (mismo nombre y talla)
+  const productoExistente = carrito.find(item => item.name === producto.name && item.talla === producto.talla);
 
   if (productoExistente) {
-    // Si el producto ya existe, incrementa el contador
+    // Si el producto similar ya existe, incrementa el contador
     productoExistente.cantidad++;
   } else {
     // Si el producto no existe, agrégalo al carrito
@@ -1919,6 +1923,7 @@ function agregarAlCarrito(producto) {
   // Actualiza la visualización del carrito en la página
   actualizarCarrito();
 }
+
 
 
 // Actualiza la visualización del carrito en la página
@@ -1941,7 +1946,7 @@ function actualizarCarrito() {
     productAdd.innerHTML = `
       <img src="${item.imageSrc}" alt="Producto añadido al carrito">
       <span class="nombre-producto">${item.name}</span>
-      <span class="talla-seleccionada">${item.talla}</span>
+      <span class="talla-seleccionada">(${item.talla})</span>
       <p class="precio-producto">${item.price}</p>
       <span class="cantidad-producto">${item.cantidad}</span>
       <div class="opciones-carrito">
