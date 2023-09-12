@@ -1860,19 +1860,26 @@ complementos.forEach(complemento => {
   });
 });
 
-// Selecciona todos los botones "Añadir al carrito"
-const addToCartButtons = document.querySelectorAll('.agregar-carrito');
+        
 
 // Agrega un evento de clic a cada botón
 addToCartButtons.forEach(button => {
   button.addEventListener('click', () => {
     const productContainer = button.closest('.product'); // Encuentra el contenedor del producto
-    const productName = productContainer.querySelector('h3').textContent; // Obtiene el nombre del producto
-    const productPrice = productContainer.querySelector('.precio').textContent; // Obtiene el precio del producto
-    const productImageSrc = productContainer.querySelector('img').src; // Obtiene la fuente de la imagen del producto
 
-    // Obtiene el data-id del producto
+    // Obtiene los atributos data-
     const dataId = productContainer.getAttribute('data-id');
+    const dataCategoria = productContainer.getAttribute('data-categoria');
+    const dataSeccion = productContainer.getAttribute('data-seccion');
+
+    // Obtiene el nombre del producto
+    const productName = productContainer.querySelector('h3').textContent;
+
+    // Obtiene el precio del producto
+    const productPrice = productContainer.querySelector('.precio').textContent;
+
+    // Obtiene la fuente de la imagen del producto
+    const productImageSrc = productContainer.querySelector('img').src;
 
     // Obtiene la talla seleccionada
     const selectedSize = productContainer.querySelector('.activar-seleccionado');
@@ -1886,6 +1893,8 @@ addToCartButtons.forEach(button => {
         price: productPrice,
         imageSrc: productImageSrc,
         talla: talla,
+        categoria: dataCategoria, // Agrega el atributo data-categoria
+        seccion: dataSeccion, // Agrega el atributo data-seccion
       };
 
       // Llama a la función para agregar el producto al carrito
@@ -1901,6 +1910,7 @@ addToCartButtons.forEach(button => {
     }
   });
 });
+
 
 // Carrito de compras
 const carrito = [];
