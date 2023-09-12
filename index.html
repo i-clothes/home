@@ -1979,15 +1979,17 @@ document.querySelectorAll('.restar-cantidad').forEach(button => {
 
     // Obtiene el valor actual de cantidad-producto como número
     let cantidad = parseInt(cantidadProductoSpan.textContent);
-
+    console.log(cantidad);
     // Verifica si la cantidad es mayor que 1 antes de restar
     if (cantidad > 1) {
       cantidad--;
 
       // Actualiza el contenido del elemento <span class="cantidad-producto">
       cantidadProductoSpan.textContent = cantidad;
+
+      console.log(`Se redujo la cantidad del producto con ID ${productAdd.dataset.id} a ${cantidad}.`);
     } else {
-      // Si la cantidad es 1 o menos, elimina el producto del carrito
+      // Si la cantidad es 1 o menos, eliminará el producto del carrito
       const productId = productAdd.dataset.id;
       const productoEnCarritoIndex = carrito.findIndex(item => item.id === productId);
 
@@ -1995,6 +1997,8 @@ document.querySelectorAll('.restar-cantidad').forEach(button => {
         carrito.splice(productoEnCarritoIndex, 1);
         // Elimina el elemento .product-add del carrito
         productAdd.remove();
+
+        console.log(`Se eliminó el producto con ID ${productId} del carrito.`);
       }
     }
 
@@ -2002,6 +2006,7 @@ document.querySelectorAll('.restar-cantidad').forEach(button => {
     actualizarCarrito();
   });
 });
+
 
 
 
