@@ -1811,7 +1811,7 @@ const floatingDiv = document.querySelector('.floating-div');
 
 
 
-        
+  // START CARRITO      
 
         
 
@@ -1844,6 +1844,13 @@ function cambiarTextoCarrito(carritoAviso, complementos) {
   } else {
     carritoAviso.textContent = 'Selecciona la Talla';
     carritoAviso.style.color = 'orange'; // Cambia el color del texto
+    // Aplicar el efecto de parpadeo en .complementos
+    complementos.forEach(complemento => {
+      complemento.style.boxShadow = '0px 0px 10px 6px orange';
+      setTimeout(() => {
+        complemento.style.boxShadow = 'none';
+      }, 500); // Duración del parpadeo en milisegundos
+    });
   }
 }
 
@@ -1916,7 +1923,7 @@ function agregarAlCarrito(producto) {
   actualizarCarrito();
 }
 
-// Actualiza la visualización del carrito en la página
+// Función para actualizar la visualización del carrito en la página
 function actualizarCarrito() {
   const carritoContainer = document.querySelector('.sticky-cart');
 
@@ -1949,6 +1956,9 @@ function actualizarCarrito() {
 }
 
 
+
+
+// END CARRITO
 
 
 
