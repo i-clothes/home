@@ -1824,33 +1824,29 @@ function handleComplementoClick(complemento) {
   // Obtiene todos los elementos .complemento dentro de este producto
   const complementos = productContainer.querySelectorAll('.complemento');
 
-  // Remueve la clase activar-seleccionado de todos los .complemento en este producto
-  complementos.forEach(c => c.classList.remove('activar-seleccionado'));
+  // Verifica si al menos un elemento .complemento tiene la clase .activar-seleccionado
+  const tallaSeleccionada = [...complementos].some(complemento => complemento.classList.contains('activar-seleccionado'));
 
-  // Agrega la clase activar-seleccionado al .complemento clicado
-  complemento.classList.add('activar-seleccionado');
-
-  // Llama a la función para cambiar el texto de carritoAviso
-  cambiarTextoCarrito(carritoAviso, complementos);
-}
-
-// Función para cambiar el texto de carritoAviso según la selección de talla
-function cambiarTextoCarrito(carritoAviso, complementos) {
-  const seleccionados = [...complementos].filter(complemento => complemento.classList.contains('activar-seleccionado'));
-
-  if (seleccionados.length > 0) {
-    carritoAviso.textContent = 'Agregar al Carrito';
-    carritoAviso.style.color = 'black'; // Restaura el color del texto
-  } else {
-    carritoAviso.textContent = 'Selecciona la Talla';
-    carritoAviso.style.color = 'orange'; // Cambia el color del texto
-    // Aplicar el efecto de parpadeo en .complementos
+  if (!tallaSeleccionada) {
+    // Si no se ha seleccionado una talla, muestra el efecto de parpadeo en .complementos
     complementos.forEach(complemento => {
       complemento.style.boxShadow = '0px 0px 10px 6px orange';
       setTimeout(() => {
         complemento.style.boxShadow = 'none';
       }, 500); // Duración del parpadeo en milisegundos
+
+      // Cambia el texto de carritoAviso a "Selecciona la Talla"
+      carritoAviso.textContent = 'Selecciona la Talla';
     });
+  } else {
+    // Remueve la clase activar-seleccionado de todos los .complemento en este producto
+    complementos.forEach(c => c.classList.remove('activar-seleccionado'));
+
+    // Agrega la clase activar-seleccionado al .complemento clicado
+    complemento.classList.add('activar-seleccionado');
+
+    // Cambia el texto de carritoAviso a "Agregar al Carrito"
+    carritoAviso.textContent = 'Agregar al Carrito';
   }
 }
 
