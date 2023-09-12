@@ -1894,19 +1894,19 @@ addToCartButtons.forEach(button => {
 const carrito = [];
 
 function agregarAlCarrito(producto) {
-    // Busca un producto existente en el carrito por su ID único
-    const productoExistente = carrito.find(item => item.id === producto.id);
+  // Verificar si el producto ya está en el carrito
+  const productoExistente = carrito.find(item => item.name === producto.name);
 
-    if (productoExistente) {
-        // Si el producto ya existe, incrementa la cantidad
-        productoExistente.cantidad++;
-    } else {
-        // Si el producto no existe, agrégalo al carrito
-        carrito.push({ ...producto, cantidad: 1 });
-    }
+  if (productoExistente) {
+    // Si el producto ya existe, incrementa el contador
+    productoExistente.cantidad++;
+  } else {
+    // Si el producto no existe, agrégalo al carrito
+    carrito.push({ ...producto, cantidad: 1 });
+  }
 
-    // Actualiza la visualización del carrito en la página
-    actualizarCarrito();
+  // Actualiza la visualización del carrito en la página
+  actualizarCarrito();
 }
 
 
