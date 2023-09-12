@@ -1968,31 +1968,33 @@ function actualizarCarrito() {
 }
 
 
-// Agrega un evento de clic a los botones .opciones-carrito
-document.querySelectorAll('.opciones-carrito').forEach(opcionesCarrito => {
-  const restarCantidadButton = opcionesCarrito.querySelector('.restar-cantidad');
-  restarCantidadButton.addEventListener('click', () => {
+// Agrega un evento de clic a los botones .restar-cantidad
+document.querySelectorAll('.restar-cantidad').forEach(button => {
+  button.addEventListener('click', () => {
     // Encuentra el elemento .product-add correspondiente
-    const productAdd = opcionesCarrito.closest('.product-add');
+    const productAdd = button.closest('.product-add');
 
-    // Obtiene el ID del producto desde los atributos de datos
-    const productId = productAdd.dataset.id;
+    // Obtiene el elemento <span class="cantidad-producto">
+    const cantidadProductoSpan = productAdd.querySelector('.cantidad-producto');
 
-    // Busca el producto en el carrito por su ID
-    const productoEnCarrito = carrito.find(item => item.id === productId);
+    // Obtiene el valor actual de cantidad-producto como número
+    let cantidad = parseInt(cantidadProductoSpan.textContent);
 
-    if (productoEnCarrito) {
-      // Reduce la cantidad en 1
-      productoEnCarrito.cantidad--;
+    // Verifica si la cantidad es mayor que 1 antes de restar
+    if (cantidad > 1) {
+      cantidad--;
 
-      // Si la cantidad llega a 0 o menos, elimina el producto del carrito
-      if (productoEnCarrito.cantidad <= 0) {
-        carrito.splice(carrito.indexOf(productoEnCarrito), 1);
+      // Actualiza el contenido del elemento <span class="cantidad-producto">
+      cantidadProductoSpan.textContent = cantidad;
+    } else {
+      // Si la cantidad es 1 o menos, elimina el producto del carrito
+      const productId = productAdd.dataset.id;
+      const productoEnCarritoIndex = carrito.findIndex(item => item.id === productId);
+
+      if (productoEnCarritoIndex !== -1) {
+        carrito.splice(productoEnCarritoIndex, 1);
         // Elimina el elemento .product-add del carrito
         productAdd.remove();
-      } else {
-        // Actualiza la cantidad en la vista
-        productAdd.querySelector('.cantidad-producto').textContent = productoEnCarrito.cantidad;
       }
     }
 
@@ -2000,6 +2002,7 @@ document.querySelectorAll('.opciones-carrito').forEach(opcionesCarrito => {
     actualizarCarrito();
   });
 });
+
 
 
 
