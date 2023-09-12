@@ -1141,7 +1141,7 @@ z-index: 5;
                         </div>
                 </div>
             </div>
-            <div class="product">
+            <div class="product" data-id="3">
             <img src="luxury8.png" alt="i-Clothes Luxury II">
             <h3>i-Clothes Luxury II</h3>
             <p>Diseños únicos para inspirar tu jornada emprendedora.</p>
@@ -1163,7 +1163,7 @@ z-index: 5;
 
                         <div class="product-options">
                                 <div class="capsula">
-                                    <div class="option agregar-carrito"> 
+                                    <div class="option agregar-carrito"  data-id="3"> 
                                     <i class="fas fa-shopping-cart"></i><span class="carritoAviso">Selecciona la Talla</span> 
                                     </div>
                                             <div class="capsula2">
@@ -1190,7 +1190,7 @@ z-index: 5;
                                 </div>
                         </div>
             </div>
-            <div class="product">
+            <div class="product"  data-id="4">
   <img src="luxury15.png" alt="i-Clothes Luxury III">
   <h3>i-Clothes Luxury III</h3>
   <p>Diseños únicos para inspirar tu jornada emprendedora.</p>
@@ -1212,7 +1212,7 @@ z-index: 5;
 
                   <div class="product-options">
                         <div class="capsula">
-                            <div class="option agregar-carrito"> 
+                            <div class="option agregar-carrito" data-id="4"> 
                               <i class="fas fa-shopping-cart"></i><span class="carritoAviso">Selecciona la Talla</span> 
                             </div>
                                    <div class="capsula2">
@@ -1843,6 +1843,9 @@ complementos.forEach(complemento => {
   });
 });
 
+
+        
+
 // Selecciona todos los botones "Añadir al carrito"
 const addToCartButtons = document.querySelectorAll('.agregar-carrito');
 
@@ -1854,30 +1857,38 @@ addToCartButtons.forEach(button => {
     const productPrice = productContainer.querySelector('.precio').textContent; // Obtiene el precio del producto
     const productImageSrc = productContainer.querySelector('img').src; // Obtiene la fuente de la imagen del producto
 
-    // Obtiene el elemento .carritoAviso específico para este producto
-    const carritoAviso = productContainer.querySelector('.carritoAviso');
+    // Obtiene el data-id del producto
+    const dataId = productContainer.getAttribute('data-id');
 
-    // Obtiene todos los elementos .complemento dentro de este producto
-    const complementos = productContainer.querySelectorAll('.complemento');
+    // Obtiene la talla seleccionada
+    const selectedSize = productContainer.querySelector('.activar-seleccionado');
+    const talla = selectedSize ? selectedSize.textContent : '';
 
-    // Llama a la función para cambiar el texto de carritoAviso
-    cambiarTextoCarrito(carritoAviso, complementos);
-
-    // Verifica si al menos un elemento .complemento tiene la clase .activar-seleccionado
-    const tallaSeleccionada = [...complementos].some(complemento => complemento.classList.contains('activar-seleccionado'));
-
-    if (tallaSeleccionada) {
+    if (talla) {
       // Si se ha seleccionado una talla, agrega el producto al carrito
       const product = {
+        id: dataId,
         name: productName,
         price: productPrice,
         imageSrc: productImageSrc,
+        talla: talla, // Agrega la talla al objeto del producto
       };
 
       agregarAlCarrito(product);
     }
   });
 });
+
+// Función para cambiar el texto de carritoAviso según la selección de talla
+function cambiarTextoCarrito(carritoAviso, complementos) {
+  const seleccionados = [...complementos].filter(complemento => complemento.classList.contains('activar-seleccionado'));
+
+  if (seleccionados.length > 0) {
+    carritoAviso.textContent = 'Añadido al carrito';
+  } else {
+    carritoAviso.textContent = 'Selecciona la Talla';
+  }
+}
 
 
 
@@ -1922,10 +1933,15 @@ function actualizarCarrito() {
     const productAdd = document.createElement('div');
     productAdd.classList.add('product-add');
 
+    // Agrega el data-id y la talla seleccionada al elemento .product-add
+    productAdd.dataset.id = item.id;
+    productAdd.dataset.talla = item.talla;
+
     // Configura la estructura del producto en el carrito
     productAdd.innerHTML = `
       <img src="${item.imageSrc}" alt="Producto añadido al carrito">
       <span class="nombre-producto">${item.name}</span>
+      <span class="talla-seleccionada">${item.talla}</span>
       <p class="precio-producto">${item.price}</p>
       <span class="cantidad-producto">${item.cantidad}</span>
       <div class="opciones-carrito">
@@ -1936,6 +1952,7 @@ function actualizarCarrito() {
     carritoContainer.appendChild(productAdd);
   });
 }
+
 
 
 
