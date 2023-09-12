@@ -462,6 +462,7 @@ display:none;
 
 .product-add .talla-seleccionada {
   font-weight: bold;
+    margin: 5px;
 }
 
 .product-add .precio-producto {
@@ -1884,20 +1885,20 @@ addToCartButtons.forEach(button => {
     const selectedSize = productContainer.querySelector('.activar-seleccionado');
     const talla = selectedSize ? selectedSize.textContent : '';
 
-    if (talla) {
-      // Si se ha seleccionado una talla, agrega el producto al carrito
-      const product = {
-        id: dataId,
-        name: productName,
-        price: productPrice,
-        imageSrc: productImageSrc,
-        talla: talla, // Agrega la talla al objeto del producto
-      };
+    // Agrega la talla al objeto del producto
+    const product = {
+      id: dataId,
+      name: productName,
+      price: productPrice,
+      imageSrc: productImageSrc,
+      talla: talla, // Agrega la talla al objeto del producto
+    };
 
-      agregarAlCarrito(product);
-    }
+    // Llama a la función para agregar el producto al carrito
+    agregarAlCarrito(product);
   });
 });
+
 
 // Función para cambiar el texto de carritoAviso según la selección de talla
 function cambiarTextoCarrito(carritoAviso, complementos) {
