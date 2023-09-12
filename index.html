@@ -1815,28 +1815,6 @@ const floatingDiv = document.querySelector('.floating-div');
 
         
 
-// Función para cambiar el texto de carritoAviso
-function cambiarTextoCarrito(carritoAviso, complementos) {
-  // Verifica si al menos un elemento .complemento tiene la clase .activar-seleccionado
-  const tallaSeleccionada = [...complementos].some(complemento => complemento.classList.contains('activar-seleccionado'));
-
-  if (!tallaSeleccionada) {
-    // Si no se ha seleccionado una talla, muestra el efecto de parpadeo en .complementos
-    complementos.forEach(complemento => {
-      complemento.style.boxShadow = '0px 0px 10px 6px orange';
-      setTimeout(() => {
-        complemento.style.boxShadow = 'none';
-      }, 500); // Duración del parpadeo en milisegundos
-
-      // Cambia el texto de carritoAviso a "Selecciona la Talla"
-      carritoAviso.textContent = 'Selecciona la Talla';
-    });
-  } else {
-    // Si se ha seleccionado una talla, cambia el texto de carritoAviso a "Agregar al Carrito"
-    carritoAviso.textContent = 'Agregar al Carrito';
-  }
-}
-
 // Función para manejar el clic en un .complemento
 function handleComplementoClick(complemento) {
   // Encuentra el contenedor del producto
@@ -1856,6 +1834,19 @@ function handleComplementoClick(complemento) {
   cambiarTextoCarrito(carritoAviso, complementos);
 }
 
+// Función para cambiar el texto de carritoAviso según la selección de talla
+function cambiarTextoCarrito(carritoAviso, complementos) {
+  const seleccionados = [...complementos].filter(complemento => complemento.classList.contains('activar-seleccionado'));
+
+  if (seleccionados.length > 0) {
+    carritoAviso.textContent = 'Agregar al Carrito';
+    carritoAviso.style.color = 'black'; // Restaura el color del texto
+  } else {
+    carritoAviso.textContent = 'Selecciona la Talla';
+    carritoAviso.style.color = 'orange'; // Cambia el color del texto
+  }
+}
+
 // Agregar evento de clic a todos los elementos .complemento
 const complementos = document.querySelectorAll('.complemento');
 complementos.forEach(complemento => {
@@ -1863,9 +1854,6 @@ complementos.forEach(complemento => {
     handleComplementoClick(complemento);
   });
 });
-
-
-        
 
 // Selecciona todos los botones "Añadir al carrito"
 const addToCartButtons = document.querySelectorAll('.agregar-carrito');
@@ -1885,42 +1873,29 @@ addToCartButtons.forEach(button => {
     const selectedSize = productContainer.querySelector('.activar-seleccionado');
     const talla = selectedSize ? selectedSize.textContent : '';
 
-    // Agrega la talla al objeto del producto
-    const product = {
-      id: dataId,
-      name: productName,
-      price: productPrice,
-      imageSrc: productImageSrc,
-      talla: talla, // Agrega la talla al objeto del producto
-    };
+    if (talla && talla !== 'Selecciona la Talla') {
+      // Si se ha seleccionado una talla válida, agrega el producto al carrito
+      const product = {
+        id: dataId,
+        name: productName,
+        price: productPrice,
+        imageSrc: productImageSrc,
+        talla: talla,
+      };
 
-    // Llama a la función para agregar el producto al carrito
-    agregarAlCarrito(product);
+      // Llama a la función para agregar el producto al carrito
+      agregarAlCarrito(product);
+
+      // Muestra el carrito en display: block
+      const stickyCart2 = document.querySelector('.sticky-cart2');
+      stickyCart2.style.display = 'flex';
+
+      // Obtener el elemento .cart-icon-container
+      const cartIcon = document.querySelector('.cart-icon-container');
+      cartIcon.style.display = 'flex';
+    }
   });
 });
-
-
-// Función para cambiar el texto de carritoAviso según la selección de talla
-function cambiarTextoCarrito(carritoAviso, complementos) {
-  const seleccionados = [...complementos].filter(complemento => complemento.classList.contains('activar-seleccionado'));
-
-  if (seleccionados.length > 0) {
-    carritoAviso.textContent = 'Añadido al carrito';
-  } else {
-    carritoAviso.textContent = 'Selecciona la Talla';
-  }
-}
-
-
-
-
-
-        
-
-
-
-        
-        
 
 // Carrito de compras
 const carrito = [];
@@ -1940,8 +1915,6 @@ function agregarAlCarrito(producto) {
   // Actualiza la visualización del carrito en la página
   actualizarCarrito();
 }
-
-
 
 // Actualiza la visualización del carrito en la página
 function actualizarCarrito() {
@@ -1974,6 +1947,7 @@ function actualizarCarrito() {
     carritoContainer.appendChild(productAdd);
   });
 }
+
 
 
 
@@ -2019,27 +1993,7 @@ function guardarCarritoEnLocalStorage() {
 }
 
 
-// Función para mostrar el carrito al hacer clic en "agregar-carrito"
-function mostrarCarrito() {
-  // Obtener el elemento .agregar-carrito .carritoAviso
-  const carritoAviso = this.querySelector('.carritoAviso');
 
-  // Verificar si el texto es "Agregar al Carrito"
-  if (carritoAviso.textContent.trim() === 'Agregar al Carrito') {
-    const stickyCart2 = document.querySelector('.sticky-cart2');
-    stickyCart2.style.display = 'flex';
-
-    // Obtener el elemento .cart-icon-container
-    const cartIcon = document.querySelector('.cart-icon-container');
-    cartIcon.style.display = 'flex';
-  }
-}
-
-// Obtener todos los elementos con la clase "agregar-carrito" y agregar un evento de clic a cada uno
-const agregarCarritoButtons = document.querySelectorAll('.agregar-carrito');
-agregarCarritoButtons.forEach(function (boton) {
-  boton.addEventListener('click', mostrarCarrito);
-});
 
 
 
@@ -2058,6 +2012,8 @@ togglePopupTallasButtons.forEach(function(button) {
        
     });
 });
+
+
 
 
 // Obtener el elemento del botón de cierre (×)
