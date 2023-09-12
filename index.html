@@ -1936,18 +1936,19 @@ function actualizarCarrito() {
     // Agrega el data-id y la talla seleccionada al elemento .product-add
     productAdd.dataset.id = item.id;
     productAdd.dataset.talla = item.talla;
+    productAdd.dataset.seccion = item.seccion;
 
     // Configura la estructura del producto en el carrito
-    productAdd.innerHTML = `
-      <img src="${item.imageSrc}" alt="Producto añadido al carrito">
-      <span class="nombre-producto">${item.name}</span>
-      <span class="talla-seleccionada">${item.talla}</span>
-      <p class="precio-producto">${item.price}</p>
-      <span class="cantidad-producto">${item.cantidad}</span>
-      <div class="opciones-carrito">
-        <i class="fas fa-trash-alt restar-cantidad"></i>
-      </div>
-    `;
+   productAdd.innerHTML = `
+  <img src="${item.imageSrc}" alt="Producto añadido al carrito">
+  <span class="nombre-producto" data-categoria="${item.categoria}" data-id="${item.id}" data-seccion="${item.seccion}">${item.name}</span>
+  <span class="talla-seleccionada">${item.talla}</span>
+  <p class="precio-producto">${item.price}</p>
+  <span class="cantidad-producto">${item.cantidad}</span>
+  <div class="opciones-carrito">
+    <i class="fas fa-trash-alt restar-cantidad"></i>
+  </div>
+`;
 
     carritoContainer.appendChild(productAdd);
   });
