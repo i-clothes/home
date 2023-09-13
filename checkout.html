@@ -886,39 +886,25 @@ if (reservaData && reservaData.length > 0) {
       const nombreElement = document.createElement('h3');
       nombreElement.textContent = item.nombre;
 
-      // Crear el elemento de precio tachado en rojo
       const precioElement = document.createElement('span');
       precioElement.classList.add('precio');
-      precioElement.style.textDecoration = 'line-through';
-      precioElement.style.color = 'red';
       precioElement.textContent = item.precio;
 
       // Calcular el precio con descuento (20% de descuento)
       const precioDescuento = (parseFloat(item.precio.replace('€', '')) * 0.8).toFixed(2);
 
-      // Crear el elemento de precio con descuento en verde
       const ofertaElement = document.createElement('span');
       ofertaElement.classList.add('oferta');
       ofertaElement.style.color = 'rgb(102, 205, 84)';
       ofertaElement.textContent = precioDescuento + '€';
 
-      // Calcular la cantidad descontada
-      const cantidadDescontada = (parseFloat(item.precio.replace('€', '')) - parseFloat(precioDescuento)).toFixed(2);
-
-      // Crear el elemento de detalle de oferta
-      const detalleOfertaElement = document.createElement('span');
+      const detalleOfertaElement = document.createElement('p');
       detalleOfertaElement.classList.add('detalle-oferta');
-      detalleOfertaElement.textContent = 'Te has ahorrado ' + cantidadDescontada + '€';
-
-      const cantidadElement = document.createElement('span');
-      cantidadElement.classList.add('cantidad');
-      cantidadElement.textContent = item.cantidad;
+      detalleOfertaElement.innerHTML = 'Añade otra por <span class="oferta" style="color: rgb(102, 205, 84);">' + precioDescuento + '€</span>';
 
       reservaOption.appendChild(nombreElement);
       reservaOption.appendChild(precioElement);
-      reservaOption.appendChild(ofertaElement);
       reservaOption.appendChild(detalleOfertaElement);
-      reservaOption.appendChild(cantidadElement);
 
       container.appendChild(reservaOption);
     });
@@ -927,6 +913,7 @@ if (reservaData && reservaData.length > 0) {
   // Manejar el caso en el que no hay datos en el localStorage
   console.log('No hay datos en el localStorage');
 }
+
 
 
 
