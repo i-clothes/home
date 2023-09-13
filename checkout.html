@@ -528,19 +528,19 @@ font-weight: bold;
   flex-direction: column;
 }
 
-.seccion-descuento {
+.descuento {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
 }
 
-.descuento {
+.descuento input {
   width: 100px;
   padding: 5px;
   border: 1px solid #ccc;
 }
 
-.aplicar-descuento {
+.descuento button {
   padding: 5px;
   background-color: #000;
   color: #fff;
@@ -548,16 +548,6 @@ font-weight: bold;
   cursor: pointer;
 }
 
-.total {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-}
-
-.total p {
-  margin-bottom: 0;
-}
 
     </style>
 </head>
@@ -610,15 +600,20 @@ font-weight: bold;
 </div>
 
 <section class="reserva-section">
-        <div class="desplegable">
+       <div class="desplegable">
               <div class="encabezado">
                 <p>Mostrar resumen del pedido</p>
                 <i class="fas fa-arrow-down"></i>
               </div>
             <div class="contenido">
               <div class="contenedor-productos"> </div>
+              <div class="descuento">
+                <input type="number" placeholder="Introduce el descuento" class="descuento">
+                <button class="aplicar-descuento">Aplicar descuento</button>
+              </div>
             </div>
     </div>
+
 <div class="container" id="info">
   <h2>Información de Contacto</h2>
   <form id="info-form">
