@@ -385,23 +385,79 @@ width: 90%;
     text-align:center;
 }
 
-        .desplegable {
+    .desplegable {
   border: 1px solid #ccc;
-border-radius: 10px 10px 0 0;
+  margin: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
 }
 
 .encabezado {
-  background-color: #F1F4F8;
+  background-color: #333;
+  color: #fff;
   padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
+}
+
+.encabezado i {
+  font-size: 18px;
 }
 
 .contenido {
-  padding: 10px;
-  display: none;
+  margin-top: 10px;
+}
+
+.contenedor-productos {
+  /* Estilos para el contenido de productos */
+}
+
+.descuento {
+  margin-top: 20px;
+}
+
+input[type="text"] {
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+button.aplicar-descuento {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button.aplicar-descuento:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para el subtotal */
+.subtotal {
+  margin-top: 20px;
+}
+
+.subtotal p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.subtotal-amount {
+  font-weight: bold;
+  color: #333;
+}
+
+.iva {
+  font-size: 12px;
+  color: gray;
+}
+
+.envio {
+  color: green;
+  font-weight: bold;
 }
 
 .regalo{
@@ -523,30 +579,6 @@ font-weight: bold;
 }
 
 
-.contenido {
-  display: flex;
-  flex-direction: column;
-}
-
-.descuento {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.descuento input {
-  width: 100px;
-  padding: 5px;
-  border: 1px solid #ccc;
-}
-
-.descuento button {
-  padding: 5px;
-  background-color: #000;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
 
 
     </style>
@@ -605,14 +637,20 @@ font-weight: bold;
                 <p>Mostrar resumen del pedido</p>
                 <i class="fas fa-arrow-down"></i>
               </div>
-            <div class="contenido">
-              <div class="contenedor-productos"> </div>
-              <div class="descuento">
-                <input type="number" placeholder="Introduce el descuento" class="descuento">
-                <button class="aplicar-descuento">Aplicar descuento</button>
+              <div class="contenido">
+                <div class="contenedor-productos"></div>
               </div>
-            </div>
+              <div class="descuento">
+                <input type="text" placeholder="Ingresa el código de descuento">
+                <button class="aplicar-descuento">Aplicar Descuento</button>
+              </div>
+           <div class="subtotal">
+      <p>Subtotal: <span class="subtotal-amount">0€</span></p>
+      <small class="iva">IVA incluido</small>
+      <p>Envío: <span class="envio">Gratis</span></p>
     </div>
+     </div>
+
 
 <div class="container" id="info">
   <h2>Información de Contacto</h2>
@@ -741,6 +779,46 @@ font-weight: bold;
 
 <script src="https://js.stripe.com/v3/"></script>
     <script>
+
+        // Obtener todos los elementos con clase "precio"
+const precios = document.querySelectorAll('.precio');
+const descuentoInput = document.querySelector('.descuento');
+const subtotalAmount = document.querySelector('.subtotal-amount');
+const envio = document.querySelector('.envio');
+
+// Calcular el subtotal
+function calcularSubtotal() {
+  let total = 0;
+  precios.forEach((precioElement) => {
+    const precio = parseFloat(precioElement.textContent.replace('€', ''));
+    total += precio;
+  });
+
+  // Aplicar descuento si se ingresó uno
+  const descuento = parseFloat(descuentoInput.value);
+  if (!isNaN(descuento)) {
+    total -= descuento;
+  }
+
+  subtotalAmount.textContent = total.toFixed(2) + '€';
+
+  // Verificar si el total supera los 50€ y mostrar "Envío gratis"
+  if (total > 50) {
+    envio.textContent = 'Envío: Gratis';
+  } else {
+    envio.textContent = 'Envío: No gratis';
+  }
+}
+
+// Escuchar cambios en el input de descuento
+descuentoInput.addEventListener('input', calcularSubtotal);
+
+// Calcular el subtotal inicial
+calcularSubtotal();
+
+        
+
+
         const storyBubbles = document.querySelectorAll(".story-bubble");
         const expandedStory = document.querySelector(".expanded-story");
         const expandedImg = expandedStory.querySelector("img");
