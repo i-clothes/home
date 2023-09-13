@@ -2275,7 +2275,7 @@ whatsappButtons.forEach(function(whatsappButton) {
 
 
 
-        document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function () {
   // Verificar si hay datos en el Local Storage
   const carritoEnLocalStorage = localStorage.getItem('carrito');
 
@@ -2291,7 +2291,7 @@ whatsappButtons.forEach(function(whatsappButton) {
 
     // Obtener el elemento .cart-icon-container
     const cartIcon = document.querySelector('.cart-icon-container');
-      
+
     // Cambiar el estilo de .cart-icon-container a flex
     cartIcon.style.display = 'flex';
 
@@ -2302,6 +2302,10 @@ whatsappButtons.forEach(function(whatsappButton) {
     carrito.forEach(producto => {
       const productAdd = document.createElement('div');
       productAdd.classList.add('product-add');
+      productAdd.setAttribute('data-id', producto.id); // Añadir el atributo data-id
+      productAdd.setAttribute('data-talla', producto.talla); // Añadir el atributo data-talla
+      productAdd.setAttribute('data-seccion', producto.seccion); // Añadir el atributo data-seccion
+      productAdd.setAttribute('data-categoria', producto.categoria); // Añadir el atributo data-categoria
 
       const imagen = document.createElement('img');
       imagen.setAttribute('src', producto.imagen);
@@ -2310,6 +2314,10 @@ whatsappButtons.forEach(function(whatsappButton) {
       const nombreProducto = document.createElement('span');
       nombreProducto.classList.add('nombre-producto');
       nombreProducto.textContent = producto.nombre;
+
+      const tallaSeleccionada = document.createElement('span');
+      tallaSeleccionada.classList.add('talla-seleccionada');
+      tallaSeleccionada.textContent = producto.talla;
 
       const precioProducto = document.createElement('p');
       precioProducto.classList.add('precio-producto');
@@ -2320,14 +2328,15 @@ whatsappButtons.forEach(function(whatsappButton) {
       cantidadProducto.textContent = producto.cantidad;
 
       const opcionesCarrito = document.createElement('div');
-      opcionesCarrito.classList.add('opciones-carrito');
+      opcionesCarrito.classList.add('opciones-carrito', 'restar-cantidad');
 
       const eliminarIcon = document.createElement('i');
-      eliminarIcon.classList.add('fas', 'fa-trash-alt', 'restar-cantidad');
+      eliminarIcon.classList.add('fas', 'fa-trash-alt');
 
       // Agregar los elementos al elemento productAdd
       productAdd.appendChild(imagen);
       productAdd.appendChild(nombreProducto);
+      productAdd.appendChild(tallaSeleccionada);
       productAdd.appendChild(precioProducto);
       productAdd.appendChild(cantidadProducto);
       opcionesCarrito.appendChild(eliminarIcon);
