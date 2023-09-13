@@ -1920,10 +1920,10 @@ const carrito = [];
 
 function agregarAlCarrito(producto) {
   // Verificar si hay un producto similar en el carrito (mismo nombre y talla)
-  const productoExistente = carrito.find(item => item.name === producto.name && item.talla === producto.talla);
+  const productoExistente = carrito.find(item => item.nombre === producto.nombre && item.talla === producto.talla);
 
   if (productoExistente) {
-    // Si el producto similar ya existe, incrementa el contador
+    // Si el producto similar ya existe, incrementa el contador de cantidad
     productoExistente.cantidad++;
   } else {
     // Si el producto no existe, agrégalo al carrito
@@ -1933,6 +1933,7 @@ function agregarAlCarrito(producto) {
   // Actualiza la visualización del carrito en la página
   actualizarCarrito();
 }
+
 
 function actualizarCarrito() {
   const carritoContainer = document.querySelector('.sticky-cart');
