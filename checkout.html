@@ -580,6 +580,24 @@ font-weight: bold;
   background-color: #f0f0f0; /* Cambia el color a tu preferencia */
 }
 
+@keyframes parpadeo-naranja {
+  0% {
+    background-color: transparent;
+    color: inherit;
+  }
+  50% {
+    background-color: orange;
+    color: white; /* Cambia el color del texto si es necesario */
+  }
+  100% {
+    background-color: transparent;
+    color: inherit;
+  }
+}
+
+.parpadeo-naranja {
+  animation: parpadeo-naranja 2s;
+}
 
 
 
@@ -837,22 +855,29 @@ reservaOptions.forEach((reservaOption) => {
     // Crear un nuevo elemento .producto
     const nuevoProducto = document.createElement('div');
     nuevoProducto.classList.add('producto');
-    
+
     // Crear elementos dentro de .producto
     const nombreProducto = document.createElement('p');
     nombreProducto.textContent = nombre;
-    
+
     const precioProducto = document.createElement('p');
     precioProducto.classList.add('precio');
     precioProducto.textContent = precioOferta.toFixed(2) + '€';
-    
+
     // Agregar elementos al nuevo .producto
     nuevoProducto.appendChild(nombreProducto);
     nuevoProducto.appendChild(precioProducto);
-    
+
     // Agregar el nuevo .producto al contenedor existente
     const contenedorProductos = document.querySelector('.contenedor-productos');
     contenedorProductos.appendChild(nuevoProducto);
+
+    // Aplicar el efecto de parpadeo naranja
+    nuevoProducto.classList.add('parpadeo-naranja');
+
+    // Cambiar el texto de .detalle-oferta a "¡Añadido!"
+    const detalleOferta = reservaOption.querySelector('.detalle-oferta');
+    detalleOferta.textContent = '¡Añadido!';
   });
 });
 
