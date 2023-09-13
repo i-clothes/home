@@ -1973,7 +1973,7 @@ document.querySelectorAll('.restar-cantidad').forEach(button => {
   button.addEventListener('click', () => {
     // Encuentra el elemento .product-add correspondiente
     const productAdd = button.closest('.product-add');
-
+    console.log(productAdd);
     // Obtiene el elemento <span class="cantidad-producto">
     const cantidadProductoSpan = productAdd.querySelector('.cantidad-producto');
 
@@ -2014,8 +2014,6 @@ document.querySelectorAll('.restar-cantidad').forEach(button => {
 
 
 // END CARRITO
-
-
 
 
 
