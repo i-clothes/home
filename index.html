@@ -1968,44 +1968,6 @@ function actualizarCarrito() {
 }
 
 
-// Agrega un evento de clic a los botones .restar-cantidad
-document.querySelectorAll('.restar-cantidad').forEach(button => {
-  button.addEventListener('click', () => {
-    // Encuentra el elemento .product-add correspondiente
-    const productAdd = button.closest('.product-add');
-    console.log(productAdd);
-    // Obtiene el elemento <span class="cantidad-producto">
-    const cantidadProductoSpan = productAdd.querySelector('.cantidad-producto');
-
-    // Obtiene el valor actual de cantidad-producto como número
-    let cantidad = parseInt(cantidadProductoSpan.textContent);
-    console.log(cantidad);
-    // Verifica si la cantidad es mayor que 1 antes de restar
-    if (cantidad > 1) {
-      cantidad--;
-
-      // Actualiza el contenido del elemento <span class="cantidad-producto">
-      cantidadProductoSpan.textContent = cantidad;
-
-      console.log(`Se redujo la cantidad del producto con ID ${productAdd.dataset.id} a ${cantidad}.`);
-    } else {
-      // Si la cantidad es 1 o menos, eliminará el producto del carrito
-      const productId = productAdd.dataset.id;
-      const productoEnCarritoIndex = carrito.findIndex(item => item.id === productId);
-
-      if (productoEnCarritoIndex !== -1) {
-        carrito.splice(productoEnCarritoIndex, 1);
-        // Elimina el elemento .product-add del carrito
-        productAdd.remove();
-
-        console.log(`Se eliminó el producto con ID ${productId} del carrito.`);
-      }
-    }
-
-    // Actualiza el carrito
-    actualizarCarrito();
-  });
-});
 
 
 
@@ -2038,6 +2000,10 @@ function guardarCarritoEnLocalStorage() {
     const precioProducto = productElement.querySelector('.precio-producto').textContent;
     const cantidadProducto = productElement.querySelector('.cantidad-producto').textContent;
     const imagenProducto = productElement.querySelector('img').getAttribute('src'); // Obtiene la URL de la imagen
+    const idProducto = productElement.dataset.id; // Obtiene el valor de data-id
+    const tallaProducto = productElement.dataset.talla; // Obtiene el valor de data-talla
+    const seccionProducto = productElement.dataset.seccion; // Obtiene el valor de data-seccion
+    const categoriaProducto = productElement.dataset.categoria; // Obtiene el valor de data-categoria
 
     // Agrega los datos del producto al array del carrito
     carrito.push({
@@ -2045,6 +2011,10 @@ function guardarCarritoEnLocalStorage() {
       precio: precioProducto,
       cantidad: cantidadProducto,
       imagen: imagenProducto, // Agrega el nombre de la imagen
+      id: idProducto, // Agrega data-id
+      talla: tallaProducto, // Agrega data-talla
+      seccion: seccionProducto, // Agrega data-seccion
+      categoria: categoriaProducto, // Agrega data-categoria
     });
   });
 
@@ -2054,6 +2024,7 @@ function guardarCarritoEnLocalStorage() {
   // Redirige al usuario al probador (cambia la URL a tu página deseada)
   window.location.href = 'checkout.html';
 }
+
 
 
 
