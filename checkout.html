@@ -824,6 +824,37 @@ calcularSubtotal();
 });
     
 
+// Obtener todos los elementos .reserva-option
+const reservaOptions = document.querySelectorAll('.reserva-option');
+
+// Agregar un controlador de eventos de clic a cada .reserva-option
+reservaOptions.forEach((reservaOption) => {
+  reservaOption.addEventListener('click', () => {
+    // Obtener los datos de .reserva-option
+    const nombre = reservaOption.querySelector('h3').textContent;
+    const precioOferta = parseFloat(reservaOption.querySelector('.oferta2').textContent.replace('€', ''));
+
+    // Crear un nuevo elemento .producto
+    const nuevoProducto = document.createElement('div');
+    nuevoProducto.classList.add('producto');
+    
+    // Crear elementos dentro de .producto
+    const nombreProducto = document.createElement('p');
+    nombreProducto.textContent = nombre;
+    
+    const precioProducto = document.createElement('p');
+    precioProducto.classList.add('precio');
+    precioProducto.textContent = precioOferta.toFixed(2) + '€';
+    
+    // Agregar elementos al nuevo .producto
+    nuevoProducto.appendChild(nombreProducto);
+    nuevoProducto.appendChild(precioProducto);
+    
+    // Agregar el nuevo .producto al contenedor existente
+    const contenedorProductos = document.querySelector('.contenedor-productos');
+    contenedorProductos.appendChild(nuevoProducto);
+  });
+});
 
         
 
