@@ -780,11 +780,11 @@ font-weight: bold;
 <script src="https://js.stripe.com/v3/"></script>
     <script>
 
-        // Obtener todos los elementos con clase "precio"
+       // Obtener todos los elementos con clase "precio"
 const precios = document.querySelectorAll('.precio');
-const descuentoInput = document.querySelector('.descuento');
+const descuentoInput = document.querySelector('.descuento input');
 const subtotalAmount = document.querySelector('.subtotal-amount');
-const envio = document.querySelector('.envio');
+const envio = document.querySelector('.envio span');
 
 // Calcular el subtotal
 function calcularSubtotal() {
@@ -815,6 +815,7 @@ descuentoInput.addEventListener('input', calcularSubtotal);
 
 // Calcular el subtotal inicial
 calcularSubtotal();
+
 
         
 
