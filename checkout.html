@@ -619,20 +619,6 @@ font-weight: bold;
   <div class="contenedor-productos">
      
 </div>
-       <div class="seccion-descuento">
-        <input type="number" placeholder="Introduce el descuento" class="descuento">
-        <button class="aplicar-descuento">Aplicar descuento</button>
-      </div>
-         <div class="total">
-            <p>Subtotal</p>
-            <p class="subtotal">{{subtotal}}</p>
-            <p>Envíos</p>
-            <p>Calculado en el siguiente paso</p>
-            <p>Total</p>
-            <p>EUR</p>
-            <p>{{total}}</p>
-          </div>
-        </div>
 </div>
 
 <div class="container" id="info">
@@ -778,10 +764,6 @@ font-weight: bold;
         });
 
 
-const precios = document.querySelectorAll('precio');
-const subtotal = precios.reduce((a, b) => a + parseFloat(b.textContent), 0);
-
-        
 
          // Configuración de Stripe
   const stripe = Stripe('TU_CLAVE_PUBLICA_DE_STRIPE');
