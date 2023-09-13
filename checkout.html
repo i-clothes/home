@@ -521,6 +521,44 @@ font-weight: bold;
 .icon--payment:hover {
   background-color: #f0f0f0; /* Cambia el color a tu preferencia */
 }
+
+
+.contenido {
+  display: flex;
+  flex-direction: column;
+}
+
+.seccion-descuento {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.descuento {
+  width: 100px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.aplicar-descuento {
+  padding: 5px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.total {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.total p {
+  margin-bottom: 0;
+}
+
     </style>
 </head>
 <body>
@@ -577,10 +615,25 @@ font-weight: bold;
             <p>Mostrar resumen del pedido</p>
             <i class="fas fa-arrow-down"></i>
           </div>
-          <div class="contenido">
-            <div class="contenedor-productos"></div>
+<div class="contenido">
+  <div class="contenedor-productos">
+     
+</div>
+       <div class="seccion-descuento">
+        <input type="number" placeholder="Introduce el descuento" class="descuento">
+        <button class="aplicar-descuento">Aplicar descuento</button>
+      </div>
+         <div class="total">
+            <p>Subtotal</p>
+            <p class="subtotal">{{subtotal}}</p>
+            <p>Envíos</p>
+            <p>Calculado en el siguiente paso</p>
+            <p>Total</p>
+            <p>EUR</p>
+            <p>{{total}}</p>
           </div>
         </div>
+</div>
 
 <div class="container" id="info">
   <h2>Información de Contacto</h2>
@@ -725,6 +778,8 @@ font-weight: bold;
         });
 
 
+const precios = document.querySelectorAll('precio');
+const subtotal = precios.reduce((a, b) => a + parseFloat(b.textContent), 0);
 
         
 
