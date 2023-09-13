@@ -143,7 +143,9 @@
             border: 3px solid #EAEAEA;
            webkit-filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.1));
     filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.1));
+            cursor:pointer;
         }
+    
         .pago-option {
             text-align: center;
     padding: 20px;
@@ -867,44 +869,64 @@ calcularSubtotal();
 // UPSELLS
 
 // Recupera los datos del localStorage
-  const reservaData = JSON.parse(localStorage.getItem('carrito'));
+const reservaData = JSON.parse(localStorage.getItem('carrito'));
 
-  // Verifica si hay datos en el JSON
-  if (reservaData && reservaData.length > 0) {
-    const reservaContainers = document.querySelectorAll('.reserva-container');
+// Verifica si hay datos en el JSON
+if (reservaData && reservaData.length > 0) {
+  const reservaContainers = document.querySelectorAll('.reserva-container');
 
-    // Itera sobre los contenedores con la clase .reserva-container
-    reservaContainers.forEach((container) => {
-      // Itera sobre los datos y crea elementos HTML para cada elemento en el JSON
-      reservaData.forEach((item) => {
-        const reservaOption = document.createElement('div');
-        reservaOption.classList.add('reserva-option');
+  // Itera sobre los contenedores con la clase .reserva-container
+  reservaContainers.forEach((container) => {
+    // Itera sobre los datos y crea elementos HTML para cada elemento en el JSON
+    reservaData.forEach((item) => {
+      const reservaOption = document.createElement('div');
+      reservaOption.classList.add('reserva-option');
 
-        const nombreElement = document.createElement('h3');
-        nombreElement.textContent = item.nombre;
+      const nombreElement = document.createElement('h3');
+      nombreElement.textContent = item.nombre;
 
-        const precioElement = document.createElement('span');
-        precioElement.classList.add('precio');
-        precioElement.style.fontSize = '20px';
-        precioElement.style.color = '#66CD54';
-        precioElement.style.fontWeight = 'bolder';
-        precioElement.textContent = item.precio;
+      // Crear el elemento de precio tachado en rojo
+      const precioElement = document.createElement('span');
+      precioElement.classList.add('precio');
+      precioElement.style.textDecoration = 'line-through';
+      precioElement.style.color = 'red';
+      precioElement.textContent = item.precio;
 
-        const cantidadElement = document.createElement('span');
-        cantidadElement.classList.add('cantidad');
-        cantidadElement.textContent = item.cantidad;
+      // Calcular el precio con descuento (20% de descuento)
+      const precioDescuento = (parseFloat(item.precio.replace('€', '')) * 0.8).toFixed(2);
 
-        reservaOption.appendChild(nombreElement);
-        reservaOption.appendChild(precioElement);
-        reservaOption.appendChild(cantidadElement);
+      // Crear el elemento de precio con descuento en verde
+      const ofertaElement = document.createElement('span');
+      ofertaElement.classList.add('oferta');
+      ofertaElement.style.color = 'rgb(102, 205, 84)';
+      ofertaElement.textContent = precioDescuento + '€';
 
-        container.appendChild(reservaOption);
-      });
+      // Calcular la cantidad descontada
+      const cantidadDescontada = (parseFloat(item.precio.replace('€', '')) - parseFloat(precioDescuento)).toFixed(2);
+
+      // Crear el elemento de detalle de oferta
+      const detalleOfertaElement = document.createElement('span');
+      detalleOfertaElement.classList.add('detalle-oferta');
+      detalleOfertaElement.textContent = 'Te has ahorrado ' + cantidadDescontada + '€';
+
+      const cantidadElement = document.createElement('span');
+      cantidadElement.classList.add('cantidad');
+      cantidadElement.textContent = item.cantidad;
+
+      reservaOption.appendChild(nombreElement);
+      reservaOption.appendChild(precioElement);
+      reservaOption.appendChild(ofertaElement);
+      reservaOption.appendChild(detalleOfertaElement);
+      reservaOption.appendChild(cantidadElement);
+
+      container.appendChild(reservaOption);
     });
-  } else {
-    // Manejar el caso en el que no hay datos en el localStorage
-    console.log('No hay datos en el localStorage');
-  }
+  });
+} else {
+  // Manejar el caso en el que no hay datos en el localStorage
+  console.log('No hay datos en el localStorage');
+}
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
