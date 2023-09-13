@@ -2001,7 +2001,7 @@ function guardarCarritoEnLocalStorage() {
     const cantidadProducto = productElement.querySelector('.cantidad-producto').textContent;
     const imagenProducto = productElement.querySelector('img').getAttribute('src'); // Obtiene la URL de la imagen
     const idProducto = productElement.dataset.id; // Obtiene el valor de data-id
-    const tallaProducto = productElement.dataset.talla; // Obtiene el valor de data-talla
+    const tallaProducto = productElement.dataset.talla.trim();
     const seccionProducto = productElement.dataset.seccion; // Obtiene el valor de data-seccion
     const categoriaProducto = productElement.dataset.categoria; // Obtiene el valor de data-categoria
 
