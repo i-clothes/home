@@ -637,7 +637,8 @@ font-weight: bold;
                 <p>Mostrar resumen del pedido</p>
                 <i class="fas fa-arrow-down"></i>
               </div>
-              <div class="contenido">
+              <div class="box-contenido" style="display:none;">
+                <div class="contenido" >
                 <div class="contenedor-productos"></div>
               </div>
               <div class="descuento">
@@ -645,10 +646,11 @@ font-weight: bold;
                 <button class="aplicar-descuento">Aplicar Descuento</button>
               </div>
            <div class="subtotal">
-      <p>Subtotal: <span class="subtotal-amount">0€</span></p>
-      <small class="iva">IVA incluido</small>
-      <p>Envío: <span class="envio"></span></p>
-    </div>
+              <p>Subtotal: <span class="subtotal-amount">0€</span></p>
+              <small class="iva">IVA incluido</small>
+              <p>Envío: <span class="envio"></span></p>
+            </div>
+              </div>
      </div>
 
 
@@ -906,7 +908,7 @@ calcularSubtotal();
 
 document.addEventListener('DOMContentLoaded', function () {
   const encabezado = document.querySelector('.encabezado');
-  const contenido = document.querySelector('.contenido');
+  const contenido = document.querySelector('.box-contenido');
   const flecha = document.querySelector('.fa-arrow-down');
 
   // Por defecto, el contenido está oculto
