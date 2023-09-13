@@ -894,16 +894,21 @@ if (reservaData && reservaData.length > 0) {
       const precioDescuento = (parseFloat(item.precio.replace('€', '')) * 0.8).toFixed(2);
 
       const ofertaElement = document.createElement('span');
-      ofertaElement.classList.add('oferta');
+      ofertaElement.classList.add('oferta2'); // Cambiado de 'oferta' a 'oferta2'
       ofertaElement.style.color = 'rgb(102, 205, 84)';
       ofertaElement.textContent = precioDescuento + '€';
 
       const detalleOfertaElement = document.createElement('p');
       detalleOfertaElement.classList.add('detalle-oferta');
-      detalleOfertaElement.innerHTML = 'Añade otra por <span class="oferta" style="color: rgb(102, 205, 84);">' + precioDescuento + '€</span>';
+      detalleOfertaElement.innerHTML = 'Añade otra por <span class="oferta2" style="color: rgb(102, 205, 84);">' + precioDescuento + '€</span>';
+
+      const imagenElement = document.createElement('img');
+      imagenElement.setAttribute('src', ''); // Agrega la URL de la imagen aquí
+      imagenElement.style.width = '50px';
 
       reservaOption.appendChild(nombreElement);
       reservaOption.appendChild(precioElement);
+      reservaOption.appendChild(imagenElement);
       reservaOption.appendChild(detalleOfertaElement);
 
       container.appendChild(reservaOption);
