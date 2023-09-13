@@ -894,7 +894,7 @@ if (reservaData && reservaData.length > 0) {
       const precioDescuento = (parseFloat(item.precio.replace('€', '')) * 0.8).toFixed(2);
 
       const ofertaElement = document.createElement('span');
-      ofertaElement.classList.add('oferta2'); // Cambiado de 'oferta' a 'oferta2'
+      ofertaElement.classList.add('oferta2');
       ofertaElement.style.color = 'rgb(102, 205, 84)';
       ofertaElement.textContent = precioDescuento + '€';
 
@@ -903,7 +903,7 @@ if (reservaData && reservaData.length > 0) {
       detalleOfertaElement.innerHTML = 'Añade otra por <span class="oferta2" style="color: rgb(102, 205, 84);">' + precioDescuento + '€</span>';
 
       const imagenElement = document.createElement('img');
-      imagenElement.setAttribute('src', ''); // Agrega la URL de la imagen aquí
+      imagenElement.setAttribute('src', item.imagen); // Agrega la URL de la imagen desde los datos de reserva
       imagenElement.style.width = '50px';
 
       reservaOption.appendChild(nombreElement);
