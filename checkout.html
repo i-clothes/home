@@ -647,7 +647,7 @@ font-weight: bold;
            <div class="subtotal">
       <p>Subtotal: <span class="subtotal-amount">0€</span></p>
       <small class="iva">IVA incluido</small>
-      <p>Envío: <span class="envio">Gratis</span></p>
+      <p>Envío: <span class="envio"></span></p>
     </div>
      </div>
 
@@ -804,9 +804,9 @@ function calcularSubtotal() {
 
   // Verificar si el total supera los 50€ y mostrar "Envío gratis"
   if (total > 50) {
-    envio.textContent = 'Envío: Gratis';
+    envio.textContent = 'Gratis';
   } else {
-    envio.textContent = 'Envío: No gratis';
+    envio.textContent = '7,50€';
   }
 }
 
