@@ -846,7 +846,67 @@ document.addEventListener('DOMContentLoaded', function() {
   calcularSubtotal();
 });
 
-    
+
+//DATOS CESTA DESPLEGABLE
+
+    // Obtén el JSON del Local Storage
+const carritoJSON = localStorage.getItem('carrito');
+
+// Verifica si hay datos en el Local Storage
+if (carritoJSON) {
+  // Parsea el JSON a un objeto JavaScript
+  const carrito = JSON.parse(carritoJSON);
+
+  // Obtén el contenedor de productos
+  const contenedorProductos = document.querySelector('.contenedor-productos');
+
+  // Itera sobre los productos en el carrito
+  carrito.forEach(producto => {
+    // Crea un elemento de producto
+    const productoElemento = document.createElement('div');
+    productoElemento.classList.add('producto');
+    productoElemento.dataset.id = producto.id; // Añade el atributo data-id
+    productoElemento.dataset.seccion = producto.seccion; // Añade el atributo data-seccion
+    productoElemento.dataset.categoria = producto.categoria; // Añade el atributo data-categoria
+
+    // Crea el elemento de imagen y cantidad
+    const imagenResumen = document.createElement('div');
+    imagenResumen.classList.add('imagenResumen');
+
+    const imagen = document.createElement('img');
+    imagen.src = producto.imagen;
+
+    const cantidad = document.createElement('span');
+    cantidad.textContent = producto.cantidad;
+
+    imagenResumen.appendChild(imagen);
+    imagenResumen.appendChild(cantidad);
+
+    // Crea el elemento de nombre y precio
+    const nombreProducto = document.createElement('p');
+    nombreProducto.classList.add('nombreproducto');
+    nombreProducto.textContent = producto.nombre;
+
+    const precio = document.createElement('p');
+    precio.classList.add('precio');
+    precio.textContent = producto.precio;
+
+    // Crea el elemento de talla
+    const talla = document.createElement('p');
+    talla.classList.add('talla');
+    talla.textContent = producto.talla;
+
+    // Agrega los elementos al producto
+    productoElemento.appendChild(imagenResumen);
+    productoElemento.appendChild(nombreProducto);
+    productoElemento.appendChild(talla); // Agrega el elemento de talla
+    productoElemento.appendChild(precio);
+
+
+    // Agrega el producto al contenedor de productos
+    contenedorProductos.appendChild(productoElemento);
+  });
+}
 
 // Obtener todos los elementos .reserva-option
 const reservaOptions = document.querySelectorAll('.reserva-option');
@@ -942,28 +1002,32 @@ if (reservaData && reservaData.length > 0) {
       const nombreElement = document.createElement('h3');
       nombreElement.textContent = item.nombre;
 
+      const precioAnteriorElement = document.createElement('p');
+      precioAnteriorElement.classList.add('precioAnterior');
+      precioAnteriorElement.textContent = 'Precio Anterior ';
+
       const precioElement = document.createElement('span');
       precioElement.classList.add('precio');
       precioElement.textContent = item.precio;
-
-      // Calcular el precio con descuento (20% de descuento)
-      const precioDescuento = (parseFloat(item.precio.replace('€', '')) * 0.8).toFixed(2);
-
-      const ofertaElement = document.createElement('span');
-      ofertaElement.classList.add('oferta2');
-      ofertaElement.style.color = 'rgb(102, 205, 84)';
-      ofertaElement.textContent = precioDescuento + '€';
-
-      const detalleOfertaElement = document.createElement('p');
-      detalleOfertaElement.classList.add('detalle-oferta');
-      detalleOfertaElement.innerHTML = 'Añade otra por <span class="oferta2" style="color: rgb(102, 205, 84);">' + precioDescuento + '€</span>';
 
       const imagenElement = document.createElement('img');
       imagenElement.setAttribute('src', item.imagen); // Agrega la URL de la imagen desde los datos de reserva
       imagenElement.style.width = '50px';
 
+      const detalleOfertaElement = document.createElement('p');
+      detalleOfertaElement.classList.add('detalle-oferta');
+
+      const oferta2Element = document.createElement('span');
+      oferta2Element.classList.add('oferta2');
+      oferta2Element.style.color = 'rgb(102, 205, 84)';
+      oferta2Element.textContent = item.oferta;
+
+      detalleOfertaElement.innerHTML = 'Añade otra por ';
+      detalleOfertaElement.appendChild(oferta2Element);
+
       reservaOption.appendChild(nombreElement);
-      reservaOption.appendChild(precioElement);
+      reservaOption.appendChild(precioAnteriorElement);
+      precioAnteriorElement.appendChild(precioElement);
       reservaOption.appendChild(imagenElement);
       reservaOption.appendChild(detalleOfertaElement);
 
@@ -974,6 +1038,7 @@ if (reservaData && reservaData.length > 0) {
   // Manejar el caso en el que no hay datos en el localStorage
   console.log('No hay datos en el localStorage');
 }
+
 
 
 
@@ -1034,65 +1099,6 @@ continuar2Button.addEventListener('click', function () {
 
 
 
-// Obtén el JSON del Local Storage
-const carritoJSON = localStorage.getItem('carrito');
-
-// Verifica si hay datos en el Local Storage
-if (carritoJSON) {
-  // Parsea el JSON a un objeto JavaScript
-  const carrito = JSON.parse(carritoJSON);
-
-  // Obtén el contenedor de productos
-  const contenedorProductos = document.querySelector('.contenedor-productos');
-
-  // Itera sobre los productos en el carrito
-  carrito.forEach(producto => {
-    // Crea un elemento de producto
-    const productoElemento = document.createElement('div');
-    productoElemento.classList.add('reserva-option');
-
-    // Crea el elemento de título
-    const titulo = document.createElement('h3');
-    titulo.textContent = producto.nombre;
-
-    // Crea el elemento de precio anterior
-    const precioAnterior = document.createElement('p');
-    precioAnterior.classList.add('precioAnterior');
-    precioAnterior.textContent = 'Precio Anterior ';
-
-    const precio = document.createElement('span');
-    precio.classList.add('precio');
-    precio.textContent = producto.precio;
-
-    precioAnterior.appendChild(precio);
-
-    // Crea el elemento de imagen
-    const imagen = document.createElement('img');
-    imagen.src = producto.imagen;
-    imagen.style.width = '50px';
-
-    // Crea el elemento de detalle de oferta
-    const detalleOferta = document.createElement('p');
-    detalleOferta.classList.add('detalle-oferta');
-    detalleOferta.textContent = 'Añade otra por ';
-
-    const oferta2 = document.createElement('span');
-    oferta2.classList.add('oferta2');
-    oferta2.style.color = 'rgb(102, 205, 84)';
-    oferta2.textContent = producto.oferta;
-
-    detalleOferta.appendChild(oferta2);
-
-    // Agrega los elementos al producto
-    productoElemento.appendChild(titulo);
-    productoElemento.appendChild(precioAnterior);
-    productoElemento.appendChild(imagen);
-    productoElemento.appendChild(detalleOferta);
-
-    // Agrega el producto al contenedor de productos
-    contenedorProductos.appendChild(productoElemento);
-  });
-}
 
 
         
