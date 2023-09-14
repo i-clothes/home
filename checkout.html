@@ -1017,10 +1017,13 @@ if (reservaData && reservaData.length > 0) {
       const detalleOfertaElement = document.createElement('p');
       detalleOfertaElement.classList.add('detalle-oferta');
 
+      // Calcular el precio de la oferta (20% de descuento)
+      const precioOferta = (parseFloat(item.precio.replace('€', '')) * 0.8).toFixed(2);
+
       const oferta2Element = document.createElement('span');
       oferta2Element.classList.add('oferta2');
       oferta2Element.style.color = 'rgb(102, 205, 84)';
-      oferta2Element.textContent = item.oferta;
+      oferta2Element.textContent = precioOferta + '€';
 
       detalleOfertaElement.innerHTML = 'Añade otra por ';
       detalleOfertaElement.appendChild(oferta2Element);
@@ -1038,6 +1041,7 @@ if (reservaData && reservaData.length > 0) {
   // Manejar el caso en el que no hay datos en el localStorage
   console.log('No hay datos en el localStorage');
 }
+
 
 
 
