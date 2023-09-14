@@ -916,13 +916,9 @@ const reservaOptions = document.querySelectorAll('.reserva-option');
 // Agrega un controlador de eventos clic a cada elemento
 reservaOptions.forEach((opcion) => {
   opcion.addEventListener('click', () => {
-    // Elimina cualquier borde naranja de otros elementos
-    reservaOptions.forEach((elemento) => {
-      elemento.style.border = 'none';
-    });
-
     // Establece el borde naranja al elemento clicado
     opcion.style.border = '2px solid orange';
+    });
 
     // Cambia el texto de "detalle-oferta" a "¡Añadido!" y cambia el color a naranja
     const detalleOferta = opcion.querySelector('.detalle-oferta');
