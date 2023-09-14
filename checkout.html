@@ -910,7 +910,8 @@ if (carritoJSON) {
 
 // AÑADIR UPSELL AL CARRITO
 
- document.addEventListener('DOMContentLoaded', function() {
+  // Espera a que se cargue completamente el DOM antes de ejecutar el código
+  document.addEventListener('DOMContentLoaded', function() {
     // Obtén todos los elementos con la clase "reserva-option"
     const reservaOptions = document.querySelectorAll('.reserva-options .reserva-option');
 
@@ -924,6 +925,46 @@ if (carritoJSON) {
         const detalleOferta = opcion.querySelector('.detalle-oferta');
         detalleOferta.textContent = '¡Añadido!';
         detalleOferta.style.color = 'orange';
+
+        // Captura la información relevante del elemento clicado
+        const h3Text = opcion.querySelector('h3').textContent;
+        const ofertaPrice = opcion.querySelector('.oferta2').textContent;
+        const imageSrc = opcion.querySelector('img').src;
+
+        // Crea un nuevo elemento HTML
+        const nuevoProducto = document.createElement('div');
+        nuevoProducto.classList.add('producto');
+        nuevoProducto.setAttribute('data-categoria', 'oferta');
+
+        const imagenResumen = document.createElement('div');
+        imagenResumen.classList.add('imagenResumen');
+        const imagen = document.createElement('img');
+        imagen.src = imageSrc;
+        imagenResumen.appendChild(imagen);
+
+        const nombreProducto = document.createElement('p');
+        nombreProducto.classList.add('nombreproducto');
+        nombreProducto.textContent = h3Text;
+
+        const ofertaTag = document.createElement('p');
+        ofertaTag.classList.add('oferta');
+        ofertaTag.textContent = 'oferta';
+
+        const precio = document.createElement('p');
+        precio.classList.add('precio');
+        precio.textContent = ofertaPrice;
+
+        // Agrega los elementos al nuevo producto
+        nuevoProducto.appendChild(imagenResumen);
+        nuevoProducto.appendChild(nombreProducto);
+        nuevoProducto.appendChild(ofertaTag);
+        nuevoProducto.appendChild(precio);
+
+        // Encuentra el elemento .contenedor-productos
+        const contenedorProductos = document.querySelector('.contenedor-productos');
+
+        // Agrega el nuevo producto después del último hijo en .contenedor-productos
+        contenedorProductos.appendChild(nuevoProducto);
       });
     });
   });
