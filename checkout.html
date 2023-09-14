@@ -820,11 +820,6 @@ document.addEventListener('DOMContentLoaded', function() {
       total += precio;
     });
 
-    // Aplicar descuento si se ingresó uno
-    const descuento = parseFloat(descuentoInput.value);
-    if (!isNaN(descuento)) {
-      total -= descuento;
-    }
 
     // Actualizar todos los elementos con clase "subtotal-amount"
     subtotalAmounts.forEach((subtotalElement) => {
@@ -838,9 +833,6 @@ document.addEventListener('DOMContentLoaded', function() {
       envio.textContent = '7,50€';
     }
   }
-
-  // Escuchar cambios en el input de descuento
-  descuentoInput.addEventListener('input', calcularSubtotal);
 
   // Calcular el subtotal inicial
   calcularSubtotal();
