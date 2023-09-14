@@ -951,6 +951,8 @@ if (carritoJSON) {
       // Agrega el nuevo producto después del último hijo en .contenedor-productos
       contenedorProductos.appendChild(nuevoProducto);
 
+        calcularSubtotal();
+
       // Desactiva el controlador de eventos después del primer clic en este elemento
       event.currentTarget.removeEventListener('click', handleClick);
     }
@@ -998,12 +1000,15 @@ inputCheckbox.addEventListener('change', function () {
 
     // Agrega el producto al final de .contenedor-productos
     contenedorProductos.appendChild(productoElemento);
+    calcularSubtotal();
   } else {
     // Busca y elimina el producto con data-categoria="cajaregalo"
     const productosCajaRegalo = document.querySelectorAll('.producto[data-categoria="cajaregalo"]');
     productosCajaRegalo.forEach((producto) => {
       contenedorProductos.removeChild(producto);
     });
+
+    calcularSubtotal();
   }
 });
 
@@ -1167,14 +1172,8 @@ continuar2Button.addEventListener('click', function () {
   // Muestra la sección "stripe"
   stripe2.style.display = 'block';
 });
+});
 
-
-
-
-
-
-        
-       
-    </script>
+</script>
 </body>
 </html>
