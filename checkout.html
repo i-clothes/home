@@ -806,7 +806,6 @@ font-weight: bold;
 document.addEventListener('DOMContentLoaded', function() {
   // Obtener todos los elementos con clase "precio"
   const precios = document.querySelectorAll('.desplegable .precio');
-  const descuentoInput = document.querySelector('.descuento input');
   const subtotalAmounts = document.querySelectorAll('.subtotal-amount');
   const envio = document.querySelector('.envio');
 
@@ -820,12 +819,6 @@ document.addEventListener('DOMContentLoaded', function() {
       total += precio;
     });
 
-    // Aplicar descuento si se ingresó uno
-    const descuento = parseFloat(descuentoInput.value);
-    if (!isNaN(descuento)) {
-      total -= descuento;
-    }
-
     // Actualizar todos los elementos con clase "subtotal-amount"
     subtotalAmounts.forEach((subtotalElement) => {
       subtotalElement.textContent = total.toFixed(2) + '€';
@@ -837,14 +830,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       envio.textContent = '7,50€';
     }
-  }
-
-  // Escuchar cambios en el input de descuento
-  descuentoInput.addEventListener('input', calcularSubtotal);
-
-  // Calcular el subtotal inicial
-  calcularSubtotal();
-});
+  });
 
 
 //DATOS CESTA DESPLEGABLE
@@ -972,7 +958,10 @@ if (carritoJSON) {
     // Agrega un controlador de eventos clic a cada elemento
     reservaOptions.forEach((opcion) => {
       opcion.addEventListener('click', handleClick);
+    calcularSubtotal()
     });
+    
+
   });
 
 
@@ -1019,6 +1008,8 @@ inputCheckbox.addEventListener('change', function () {
       contenedorProductos.removeChild(producto);
     });
   }
+
+calcularSubtotal()
 });
 
 
