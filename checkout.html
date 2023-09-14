@@ -910,21 +910,23 @@ if (carritoJSON) {
 
 // AÑADIR UPSELL AL CARRITO
 
-// Obtén todos los elementos con la clase "reserva-option"
-const reservaOptions = document.querySelectorAll('.reserva-options .reserva-option');
+ document.addEventListener('DOMContentLoaded', function() {
+    // Obtén todos los elementos con la clase "reserva-option"
+    const reservaOptions = document.querySelectorAll('.reserva-options .reserva-option');
 
-// Agrega un controlador de eventos clic a cada elemento
-reservaOptions.forEach((opcion) => {
-  opcion.addEventListener('click', () => {
-    // Establece el borde naranja al elemento clicado
-    opcion.style.border = '2px solid orange';
+    // Agrega un controlador de eventos clic a cada elemento
+    reservaOptions.forEach((opcion) => {
+      opcion.addEventListener('click', () => {
+        // Establece el borde naranja al elemento clicado
+        opcion.style.border = '2px solid orange';
 
-    // Cambia el texto de "detalle-oferta" a "¡Añadido!" y cambia el color a naranja
-    const detalleOferta = opcion.querySelector('.detalle-oferta');
-    detalleOferta.textContent = '¡Añadido!';
-    detalleOferta.style.color = 'orange';
+        // Cambia el texto de "detalle-oferta" a "¡Añadido!" y cambia el color a naranja
+        const detalleOferta = opcion.querySelector('.detalle-oferta');
+        detalleOferta.textContent = '¡Añadido!';
+        detalleOferta.style.color = 'orange';
+      });
+    });
   });
-});
 
 
 
