@@ -814,18 +814,17 @@ document.addEventListener('DOMContentLoaded', function() {
   function calcularSubtotal() {
     let total = 0;
 
-   // Recorrer todos los elementos con clase "precio" y sumar sus valores
-  precios.forEach((precioElement) => {
-    const precio = parseFloat(precioElement.textContent.replace('€', ''));
-    total += precio;
-  });
+      // Recorrer todos los elementos con clase "precio" y sumar sus valores
+    precios.forEach((precioElement) => {
+      const precio = parseFloat(precioElement.textContent.replace('€', ''));
+      total += precio;
+    });
 
-  // Sumar el precio de los elementos con clase "precio" dentro de ".contenedor-productos"
-  const productosContenedor = document.querySelectorAll('.contenedor-productos .precio');
-  productosContenedor.forEach((productoPrecio) => {
-    const precio = parseFloat(productoPrecio.textContent.replace('€', ''));
-    total += precio;
-  });
+
+    // Actualizar todos los elementos con clase "subtotal-amount"
+    subtotalAmounts.forEach((subtotalElement) => {
+      subtotalElement.textContent = total.toFixed(2) + '€';
+    });
 
     // Verificar si el total supera los 50€ y mostrar "Envío gratis"
     if (total > 50) {
