@@ -911,14 +911,13 @@ if (carritoJSON) {
 // AÑADIR UPSELL AL CARRITO
 
 // Obtén todos los elementos con la clase "reserva-option"
-const reservaOptions = document.querySelectorAll('.reserva-option');
+const reservaOptions = document.querySelectorAll('.reserva-options .reserva-option');
 
 // Agrega un controlador de eventos clic a cada elemento
 reservaOptions.forEach((opcion) => {
   opcion.addEventListener('click', () => {
     // Establece el borde naranja al elemento clicado
     opcion.style.border = '2px solid orange';
-    });
 
     // Cambia el texto de "detalle-oferta" a "¡Añadido!" y cambia el color a naranja
     const detalleOferta = opcion.querySelector('.detalle-oferta');
@@ -926,6 +925,7 @@ reservaOptions.forEach((opcion) => {
     detalleOferta.style.color = 'orange';
   });
 });
+
 
 
 
