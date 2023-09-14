@@ -804,42 +804,48 @@ font-weight: bold;
 <script src="https://js.stripe.com/v3/"></script>
     <script>
 document.addEventListener('DOMContentLoaded', function() {
-     // Obtener todos los elementos con clase "precio"
-const precios = document.querySelectorAll('.desplegable .precio');
-const descuentoInput = document.querySelector('.descuento input');
-const subtotalAmount = document.querySelectorAll('.subtotal-amount');
-const envio = document.querySelector('.envio');
+  // Obtener todos los elementos con clase "precio"
+  const precios = document.querySelectorAll('.desplegable .precio');
+  const descuentoInput = document.querySelector('.descuento input');
+  const subtotalAmounts = document.querySelectorAll('.subtotal-amount');
+  const envio = document.querySelector('.envio');
 
-// Calcular el subtotal
-function calcularSubtotal() {
-  let total = 0;
-  precios.forEach((precioElement) => {
-    const precio = parseFloat(precioElement.textContent.replace('€', ''));
-    total += precio;
-  });
+  // Calcular el subtotal
+  function calcularSubtotal() {
+    let total = 0;
 
-  // Aplicar descuento si se ingresó uno
-  const descuento = parseFloat(descuentoInput.value);
-  if (!isNaN(descuento)) {
-    total -= descuento;
+    // Recorrer todos los elementos con clase "precio" y sumar sus valores
+    precios.forEach((precioElement) => {
+      const precio = parseFloat(precioElement.textContent.replace('€', ''));
+      total += precio;
+    });
+
+    // Aplicar descuento si se ingresó uno
+    const descuento = parseFloat(descuentoInput.value);
+    if (!isNaN(descuento)) {
+      total -= descuento;
+    }
+
+    // Actualizar todos los elementos con clase "subtotal-amount"
+    subtotalAmounts.forEach((subtotalElement) => {
+      subtotalElement.textContent = total.toFixed(2) + '€';
+    });
+
+    // Verificar si el total supera los 50€ y mostrar "Envío gratis"
+    if (total > 50) {
+      envio.textContent = 'Gratis';
+    } else {
+      envio.textContent = '7,50€';
+    }
   }
 
-  subtotalAmount.textContent = total.toFixed(2) + '€';
+  // Escuchar cambios en el input de descuento
+  descuentoInput.addEventListener('input', calcularSubtotal);
 
-  // Verificar si el total supera los 50€ y mostrar "Envío gratis"
-  if (total > 50) {
-    envio.textContent = 'Gratis';
-  } else {
-    envio.textContent = '7,50€';
-  }
-}
-
-// Escuchar cambios en el input de descuento
-descuentoInput.addEventListener('input', calcularSubtotal);
-
-// Calcular el subtotal inicial
-calcularSubtotal();
+  // Calcular el subtotal inicial
+  calcularSubtotal();
 });
+
     
 
 // Obtener todos los elementos .reserva-option
@@ -1043,44 +1049,45 @@ if (carritoJSON) {
   carrito.forEach(producto => {
     // Crea un elemento de producto
     const productoElemento = document.createElement('div');
-    productoElemento.classList.add('producto');
-    productoElemento.dataset.id = producto.id; // Añade el atributo data-id
-    productoElemento.dataset.seccion = producto.seccion; // Añade el atributo data-seccion
-    productoElemento.dataset.categoria = producto.categoria; // Añade el atributo data-categoria
+    productoElemento.classList.add('reserva-option');
 
-    // Crea el elemento de imagen y cantidad
-    const imagenResumen = document.createElement('div');
-    imagenResumen.classList.add('imagenResumen');
+    // Crea el elemento de título
+    const titulo = document.createElement('h3');
+    titulo.textContent = producto.nombre;
 
-    const imagen = document.createElement('img');
-    imagen.src = producto.imagen;
+    // Crea el elemento de precio anterior
+    const precioAnterior = document.createElement('p');
+    precioAnterior.classList.add('precioAnterior');
+    precioAnterior.textContent = 'Precio Anterior ';
 
-    const cantidad = document.createElement('span');
-    cantidad.textContent = producto.cantidad;
-
-    imagenResumen.appendChild(imagen);
-    imagenResumen.appendChild(cantidad);
-
-    // Crea el elemento de nombre y precio
-    const nombreProducto = document.createElement('p');
-    nombreProducto.classList.add('nombreproducto');
-    nombreProducto.textContent = producto.nombre;
-
-    const precio = document.createElement('p');
+    const precio = document.createElement('span');
     precio.classList.add('precio');
     precio.textContent = producto.precio;
 
-    // Crea el elemento de talla
-    const talla = document.createElement('p');
-    talla.classList.add('talla');
-    talla.textContent = producto.talla;
+    precioAnterior.appendChild(precio);
+
+    // Crea el elemento de imagen
+    const imagen = document.createElement('img');
+    imagen.src = producto.imagen;
+    imagen.style.width = '50px';
+
+    // Crea el elemento de detalle de oferta
+    const detalleOferta = document.createElement('p');
+    detalleOferta.classList.add('detalle-oferta');
+    detalleOferta.textContent = 'Añade otra por ';
+
+    const oferta2 = document.createElement('span');
+    oferta2.classList.add('oferta2');
+    oferta2.style.color = 'rgb(102, 205, 84)';
+    oferta2.textContent = producto.oferta;
+
+    detalleOferta.appendChild(oferta2);
 
     // Agrega los elementos al producto
-    productoElemento.appendChild(imagenResumen);
-    productoElemento.appendChild(nombreProducto);
-    productoElemento.appendChild(talla); // Agrega el elemento de talla
-    productoElemento.appendChild(precio);
-
+    productoElemento.appendChild(titulo);
+    productoElemento.appendChild(precioAnterior);
+    productoElemento.appendChild(imagen);
+    productoElemento.appendChild(detalleOferta);
 
     // Agrega el producto al contenedor de productos
     contenedorProductos.appendChild(productoElemento);
