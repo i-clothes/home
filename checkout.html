@@ -928,6 +928,49 @@ reservaOptions.forEach((opcion) => {
 
 
 
+// Obtén el elemento input
+const inputCheckbox = document.querySelector('.upsell input');
+
+// Obtén el contenedor de productos
+const contenedorProductos = document.querySelector('.contenedor-productos');
+
+
+
+
+// Agrega un controlador de eventos al input
+inputCheckbox.addEventListener('change', function () {
+  // Verifica si el input está marcado
+  if (this.checked) {
+    // Crea un nuevo elemento .producto
+    const productoElemento = document.createElement('div');
+    productoElemento.classList.add('producto');
+    productoElemento.dataset.categoria = 'cajaregalo';
+
+    // Crea los elementos de nombre y precio
+    const nombreProducto = document.createElement('p');
+    nombreProducto.classList.add('nombreproducto');
+    nombreProducto.textContent = 'Kit Regalo';
+
+    const precio = document.createElement('p');
+    precio.classList.add('precio');
+    precio.textContent = '10€';
+
+    // Agrega los elementos al producto
+    productoElemento.appendChild(nombreProducto);
+    productoElemento.appendChild(precio);
+
+    // Agrega el producto al final de .contenedor-productos
+    contenedorProductos.appendChild(productoElemento);
+  } else {
+    // Busca y elimina el producto con data-categoria="cajaregalo"
+    const productosCajaRegalo = document.querySelectorAll('.producto[data-categoria="cajaregalo"]');
+    productosCajaRegalo.forEach((producto) => {
+      contenedorProductos.removeChild(producto);
+    });
+  }
+});
+
+
 
         // STORIES
 
