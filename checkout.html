@@ -1181,54 +1181,7 @@ inputCheckbox.addEventListener('change', function () {
 
 
 
-       // Configuración de Stripe
-const stripe = Stripe('pk_test_51M9S5DBElJap7B2LvuWSNNcEQ4nvj1UgI8QNaIHj2mG90sIHNFUPoGWZdleNBOaEPQNgNCJxwEAl9qIMueh1HXYM0076vvOY5K');
-const elements = stripe.elements();
-const cardElement = elements.create('card');
-cardElement.mount('#card-element');
-
-// Manejar el envío del formulario
-const form = document.getElementById('payment-form');
-const paymentResult = document.getElementById('payment-result'); // Elemento para mostrar el resultado del pago
-
-form.addEventListener('submit', async (event) => {
-  event.preventDefault();
-
-  const { token, error } = await stripe.createToken(cardElement);
-
-  if (error) {
-    // Manejar el error
-    console.error(error.message);
-  } else {
-    // Enviar token a tu servidor
-    console.log(token);
-
-    // Después de obtener el token exitosamente, puedes realizar la carga (cobro) al cliente
-    const totalAmount = parseFloat(document.querySelector('.total').textContent);
-    
-    // Realiza el pago usando el token y el monto total
-    const response = await fetch('/realizar_pago', { // Reemplaza '/realizar_pago' con la URL de tu servidor
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        token: token.id,
-        amount: totalAmount * 100, // Convierte el monto a centavos (Stripe utiliza centavos como unidad)
-      }),
-    });
-
-    const data = await response.json();
-
-    if (data.success) {
-      // Muestra el resultado del pago exitoso
-      paymentResult.style.display = 'block';
-    } else {
-      // Maneja el error en caso de que la carga falle
-      console.error(data.error);
-    }
-  }
-});
+       
 
 
 // UPSELLS
