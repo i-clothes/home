@@ -932,72 +932,74 @@ if (carritoJSON) {
 // AÑADIR UPSELL AL CARRITO
 
  // Espera a que se cargue completamente el DOM antes de ejecutar el código
-  document.addEventListener('DOMContentLoaded', function() {
-    // Obtén todos los elementos con la clase "reserva-option"
-    const reservaOptions = document.querySelectorAll('.reserva-options .reserva-option');
+document.addEventListener('DOMContentLoaded', function() {
+  // Obtén todos los elementos con la clase "reserva-option"
+  const reservaOptions = document.querySelectorAll('.reserva-options .reserva-option');
 
-    // Define una función para manejar el clic en cada elemento individual
-    function handleClick(event) {
-      // Establece el borde naranja al elemento clicado
-      event.currentTarget.style.border = '2px solid orange';
-
-      // Cambia el texto de "detalle-oferta" a "¡Añadido!" y cambia el color a naranja
-      const detalleOferta = event.currentTarget.querySelector('.precioAnterior');
-      detalleOferta.textContent = '¡Añadido!';
-      detalleOferta.style.color = 'orange';
-
-      // Captura la información relevante del elemento clicado
-      const h3Text = event.currentTarget.querySelector('h3').textContent;
-      const ofertaPrice = event.currentTarget.querySelector('.oferta2').textContent;
-      const imageSrc = event.currentTarget.querySelector('img').src;
-
-      // Crea un nuevo elemento HTML
-      const nuevoProducto = document.createElement('div');
-      nuevoProducto.classList.add('producto');
-      nuevoProducto.setAttribute('data-categoria', 'oferta');
-
-      const imagenResumen = document.createElement('div');
-      imagenResumen.classList.add('imagenResumen');
-      const imagen = document.createElement('img');
-      imagen.src = imageSrc;
-      imagenResumen.appendChild(imagen);
-
-      const nombreProducto = document.createElement('p');
-      nombreProducto.classList.add('nombreproducto');
-      nombreProducto.textContent = h3Text;
-
-      const ofertaTag = document.createElement('p');
-      ofertaTag.classList.add('oferta');
-      ofertaTag.textContent = 'oferta';
-
-      const precio = document.createElement('p');
-      precio.classList.add('precio');
-      precio.textContent = ofertaPrice;
-
-      // Agrega los elementos al nuevo producto
-      nuevoProducto.appendChild(imagenResumen);
-      nuevoProducto.appendChild(nombreProducto);
-      nuevoProducto.appendChild(ofertaTag);
-      nuevoProducto.appendChild(precio);
-
-      // Encuentra el elemento .contenedor-productos
-      const contenedorProductos = document.querySelector('.contenedor-productos');
-
-      // Agrega el nuevo producto después del último hijo en .contenedor-productos
-      contenedorProductos.appendChild(nuevoProducto);
-
-     
-
-      // Desactiva el controlador de eventos después del primer clic en este elemento
-      event.currentTarget.removeEventListener('click', handleClick);
+  // Define una función para manejar el clic en cada elemento individual
+  function handleClick(event) {
+    // Verifica si el elemento ya ha sido procesado
+    if (event.currentTarget.hasAttribute('data-procesado')) {
+      return; // Si ya ha sido procesado, no hagas nada
     }
 
-    // Agrega un controlador de eventos clic a cada elemento
-    reservaOptions.forEach((opcion) => {
-      opcion.addEventListener('click', handleClick);
-    });
-  });
+    // Establece el borde naranja al elemento clicado
+    event.currentTarget.style.border = '2px solid orange';
 
+    // Cambia el texto de "detalle-oferta" a "¡Añadido!" y cambia el color a naranja
+    const detalleOferta = event.currentTarget.querySelector('.precioAnterior');
+    detalleOferta.textContent = '¡Añadido!';
+    detalleOferta.style.color = 'orange';
+
+    // Captura la información relevante del elemento clicado
+    const h3Text = event.currentTarget.querySelector('h3').textContent;
+    const ofertaPrice = event.currentTarget.querySelector('.oferta2').textContent;
+    const imageSrc = event.currentTarget.querySelector('img').src;
+
+    // Crea un nuevo elemento HTML
+    const nuevoProducto = document.createElement('div');
+    nuevoProducto.classList.add('producto');
+    nuevoProducto.setAttribute('data-categoria', 'oferta');
+
+    const imagenResumen = document.createElement('div');
+    imagenResumen.classList.add('imagenResumen');
+    const imagen = document.createElement('img');
+    imagen.src = imageSrc;
+    imagenResumen.appendChild(imagen);
+
+    const nombreProducto = document.createElement('p');
+    nombreProducto.classList.add('nombreproducto');
+    nombreProducto.textContent = h3Text;
+
+    const ofertaTag = document.createElement('p');
+    ofertaTag.classList.add('oferta');
+    ofertaTag.textContent = 'oferta';
+
+    const precio = document.createElement('p');
+    precio.classList.add('precio');
+    precio.textContent = ofertaPrice;
+
+    // Agrega los elementos al nuevo producto
+    nuevoProducto.appendChild(imagenResumen);
+    nuevoProducto.appendChild(nombreProducto);
+    nuevoProducto.appendChild(ofertaTag);
+    nuevoProducto.appendChild(precio);
+
+    // Encuentra el elemento .contenedor-productos
+    const contenedorProductos = document.querySelector('.contenedor-productos');
+
+    // Agrega el nuevo producto después del último hijo en .contenedor-productos
+    contenedorProductos.appendChild(nuevoProducto);
+
+    // Marca el elemento como procesado para que no se vuelva a procesar
+    event.currentTarget.setAttribute('data-procesado', 'true');
+  }
+
+  // Agrega un controlador de eventos clic a cada elemento
+  reservaOptions.forEach((opcion) => {
+    opcion.addEventListener('click', handleClick);
+  });
+});
 
 
 // CAJA REGALO
