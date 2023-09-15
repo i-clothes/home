@@ -809,9 +809,12 @@ function actualizarPrecioSubtotal() {
   let subtotal = 0;
   let cantidadTotalProductos = 0;
 
-  productos.forEach((producto) => {
+   productos.forEach((producto) => {
     const precioTexto = producto.querySelector('.precio');
-    const cantidadProducto = parseInt(producto.querySelector('.imagenResumen span').textContent);
+
+    // Obtener la cantidad del producto (si no se encuentra el span, se toma como 1)
+    const cantidadProductoElemento = producto.querySelector('.imagenResumen span');
+    const cantidadProducto = cantidadProductoElemento ? parseInt(cantidadProductoElemento.textContent) : 1;
 
     if (precioTexto && !isNaN(cantidadProducto)) {
       const precio = parseFloat(precioTexto.textContent.replace('€', '').replace(',', '.'));
@@ -819,6 +822,7 @@ function actualizarPrecioSubtotal() {
       cantidadTotalProductos += cantidadProducto;
     }
   });
+
 
   // Actualizar elementos .subtotal-amount
   const subtotalElementos = document.querySelectorAll('.subtotal-amount');
