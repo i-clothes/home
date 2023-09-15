@@ -820,23 +820,6 @@ function actualizarPrecioSubtotal() {
     }
   });
 
- // Función para actualizar el precio subtotal y el envío
-function actualizarPrecioSubtotal() {
-  const productos = document.querySelectorAll('.producto');
-  let subtotal = 0;
-  let cantidadTotalProductos = 0;
-
-  productos.forEach((producto) => {
-    const precioTexto = producto.querySelector('.precio');
-    const cantidadProducto = parseInt(producto.querySelector('.imagenResumen span').textContent);
-
-    if (precioTexto && !isNaN(cantidadProducto)) {
-      const precio = parseFloat(precioTexto.textContent.replace('€', '').replace(',', '.'));
-      subtotal += precio * cantidadProducto;
-      cantidadTotalProductos += cantidadProducto;
-    }
-  });
-
   // Actualizar elementos .subtotal-amount
   const subtotalElementos = document.querySelectorAll('.subtotal-amount');
   if (subtotalElementos) {
