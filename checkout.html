@@ -599,6 +599,25 @@ font-weight: bold;
   animation: parpadeo-naranja 2s;
 }
 
+/* Estilo predeterminado para .ventaja */
+.ventaja {
+  border: 1px solid #000; /* Cambia esto al estilo de borde predeterminado */
+}
+
+/* Estilo cuando #info está en display: block */
+#info[style*="block"] .ventaja {
+  border: 1px solid orange;
+}
+
+/* Estilo cuando #mejoraPedido está en display: block */
+#mejoraPedido[style*="block"] .ventaja {
+  border: 1px solid orange;
+}
+
+/* Estilo cuando #stripe está en display: block */
+#stripe[style*="block"] .ventaja {
+  border: 1px solid orange;
+}
 
 
     </style>
@@ -916,6 +935,38 @@ totalObserver.observe(totalElement, totalConfig);
 // Llama a la función para calcular el total inicial
 calcularTotal();
         
+
+// INCADOR DE ESTADO DEL PROCESO - BORDE NARANJA
+
+// Supongamos que tienes una función para cambiar el estilo basado en las condiciones
+function actualizarEstilo() {
+  var info = document.getElementById('info');
+  var mejoraPedido = document.getElementById('mejoraPedido');
+  var stripe = document.getElementById('stripe');
+
+  // Verifica el estado de visualización y actualiza las clases según corresponda
+  if (info.style.display === 'block') {
+    info.classList.add('active');
+  } else {
+    info.classList.remove('active');
+  }
+
+  if (mejoraPedido.style.display === 'block') {
+    mejoraPedido.classList.add('active');
+  } else {
+    mejoraPedido.classList.remove('active');
+  }
+
+  if (stripe.style.display === 'block') {
+    stripe.classList.add('active');
+  } else {
+    stripe.classList.remove('active');
+  }
+}
+
+// Llama a la función para actualizar el estilo en respuesta a cambios en el estado de visualización
+actualizarEstilo();
+
 
 
 
