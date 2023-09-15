@@ -1305,6 +1305,10 @@ infoForm.addEventListener('submit', function (event) {
 
   // Muestra la sección "mejoraPedido"
   mejoraPedido.style.display = 'block';
+    mejoraPedidoSection.scrollIntoView({
+    behavior: 'smooth', // Esto crea un desplazamiento suave
+    block: 'start' // Esto alinea la parte superior de la sección en la parte superior de la ventana
+  });
 });
 
 // Agrega un event listener para el clic en "Continuar2"
@@ -1314,6 +1318,10 @@ continuar2Button.addEventListener('click', function () {
 
   // Muestra la sección "stripe"
   stripe2.style.display = 'block';
+stripe2.scrollIntoView({
+    behavior: 'smooth', // Esto crea un desplazamiento suave
+    block: 'start' // Esto alinea la parte superior de la sección en la parte superior de la ventana
+  });
 });
 
 </script>
