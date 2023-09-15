@@ -857,6 +857,9 @@ function actualizarPrecioSubtotal() {
   if (cantidadProductosElemento) {
     cantidadProductosElemento.textContent = cantidadTotalProductos;
   }
+
+  // Llama a la función para calcular el total
+  calcularTotal();
 }
 
 // Observador de mutaciones y llamada inicial
@@ -875,12 +878,6 @@ const callback = function (mutationsList, observer) {
 // Crea un observador de mutaciones y lo aplica al elemento .box-contenido
 const observer = new MutationObserver(callback);
 observer.observe(targetNode, config);
-
-// Llama a la función para calcular el precio subtotal inicial
-actualizarPrecioSubtotal();
-
-
-// TOTAL CALCULO
 
 // Función para calcular el total
 function calcularTotal() {
@@ -909,17 +906,14 @@ const totalObserver = new MutationObserver(() => {
 });
 
 // Configuración del observador
-const config = { childList: true, subtree: true };
+const totalConfig = { childList: true, subtree: true };
 
 // Observa cambios en la clase .total
-totalObserver.observe(totalElement, config);
+totalObserver.observe(totalElement, totalConfig);
 
 // Llama a la función para calcular el total inicial
 calcularTotal();
 
-
-
-// FIN TOTAL CALCULO TOTAL
 
 
 //DATOS CESTA DESPLEGABLE
