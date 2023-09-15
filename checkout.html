@@ -751,7 +751,9 @@ font-weight: bold;
                 <div id="card-element">
                   <!-- Unidad de formulario de Stripe -->
                 </div>
-                
+                <div id="payment-result" style="display:none">
+                  <p>El pago se ha realizado con éxito.</p>
+                </div>
                 <button id="submit-button">Realizar Pago</button>
 
                    <div class="footer-garantias">
@@ -820,7 +822,7 @@ font-weight: bold;
     </div>
 </div>
 
-<script src="https://js.stripe.com/v3/"></script>
+<script src="https://js.stripe.com/v3" async></script>
     <script>
 // Función para actualizar el precio subtotal y el envío
 function actualizarPrecioSubtotal() {
@@ -1177,27 +1179,55 @@ inputCheckbox.addEventListener('change', function () {
 
 
 
-         // Configuración de Stripe
-  const stripe = Stripe('TU_CLAVE_PUBLICA_DE_STRIPE');
-  const elements = stripe.elements();
-  const cardElement = elements.create('card');
-  cardElement.mount('#card-element');
+       // Configuración de Stripe
+const stripe = Stripe('pk_test_51M9S5DBElJap7B2LvuWSNNcEQ4nvj1UgI8QNaIHj2mG90sIHNFUPoGWZdleNBOaEPQNgNCJxwEAl9qIMueh1HXYM0076vvOY5K');
+const elements = stripe.elements();
+const cardElement = elements.create('card');
+cardElement.mount('#card-element');
 
-  // Manejar el envío del formulario
-  const form = document.getElementById('payment-form');
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
+// Manejar el envío del formulario
+const form = document.getElementById('payment-form');
+const paymentResult = document.getElementById('payment-result'); // Elemento para mostrar el resultado del pago
 
-    const { token, error } = await stripe.createToken(cardElement);
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
 
-    if (error) {
-      // Manejar el error
-      console.error(error.message);
+  const { token, error } = await stripe.createToken(cardElement);
+
+  if (error) {
+    // Manejar el error
+    console.error(error.message);
+  } else {
+    // Enviar token a tu servidor
+    console.log(token);
+
+    // Después de obtener el token exitosamente, puedes realizar la carga (cobro) al cliente
+    const totalAmount = parseFloat(document.querySelector('.total').textContent);
+    
+    // Realiza el pago usando el token y el monto total
+    const response = await fetch('/realizar_pago', { // Reemplaza '/realizar_pago' con la URL de tu servidor
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        token: token.id,
+        amount: totalAmount * 100, // Convierte el monto a centavos (Stripe utiliza centavos como unidad)
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      // Muestra el resultado del pago exitoso
+      paymentResult.style.display = 'block';
     } else {
-      // Enviar token a tu servidor
-      console.log(token);
+      // Maneja el error en caso de que la carga falle
+      console.error(data.error);
     }
-  });
+  }
+});
+
 
 // UPSELLS
 
@@ -1305,7 +1335,7 @@ infoForm.addEventListener('submit', function (event) {
 
   // Muestra la sección "mejoraPedido"
   mejoraPedido.style.display = 'block';
-    mejoraPedidoSection.scrollIntoView({
+    mejoraPedido.scrollIntoView({
     behavior: 'smooth', // Esto crea un desplazamiento suave
     block: 'start' // Esto alinea la parte superior de la sección en la parte superior de la ventana
   });
