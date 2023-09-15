@@ -655,7 +655,7 @@ font-weight: bold;
        <div class="desplegable">
               <div class="encabezado">
                 <p>Mostrar resumen del pedido</p>
-                <span class="subtotal-amount"></span>
+                <span class="total"></span>
                 <i class="fas fa-arrow-down"></i>
                 
               </div>
@@ -880,7 +880,46 @@ observer.observe(targetNode, config);
 actualizarPrecioSubtotal();
 
 
+// TOTAL CALCULO
 
+// Función para calcular el total
+function calcularTotal() {
+  const subtotalAmount = parseFloat(document.querySelector('.subtotal-amount').textContent.replace('€', ''));
+  const envio = document.querySelector('.envio').textContent;
+
+  let total = subtotalAmount;
+
+  if (envio.trim() === 'Gratis') {
+    total += 0;
+  } else {
+    // Si el envío no es gratis, puedes agregar el costo del envío aquí.
+    // Por ejemplo:
+    // total += parseFloat(envio.replace('€', ''));
+  }
+
+  // Actualiza el contenido de la clase .total con el nuevo valor calculado
+  document.querySelector('.total').textContent = total.toFixed(2) + '€';
+}
+
+// Observador de mutaciones para la clase .total
+const totalElement = document.querySelector('.total');
+const totalObserver = new MutationObserver(() => {
+  // Cuando cambia el contenido de .total, vuelve a calcular el total
+  calcularTotal();
+});
+
+// Configuración del observador
+const config = { childList: true, subtree: true };
+
+// Observa cambios en la clase .total
+totalObserver.observe(totalElement, config);
+
+// Llama a la función para calcular el total inicial
+calcularTotal();
+
+
+
+// FIN TOTAL CALCULO TOTAL
 
 
 //DATOS CESTA DESPLEGABLE
