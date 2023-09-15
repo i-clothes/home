@@ -803,13 +803,11 @@ font-weight: bold;
 
 <script src="https://js.stripe.com/v3/"></script>
     <script>
-// Función para actualizar el precio subtotal y el envío
-function actualizarPrecioSubtotal() {
-  const productos = document.querySelectorAll('.producto');
+ const productos = document.querySelectorAll('.producto');
   let subtotal = 0;
   let cantidadTotalProductos = 0;
 
-   productos.forEach((producto) => {
+  productos.forEach((producto) => {
     const precioTexto = producto.querySelector('.precio');
 
     // Obtener la cantidad del producto (si no se encuentra el span, se toma como 1)
@@ -822,7 +820,6 @@ function actualizarPrecioSubtotal() {
       cantidadTotalProductos += cantidadProducto;
     }
   });
-
 
   // Actualizar elementos .subtotal-amount
   const subtotalElementos = document.querySelectorAll('.subtotal-amount');
