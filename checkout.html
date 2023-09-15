@@ -803,20 +803,33 @@ font-weight: bold;
 
 <script src="https://js.stripe.com/v3/"></script>
     <script>
- const productos = document.querySelectorAll('.producto');
+// Función para actualizar el precio subtotal y el envío
+function actualizarPrecioSubtotal() {
+  // Selecciona todos los elementos con la clase "producto"
+  const productos = document.querySelectorAll('.producto');
+  
+  // Inicializa las variables para el subtotal y la cantidad total de productos
   let subtotal = 0;
   let cantidadTotalProductos = 0;
 
+  // Recorre todos los productos
   productos.forEach((producto) => {
+    // Busca el elemento que contiene el precio del producto
     const precioTexto = producto.querySelector('.precio');
 
     // Obtener la cantidad del producto (si no se encuentra el span, se toma como 1)
     const cantidadProductoElemento = producto.querySelector('.imagenResumen span');
     const cantidadProducto = cantidadProductoElemento ? parseInt(cantidadProductoElemento.textContent) : 1;
 
+    // Verifica si se encontró el precio y si la cantidad es un número válido
     if (precioTexto && !isNaN(cantidadProducto)) {
+      // Convierte el precio a número y elimina el formato de moneda
       const precio = parseFloat(precioTexto.textContent.replace('€', '').replace(',', '.'));
+
+      // Calcula el subtotal para este producto
       subtotal += precio * cantidadProducto;
+
+      // Suma la cantidad de este producto a la cantidad total de productos
       cantidadTotalProductos += cantidadProducto;
     }
   });
@@ -859,12 +872,12 @@ const callback = function (mutationsList, observer) {
   }
 };
 
+// Crea un observador de mutaciones y lo aplica al elemento .box-contenido
 const observer = new MutationObserver(callback);
 observer.observe(targetNode, config);
 
 // Llama a la función para calcular el precio subtotal inicial
 actualizarPrecioSubtotal();
-
 
 
 
