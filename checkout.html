@@ -1311,52 +1311,54 @@ stripe2.scrollIntoView({
 
 
 
- // Configurar la clave pública de Stripe
-        var stripe = Stripe('TU_CLAVE_PUBLICA_DE_STRIPE');
-        
-        // Crear un elemento de formulario de tarjeta de crédito de Stripe
-        var elements = stripe.elements();
-        var cardElement = elements.create('card');
-        
-        // Montar el elemento de formulario en el contenedor card-element
-        cardElement.mount('#card-element');
-        
-        // Manejar la presentación de errores en tiempo real desde Stripe
-        cardElement.addEventListener('change', function(event) {
-            var displayError = document.getElementById('card-errors');
-            if (event.error) {
-                displayError.textContent = event.error.message;
-            } else {
-                displayError.textContent = '';
-            }
-        });
-        
-        // Manejar el envío del formulario
-        var form = document.getElementById('payment-form');
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-        
-            stripe.createToken(cardElement).then(function(result) {
-                if (result.error) {
-                    // Mostrar un error al usuario si hay un problema con la tarjeta
-                    var errorElement = document.getElementById('card-errors');
-                    errorElement.textContent = result.error.message;
+  document.addEventListener("DOMContentLoaded", function () {
+            // Configurar la clave pública de Stripe
+            var stripe = Stripe('TU_CLAVE_PUBLICA_DE_STRIPE');
+            
+            // Crear un elemento de formulario de tarjeta de crédito de Stripe
+            var elements = stripe.elements();
+            var cardElement = elements.create('card');
+            
+            // Montar el elemento de formulario en el contenedor card-element
+            cardElement.mount('#card-element');
+            
+            // Manejar la presentación de errores en tiempo real desde Stripe
+            cardElement.addEventListener('change', function(event) {
+                var displayError = document.getElementById('card-errors');
+                if (event.error) {
+                    displayError.textContent = event.error.message;
                 } else {
-                    // Envía el token de pago al servidor para procesar el pago
-                    stripeTokenHandler(result.token);
+                    displayError.textContent = '';
                 }
             });
+            
+            // Manejar el envío del formulario
+            var form = document.getElementById('payment-form');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+            
+                stripe.createToken(cardElement).then(function(result) {
+                    if (result.error) {
+                        // Mostrar un error al usuario si hay un problema con la tarjeta
+                        var errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = result.error.message;
+                    } else {
+                        // Envía el token de pago al servidor para procesar el pago
+                        stripeTokenHandler(result.token);
+                    }
+                });
+            });
+            
+            // Función para enviar el token de pago al servidor
+            function stripeTokenHandler(token) {
+                // Puedes enviar el token al servidor aquí para procesar el pago
+                // Por ejemplo, puedes usar fetch() o AJAX para enviar el token al servidor
+            
+                // Muestra un mensaje de éxito al usuario
+                var paymentResult = document.getElementById('payment-result');
+                paymentResult.style.display = 'block';
+            }
         });
-        
-        // Función para enviar el token de pago al servidor
-        function stripeTokenHandler(token) {
-            // Puedes enviar el token al servidor aquí para procesar el pago
-            // Por ejemplo, puedes usar fetch() o AJAX para enviar el token al servidor
-        
-            // Muestra un mensaje de éxito al usuario
-            var paymentResult = document.getElementById('payment-result');
-            paymentResult.style.display = 'block';
-        }
 </script>
 </body>
 </html>
