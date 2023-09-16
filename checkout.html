@@ -1376,17 +1376,14 @@ fetch('https://ahorrodirect.com/stripe/cargo.php', {
 
     if (data.success) {
         // Si la respuesta es true, muestra un mensaje de éxito y habilita el botón de pago
-        successElement.textContent = data.message; // Puedes usar el mensaje personalizado si se proporcionó
         successElement.style.display = 'block';
         errorElement.style.display = 'none'; // Oculta el mensaje de error si estaba visible
 
         // Habilita el botón de pago nuevamente
         submitButton.disabled = false;
     } else {
-        // Si la respuesta es false, muestra un mensaje de error y habilita el botón de pago nuevamente
-        errorElement.textContent = data.message; // Puedes usar el mensaje personalizado si se proporcionó
         errorElement.style.display = 'block';
-        successElement.style.display = 'none'; // Oculta el mensaje de éxito si estaba visible
+        successElement.style.display = 'none';
 
         // Habilita el botón de pago nuevamente
         submitButton.disabled = false;
