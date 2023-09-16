@@ -756,6 +756,9 @@ font-weight: bold;
                 <div id="payment-result" style="display:none">
                   <p>El pago se ha realizado con éxito.</p>
                 </div>
+                  <div id="payment-error" style="display: none;">
+                  <p>Hubo un error en el proceso de pago. Por favor, inténtalo nuevamente.</p>
+                </div>
                 <button id="submit-button">Realizar Pago</button>
 
                    <div class="footer-garantias">
@@ -1311,84 +1314,84 @@ stripe2.scrollIntoView({
 
 
 
- // Configura tu clave pública de Stripe
-  const stripe = Stripe('TU_CLAVE_PUBLICA_DE_STRIPE');
+// Configura tu clave pública de Stripe
+        const stripe = Stripe('pk_test_51M9S5DBElJap7B2LvuWSNNcEQ4nvj1UgI8QNaIHj2mG90sIHNFUPoGWZdleNBOaEPQNgNCJxwEAl9qIMueh1HXYM0076vvOY5K');
 
-  // Inicializa el formulario de Stripe Elements
-  const elements = stripe.elements();
-  const cardElement = elements.create('card');
+        // Inicializa el formulario de Stripe Elements
+        const elements = stripe.elements();
+        const cardElement = elements.create('card');
 
-  // Monta el elemento de tarjeta en el DOM
-  cardElement.mount('#card-element');
+        // Monta el elemento de tarjeta en el DOM
+        cardElement.mount('#card-element');
 
-  // Maneja el envío del formulario
-  const form = document.getElementById('payment-form');
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
+        // Maneja el envío del formulario
+        const form = document.getElementById('payment-form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
 
-    // Deshabilita el botón de pago durante el proceso
-    document.getElementById('submit-button').disabled = true;
+            // Deshabilita el botón de pago durante el proceso
+            document.getElementById('submit-button').disabled = true;
 
-    // Crea un cliente de pago de Stripe
-    const { token, error } = await stripe.createToken(cardElement);
+            // Crea un cliente de pago de Stripe
+            const { token, error } = await stripe.createToken(cardElement);
 
-    // Maneja errores
-    if (error) {
-      // Muestra un mensaje de error al usuario
-      const errorElement = document.getElementById('payment-error');
-      errorElement.textContent = error.message;
-      errorElement.style.display = 'block';
+            // Maneja errores
+            if (error) {
+                // Muestra un mensaje de error al usuario
+                const errorElement = document.getElementById('payment-error');
+                errorElement.textContent = error.message;
+                errorElement.style.display = 'block';
 
-      // Habilita el botón de pago nuevamente
-      document.getElementById('submit-button').disabled = false;
-    } else {
-      // Guarda el token de Stripe en localStorage con la clave 'Token'
-      localStorage.setItem('Token', token.id);
+                // Habilita el botón de pago nuevamente
+                document.getElementById('submit-button').disabled = false;
+            } else {
+                // Guarda el token de Stripe en localStorage con la clave 'Token'
+                localStorage.setItem('Token', token.id);
 
-      // Obtén los valores del formulario
-      const name = document.getElementById('name').value;
-      const nombreproducto = document.getElementById('nombreproducto').value;
-      const imagenResumen = document.getElementById('imagenResumen').value;
-      const talla = document.getElementById('talla').value || 'Talla única'; // Valor por defecto si no se proporciona talla
+                // Obtén los valores del formulario
+                const name = document.getElementById('name').value;
+                const nombreproducto = document.getElementById('nombreproducto').value;
+                const imagenResumen = document.getElementById('imagenResumen').value;
+                const talla = document.getElementById('talla').value || 'Talla única'; // Valor por defecto si no se proporciona talla
 
-      // Crear un objeto con los detalles del pedido
-      const pedido = {
-        nombre: name,
-        nombreproducto,
-        imagenResumen,
-        talla,
-      };
+                // Crear un objeto con los detalles del pedido
+                const pedido = {
+                    nombre: name,
+                    nombreproducto,
+                    imagenResumen,
+                    talla,
+                };
 
-      // Guarda el objeto pedido en localStorage con la clave 'pedido'
-      localStorage.setItem('pedido', JSON.stringify(pedido));
+                // Guarda el objeto pedido en localStorage con la clave 'pedido'
+                localStorage.setItem('pedido', JSON.stringify(pedido));
 
-      // Envía el token de pago al servidor para realizar la carga
-      fetch('/cargo.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ token: token.id }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success) {
-            // Muestra un mensaje de éxito al usuario
-            const successElement = document.getElementById('payment-result');
-            successElement.textContent = 'El pago se ha realizado con éxito.';
-            successElement.style.display = 'block';
-          } else {
-            // Muestra un mensaje de error al usuario
-            const errorElement = document.getElementById('payment-error');
-            errorElement.textContent = 'Hubo un error al procesar el pago.';
-            errorElement.style.display = 'block';
-          }
+                // Envía el token de pago al servidor para realizar el cargo
+                fetch('/cargo.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ token: token.id }),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (data.success) {
+                            // Muestra un mensaje de éxito al usuario
+                            const successElement = document.getElementById('payment-result');
+                            successElement.textContent = 'El pago se ha realizado con éxito.';
+                            successElement.style.display = 'block';
+                        } else {
+                            // Muestra un mensaje de error al usuario
+                            const errorElement = document.getElementById('payment-error');
+                            errorElement.textContent = 'Hubo un error al procesar el pago.';
+                            errorElement.style.display = 'block';
+                        }
 
-          // Habilita el botón de pago nuevamente
-          document.getElementById('submit-button').disabled = false;
+                        // Habilita el botón de pago nuevamente
+                        document.getElementById('submit-button').disabled = false;
+                    });
+            }
         });
-    }
-  });
 
 
 
