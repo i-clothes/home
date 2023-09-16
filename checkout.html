@@ -1349,7 +1349,7 @@ form.addEventListener('submit', async (event) => {
     localStorage.setItem('Token', token.id);
 
     // Obtén el valor total sin el símbolo "€"
-    const total = document.getElementById('total').textContent; // Supongamos que el total se muestra en un elemento con id 'total'
+    const total = document.querySelector('total').textContent; // Supongamos que el total se muestra en un elemento con id 'total'
 
     // Crear un objeto con el detalle del pedido
     const pedido = {
