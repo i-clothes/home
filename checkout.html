@@ -7,7 +7,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="ICL.png" type="image/x-icon">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <title>Stories de Instagram</title>
@@ -623,6 +622,7 @@ font-weight: bold;
 
 
     </style>
+<script src="https://js.stripe.com/v3"></script>
 </head>
 <body>
     <div class="top-section" id="topsection" style="display: none">
@@ -823,7 +823,7 @@ font-weight: bold;
         </div>
     </div>
 </div>
-<script src="https://js.stripe.com/v3" async></script>
+
 
     <script>
 // Función para actualizar el precio subtotal y el envío
@@ -1311,54 +1311,68 @@ stripe2.scrollIntoView({
 
 
 
-  document.addEventListener("DOMContentLoaded", function () {
-            // Configurar la clave pública de Stripe
-            var stripe = Stripe('TU_CLAVE_PUBLICA_DE_STRIPE');
-            
-            // Crear un elemento de formulario de tarjeta de crédito de Stripe
-            var elements = stripe.elements();
-            var cardElement = elements.create('card');
-            
-            // Montar el elemento de formulario en el contenedor card-element
-            cardElement.mount('#card-element');
-            
-            // Manejar la presentación de errores en tiempo real desde Stripe
-            cardElement.addEventListener('change', function(event) {
-                var displayError = document.getElementById('card-errors');
-                if (event.error) {
-                    displayError.textContent = event.error.message;
-                } else {
-                    displayError.textContent = '';
-                }
-            });
-            
-            // Manejar el envío del formulario
-            var form = document.getElementById('payment-form');
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-            
-                stripe.createToken(cardElement).then(function(result) {
-                    if (result.error) {
-                        // Mostrar un error al usuario si hay un problema con la tarjeta
-                        var errorElement = document.getElementById('card-errors');
-                        errorElement.textContent = result.error.message;
-                    } else {
-                        // Envía el token de pago al servidor para procesar el pago
-                        stripeTokenHandler(result.token);
-                    }
-                });
-            });
-            
-            // Función para enviar el token de pago al servidor
-            function stripeTokenHandler(token) {
-                // Puedes enviar el token al servidor aquí para procesar el pago
-                // Por ejemplo, puedes usar fetch() o AJAX para enviar el token al servidor
-            
-                // Muestra un mensaje de éxito al usuario
-                var paymentResult = document.getElementById('payment-result');
-                paymentResult.style.display = 'block';
-            }
+// Configura tu clave pública de Stripe
+  const stripe = Stripe('TU_CLAVE_PUBLICA_DE_STRIPE');
+
+  // Inicializa el formulario de Stripe Elements
+  const elements = stripe.elements();
+  const cardElement = elements.create('card');
+
+  // Monta el elemento de tarjeta en el DOM
+  cardElement.mount('#card-element');
+
+  // Maneja el envío del formulario
+  const form = document.getElementById('payment-form');
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    // Deshabilita el botón de pago durante el proceso
+    document.getElementById('submit-button').disabled = true;
+
+    // Crea un cliente de pago de Stripe
+    const { token, error } = await stripe.createToken(cardElement);
+
+    // Maneja errores
+    if (error) {
+      // Muestra un mensaje de error al usuario
+      const errorElement = document.getElementById('payment-error');
+      errorElement.textContent = error.message;
+      errorElement.style.display = 'block';
+
+      // Habilita el botón de pago nuevamente
+      document.getElementById('submit-button').disabled = false;
+    } else {
+      // Envía el token de pago al servidor para realizar la carga
+      fetch('/procesar-pago', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token: token.id }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            // Muestra un mensaje de éxito al usuario
+            const successElement = document.getElementById('payment-result');
+            successElement.textContent = 'El pago se ha realizado con éxito.';
+            successElement.style.display = 'block';
+          } else {
+            // Muestra un mensaje de error al usuario
+            const errorElement = document.getElementById('payment-error');
+            errorElement.textContent = 'Hubo un error al procesar el pago.';
+            errorElement.style.display = 'block';
+          }
+
+          // Habilita el botón de pago nuevamente
+          document.getElementById('submit-button').disabled = false;
         });
+    }
+  });
+
+
+
+
 </script>
 </body>
 </html>
