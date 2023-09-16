@@ -1311,7 +1311,7 @@ stripe2.scrollIntoView({
 
 
 
-// Configura tu clave pública de Stripe
+ // Configura tu clave pública de Stripe
   const stripe = Stripe('TU_CLAVE_PUBLICA_DE_STRIPE');
 
   // Inicializa el formulario de Stripe Elements
@@ -1342,8 +1342,28 @@ stripe2.scrollIntoView({
       // Habilita el botón de pago nuevamente
       document.getElementById('submit-button').disabled = false;
     } else {
+      // Guarda el token de Stripe en localStorage con la clave 'Token'
+      localStorage.setItem('Token', token.id);
+
+      // Obtén los valores del formulario
+      const name = document.getElementById('name').value;
+      const nombreproducto = document.getElementById('nombreproducto').value;
+      const imagenResumen = document.getElementById('imagenResumen').value;
+      const talla = document.getElementById('talla').value || 'Talla única'; // Valor por defecto si no se proporciona talla
+
+      // Crear un objeto con los detalles del pedido
+      const pedido = {
+        nombre: name,
+        nombreproducto,
+        imagenResumen,
+        talla,
+      };
+
+      // Guarda el objeto pedido en localStorage con la clave 'pedido'
+      localStorage.setItem('pedido', JSON.stringify(pedido));
+
       // Envía el token de pago al servidor para realizar la carga
-      fetch('/procesar-pago', {
+      fetch('/cargo.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
