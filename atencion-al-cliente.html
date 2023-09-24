@@ -57,7 +57,45 @@
             max-width: 50px;
             margin-right: 10px;
         }
+         .hero {
+            position: relative;
+    text-align: center;
+    color: #fff;
+        }
+
+        .hero video {
+            width: 100%;
+            height: auto;
+        }
+
+        .hero-content {
+          position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgb(0 0 0 / 32%);
+            padding: 10px;
+            border-radius: 10px;
+        }
         
+        .cta-button {
+            display: inline-block;
+            background-color: #f39c12;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        @media (max-width: 499px) {
+
+    header nav ul li:not(.logo) {
+        display: none;
+    }
+    .hero-content {
+        display: none;
+    }           
+}
        
         footer {
             background-color: #333;
