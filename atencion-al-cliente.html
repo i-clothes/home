@@ -647,7 +647,6 @@ width: 90%;
 
         /* Estilos para los botones */
 button {
-    background-color: #007BFF; /* Color de fondo azul */
     color: white; /* Texto en blanco */
     padding: 10px 20px;
     border: none;
@@ -670,7 +669,11 @@ button a {
 }
 
 
+.nuevoPedido{
 
+justify-content: center;
+align-items: center;
+}
 
 
 
@@ -845,7 +848,7 @@ button a {
     nuevoCliente.addEventListener("click", function() {
         // Mostrar .cliente y ocultar .nuevoPedido
          clienteDiv.style.display = "none";
-        nuevoPedidoDiv.style.display = "block";
+        nuevoPedidoDiv.style.display = "flex";
         
     });
 
