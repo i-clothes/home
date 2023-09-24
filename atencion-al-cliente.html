@@ -702,8 +702,18 @@ z-index: 5;
         </div>
     </div>
 </section>
- <section class="next-step" style="display: none;">
-        <div class="next-step-item" id="cliente">
+ <section class="next-step" style="display:none;" > 
+    <div class="atencion-item" id="nuevoCliente">
+            <i class="fas fa-user"></i>
+            <p class="atencion-text">Nuevo cliente</p>
+        </div>
+     <div class="atencion-item" id="clientehabitual">
+            <i class="fas fa-user"></i>
+            <p class="atencion-text">Cliente</p>
+        </div>
+
+</section>
+        <div class="cliente" style="display: none;">
             <h3>Cliente</h3>
             <form id="cliente-form">
                 <input type="text" placeholder="Nombre Completo">
@@ -718,14 +728,14 @@ z-index: 5;
                 <input type="text" placeholder="Mensaje">
             </form>
         </div>
-        <div class="next-step-item" id="nuevo-pedido">
+        <div class="nuevoPedido" style="display: none;">
             <a href="https://api.whatsapp.com/send?phone=34679638692&text=Soporte%20I-Clothes" class="whatsapp-link" target="_blank">
                 <button>Enviar WhatsApp</button>
             </a>
             <label for="descuento">Descuento</label>
             <input type="text" id="descuento" placeholder="PRIMERPEDIDO10">
         </div>
-    </section>
+   
     
    <footer>
     <div class="footer-links">
@@ -782,63 +792,39 @@ z-index: 5;
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
 
- // Obtener los elementos relevantes
-        const atencionItems = document.querySelectorAll('.atencion-item');
-        const nextStep = document.querySelector('.next-step');
-        const clienteButton = document.getElementById('cliente');
-        const nuevoPedidoButton = document.getElementById('nuevo-pedido');
+ <script>
+    // Obtener elementos
+    const atencionCliente = document.querySelector(".atencion-cliente");
+    const nextStep = document.querySelector(".next-step");
+    const nuevoCliente = document.getElementById("nuevoCliente");
+    const clienteHabitual = document.getElementById("clientehabitual");
+    const clienteDiv = document.querySelector(".cliente");
+    const nuevoPedidoDiv = document.querySelector(".nuevoPedido");
 
-        // Agregar un manejador de clic para cada elemento .atencion-item
-        atencionItems.forEach(item => {
-            item.addEventListener('click', () => {
-                // Agregar el efecto de parpadeo naranja al elemento seleccionado
-                item.style.borderColor = 'orange';
-                item.style.animation = 'pulse 1s infinite';
-
-                // Ocultar la sección .atencion-cliente
-                document.querySelector('.atencion-cliente').style.display = 'none';
-
-                // Mostrar la sección .next-step
-                nextStep.style.display = 'block';
-
-                // Manejar clics en los botones de la sección next-step
-                clienteButton.addEventListener('click', () => {
-                    // Aquí puedes agregar la lógica para el botón "Cliente"
-                    // Por ejemplo, redirigir a una página de atención al cliente
-                });
-
-                nuevoPedidoButton.addEventListener('click', () => {
-                    // Aquí puedes agregar la lógica para el botón "Nuevo Pedido"
-                    // Por ejemplo, redirigir a una página para hacer un nuevo pedido
-                });
-            });
+    // Agregar evento de clic a los elementos .atencion-item
+    const atencionItems = document.querySelectorAll(".atencion-item");
+    atencionItems.forEach(item => {
+        item.addEventListener("click", function() {
+            // Ocultar .atencion-cliente y mostrar .next-step
+            atencionCliente.style.display = "none";
+            nextStep.style.display = "block";
         });
+    });
 
+    // Agregar evento de clic al elemento nuevoCliente
+    nuevoCliente.addEventListener("click", function() {
+        // Mostrar .cliente y ocultar .nuevoPedido
+        clienteDiv.style.display = "block";
+        nuevoPedidoDiv.style.display = "none";
+    });
 
- // Obtener los elementos relevantes
-
-        const clienteForm = document.getElementById('cliente-form');
-        const descuentoInput = document.getElementById('descuento');
-
-        // Agregar un manejador de clic para el botón "Cliente"
-        clienteButton.addEventListener('click', () => {
-            // Mostrar el formulario del cliente
-            clienteForm.style.display = 'block';
-
-            // Ocultar el botón de WhatsApp y el campo de descuento
-            nuevoPedidoButton.style.display = 'none';
-            descuentoInput.style.display = 'none';
-        });
-
-        // Agregar un manejador de clic para el botón "Nuevo Pedido"
-        nuevoPedidoButton.addEventListener('click', () => {
-            // Mostrar el botón de WhatsApp y el campo de descuento
-            nuevoPedidoButton.style.display = 'block';
-            descuentoInput.style.display = 'block';
-
-            // Ocultar el formulario del cliente
-            clienteForm.style.display = 'none';
-        });
+    // Agregar evento de clic al elemento clienteHabitual
+    clienteHabitual.addEventListener("click", function() {
+        // Mostrar .nuevoPedido y ocultar .cliente
+        nuevoPedidoDiv.style.display = "block";
+        clienteDiv.style.display = "none";
+    });
+</script>
 
 
     </script>
