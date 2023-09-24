@@ -752,8 +752,8 @@ align-items: center;
         <div class="cliente" style="display: none;">
             <h3>Cliente</h3>
             <form id="cliente-form">
-                <input type="text" placeholder="Nombre Completo">
-                <input type="text" placeholder="Nº de Pedido">
+                <input type="text" placeholder="Nombre Completo" required>
+                <input type="text" placeholder="Nº de Pedido" required>
                 <select>
                     <option value="Devolver Pedido">Devolver Pedido</option>
                     <option value="Cancelar Pedido">Cancelar Pedido</option>
@@ -761,7 +761,7 @@ align-items: center;
                     <option value="Consultar">Consultar</option>
                     <option value="Hablar con un agente">Hablar con un agente</option>
                 </select>
-                <input type="text" placeholder="Mensaje">
+                <input type="text" placeholder="Mensaje" required>
                 <button id="enviarPeticion">Enviar</button>
                 <h3 id="respuesta" style="display:none">Petición enviada te responderemos en menos de 24h</h3>
             </form>
