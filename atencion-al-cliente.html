@@ -562,26 +562,83 @@ z-index: 5;
     color: #45a049; /* Cambio de color al pasar el mouse */
 }
 
-
-/* Estilos para la sección next-step */
+/* Estilos generales para la sección next-step */
 .next-step {
-    display: flex;
-    justify-content: center; /* Centra horizontalmente los elementos */
-    align-items: center; /* Centra verticalmente los elementos */
-    height: 100px; /* Altura deseada para la sección */
-    background-color: #f0f0f0; /* Color de fondo (puedes personalizarlo) */
-    margin-top: 20px; /* Margen superior opcional */
+    text-align: center;
+    margin-top: 20px;
 }
 
-/* Estilos para los elementos en la sección next-step */
+/* Estilos para los elementos dentro de next-step */
 .next-step-item {
-    background-color: #333; /* Color de fondo de los elementos */
-    color: #fff; /* Color del texto */
-    padding: 10px 20px; /* Espaciado interno */
-    margin: 5px; /* Margen entre los elementos */
-    border-radius: 5px; /* Bordes redondeados */
-    text-align: center; /* Alineación del texto al centro */
+    margin: 20px auto;
+    display: none;
 }
+
+.next-step-item h3 {
+    margin-bottom: 10px;
+}
+
+/* Estilos para los elementos del formulario de cliente */
+#cliente-form {
+    display: none;
+    text-align: left;
+}
+
+#cliente-form input[type="text"],
+#cliente-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#cliente-form select {
+    height: 40px;
+}
+
+#cliente-form input[type="text"]::placeholder,
+#cliente-form select::placeholder {
+    color: #aaa;
+}
+
+/* Estilos para el botón de WhatsApp */
+.whatsapp-link {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #25d366;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* Estilos para el campo de descuento */
+#descuento {
+    display: none;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Estilos para el botón del formulario */
+#cliente-form button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 
 
 
@@ -632,15 +689,13 @@ z-index: 5;
     
     <div class="atencion-items">
         <div class="atencion-item">
-            <a href="https://api.whatsapp.com/send?phone=34679638692&text=Soporte%20I-Clothes" class="whatsapp-link">
                 <i class="fas fa-whatsapp"></i>
-            </a>
             <p class="atencion-text">WhatsApp</p>
         </div>
 
         <div class="atencion-item">
             <i class="fas fa-phone"></i>
-            <p class="atencion-text">Teléfono 611717571</p>
+            <p class="atencion-text">Teléfono</p>
         </div>
 
         <div class="atencion-item">
@@ -650,11 +705,29 @@ z-index: 5;
     </div>
 </section>
  <section class="next-step" style="display: none;">
-        <!-- Contenido para la sección next-step -->
-        <div class="next-step-item" id="cliente">Cliente</div>
-        <div class="next-step-item" id="nuevo-pedido">Nuevo Pedido</div>
+        <div class="next-step-item" id="cliente">
+            <h3>Cliente</h3>
+            <form id="cliente-form">
+                <input type="text" placeholder="Nombre Completo">
+                <input type="text" placeholder="Nº de Pedido">
+                <select>
+                    <option value="Devolver Pedido">Devolver Pedido</option>
+                    <option value="Cancelar Pedido">Cancelar Pedido</option>
+                    <option value="Solicitar Reembolso">Solicitar Reembolso</option>
+                    <option value="Consultar">Consultar</option>
+                    <option value="Hablar con un agente">Hablar con un agente</option>
+                </select>
+                <input type="text" placeholder="Mensaje">
+            </form>
+        </div>
+        <div class="next-step-item" id="nuevo-pedido">
+            <a href="https://api.whatsapp.com/send?phone=34679638692&text=Soporte%20I-Clothes" class="whatsapp-link" target="_blank">
+                <button>Enviar WhatsApp</button>
+            </a>
+            <label for="descuento">Descuento</label>
+            <input type="text" id="descuento" placeholder="PRIMERPEDIDO10">
+        </div>
     </section>
-
     
    <footer>
     <div class="footer-links">
@@ -744,7 +817,32 @@ z-index: 5;
         });
 
 
+ // Obtener los elementos relevantes
+        const clienteButton = document.getElementById('cliente');
+        const nuevoPedidoButton = document.getElementById('nuevo-pedido');
+        const nextStep = document.querySelector('.next-step');
+        const clienteForm = document.getElementById('cliente-form');
+        const descuentoInput = document.getElementById('descuento');
 
+        // Agregar un manejador de clic para el botón "Cliente"
+        clienteButton.addEventListener('click', () => {
+            // Mostrar el formulario del cliente
+            clienteForm.style.display = 'block';
+
+            // Ocultar el botón de WhatsApp y el campo de descuento
+            nuevoPedidoButton.style.display = 'none';
+            descuentoInput.style.display = 'none';
+        });
+
+        // Agregar un manejador de clic para el botón "Nuevo Pedido"
+        nuevoPedidoButton.addEventListener('click', () => {
+            // Mostrar el botón de WhatsApp y el campo de descuento
+            nuevoPedidoButton.style.display = 'block';
+            descuentoInput.style.display = 'block';
+
+            // Ocultar el formulario del cliente
+            clienteForm.style.display = 'none';
+        });
 
 
     </script>
