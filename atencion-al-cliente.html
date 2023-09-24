@@ -580,6 +580,11 @@ z-index: 5;
     margin-bottom: 10px;
 }
 
+.cliente {
+width: 90%;
+    margin: auto;
+}
+
 /* Estilos para los elementos del formulario de cliente */
 #cliente-form {
     text-align: left;
@@ -639,6 +644,31 @@ z-index: 5;
     font-size: 16px;
     cursor: pointer;
 }
+
+        /* Estilos para los botones */
+button {
+    background-color: #007BFF; /* Color de fondo azul */
+    color: white; /* Texto en blanco */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+button a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Estilos para el mensaje de respuesta */
+#respuesta {
+    display: none; /* Inicialmente oculto */
+    color: #28a745; /* Color de texto verde */
+    font-weight: bold;
+    margin-top: 10px;
+}
+
 
 
 
@@ -729,14 +759,12 @@ z-index: 5;
                     <option value="Hablar con un agente">Hablar con un agente</option>
                 </select>
                 <input type="text" placeholder="Mensaje">
+                <button id="enviarPeticion">Enviar</button>
+                <h3 id="respuesta" style="display:none">Petición enviada te responderemos en menos de 24h</h3>
             </form>
         </div>
         <div class="nuevoPedido" style="display: none;">
-            <a href="https://api.whatsapp.com/send?phone=34679638692&text=Soporte%20I-Clothes" class="whatsapp-link" target="_blank">
-                <button>Enviar WhatsApp</button>
-            </a>
-            <label for="descuento">Descuento</label>
-            <input type="text" id="descuento" placeholder="PRIMERPEDIDO10">
+            <button> <a href="https://api.whatsapp.com/send?phone=34679638692&text=Soporte%20I-Clothes" class="whatsapp-link" target="_blank">Soporte por Whatsapp</a></button>
         </div>
    
     
@@ -816,7 +844,7 @@ z-index: 5;
     // Agregar evento de clic al elemento nuevoCliente
     nuevoCliente.addEventListener("click", function() {
         // Mostrar .cliente y ocultar .nuevoPedido
-        
+         clienteDiv.style.display = "none";
         nuevoPedidoDiv.style.display = "block";
         
     });
@@ -825,7 +853,7 @@ z-index: 5;
     clienteHabitual.addEventListener("click", function() {
         // Mostrar .nuevoPedido y ocultar .cliente
         clienteDiv.style.display = "block";
-        
+        nuevoPedidoDiv.style.display = "none";
     });
 
     </script>
