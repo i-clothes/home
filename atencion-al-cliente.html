@@ -822,10 +822,12 @@ align-items: center;
         </div>
     </div>
 </footer>
-
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-
+     (function() {
+        emailjs.init("vaK4oIBbTWuGqq2bE"); // Reemplaza "YOUR_USER_ID" con tu ID de usuario de EmailJS
+    })();
     // Obtener elementos
     const atencionCliente = document.querySelector(".atencion-cliente");
     const nextStep = document.querySelector(".next-step");
