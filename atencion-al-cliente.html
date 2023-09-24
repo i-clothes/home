@@ -856,6 +856,36 @@ button a {
         nuevoPedidoDiv.style.display = "none";
     });
 
+
+  // Agregar evento de clic al botón de enviarPeticion
+    document.getElementById("enviarPeticion").addEventListener("click", function(event) {
+        event.preventDefault(); // Evitar el comportamiento predeterminado del formulario
+
+        // Obtener el formulario y los valores de los campos
+        const formulario = document.getElementById("cliente-form");
+        const nombreCompleto = formulario.querySelector('input[placeholder="Nombre Completo"]').value;
+        const numeroPedido = formulario.querySelector('input[placeholder="Nº de Pedido"]').value;
+        const seleccion = formulario.querySelector('select').value;
+        const mensaje = formulario.querySelector('input[placeholder="Mensaje"]').value;
+
+        // Enviar el correo utilizando EmailJS
+        emailjs.send("service_47olrky", "template_sx78vet", {
+            nombre_completo: nombreCompleto,
+            numero_pedido: numeroPedido,
+            seleccion: seleccion,
+            mensaje: mensaje
+        })
+        .then(function(response) {
+            console.log("Correo enviado con éxito:", response);
+            // Mostrar el mensaje de respuesta
+            const respuesta = document.getElementById("respuesta");
+            respuesta.style.display = "block";
+        })
+        .catch(function(error) {
+            console.error("Error al enviar el correo:", error);
+        });
+    });
+
     </script>
 </body>
 </html>
