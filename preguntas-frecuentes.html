@@ -970,73 +970,37 @@ z-index: 5;
     margin: 10px;
 }
 
-.seguimiento-pedido {
-    background-color: #f9f9f9;
+/* Estilos generales para la sección de preguntas frecuentes */
+.faq {
+    margin: 20px;
     padding: 20px;
-    text-align: center;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-h2 {
-    font-size: 24px;
+/* Estilos para los elementos 'details' */
+details {
     margin-bottom: 20px;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-label {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-input {
-    width: 100%;
+/* Estilos para el encabezado 'summary' de los elementos 'details' */
+summary {
+    font-weight: bold;
+    cursor: pointer;
     padding: 10px;
-    margin-bottom: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-}
-
-.resultado-seguimiento {
-    margin-top: 20px;
-}
-
-.map-container {
-    position: relative;
-}
-
-#map {
-    width: 500px;
-    height: 300px;
-}
-
-#trackButton {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    z-index: 1000;
-}
-
-#box {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: red;
-    transition: all 2s;
+/* Estilos para el contenido de los elementos 'details' cuando están abiertos */
+details[open] p {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
 }
 
 
@@ -1078,22 +1042,45 @@ button {
         <p class="letras">ENVÍO GRATIS CON TU PRIMER PEDIDO</p>
         <p class="letras">ENVÍO GRATIS CON TU PRIMER PEDIDO</p>
     </section>
-   <section class="seguimiento-pedido">
-    <h2>Seguimiento de Pedido</h2>
-    <form>
-        <label for="numero-pedido">Número de Pedido:</label>
-        <input type="text" id="numero-pedido" name="numero-pedido" required>
-        <button type="submit">Buscar Pedido</button>
-    </form>
-    <div class="resultado-seguimiento">
-        <!-- Aquí se mostrará la información de seguimiento del pedido -->
-    </div>
+ <section class="faq">
+    <h2>Preguntas Frecuentes</h2>
+
+    <details>
+        <summary>¿Cuánto tardan los pedidos?</summary>
+        <p>Los pedidos suelen tardar de 2 a 3 días en llegar a la península.</p>
+    </details>
+
+    <details>
+        <summary>¿Cuáles son los métodos de pago disponibles?</summary>
+        <p>Aceptamos los siguientes métodos de pago: tarjeta de crédito, PayPal y transferencia bancaria.</p>
+    </details>
+
+    <details>
+        <summary>¿Puedo realizar devoluciones?</summary>
+        <p>Sí, aceptamos devoluciones dentro de los 30 días posteriores a la recepción del pedido. Por favor, consulta nuestra política de devoluciones para obtener más detalles.</p>
+    </details>
+
+    <details>
+        <summary>¿Ofrecen envío internacional?</summary>
+        <p>Sí, realizamos envíos internacionales a varios países. Los gastos de envío y los tiempos de entrega pueden variar según el destino. Para obtener más información, visita nuestra página de envíos internacionales.</p>
+    </details>
+
+    <details>
+        <summary>¿Cómo puedo realizar un seguimiento de mi pedido?</summary>
+        <p>Una vez que tu pedido haya sido enviado, recibirás un correo electrónico con un enlace de seguimiento. También puedes iniciar sesión en tu cuenta para verificar el estado de tu pedido en cualquier momento.</p>
+    </details>
+
+    <details>
+        <summary>¿Tienen una tienda física?</summary>
+        <p>No, i-clothes es una tienda en línea y actualmente no contamos con tiendas físicas. Puedes realizar tus compras cómodamente desde nuestra plataforma en línea.</p>
+    </details>
+
+    <details>
+        <summary>¿Cómo puedo ponerme en contacto con el servicio de atención al cliente?</summary>
+        <p>Puedes ponerte en contacto con nuestro servicio de atención al cliente a través de nuestro formulario de contacto en línea o enviándonos un correo electrónico a info@i-clothes.com. Estamos disponibles para ayudarte de lunes a viernes, de 9:00 a 18:00.</p>
+    </details>
 </section>
-   <div class="map-container">
-        <div id="map"></div>
-        <button id="trackButton">Trackear</button>
-        <div id="box"></div>
-    </div>
+
 
     
    <footer>
